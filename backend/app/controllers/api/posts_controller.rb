@@ -4,6 +4,6 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-    render json: Posts.find(params[:id])
+    render json: Posts.find_by_post_slug(params[:id]) || Posts.find(params[:id])
   end
 end

@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(version: 20140816023908) do
 
   create_table "posts", force: true do |t|
     t.string   "title"
+    t.string   "post_slug"
+    t.datetime "published_date"
+    t.text     "excerpt"
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"

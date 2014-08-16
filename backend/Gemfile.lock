@@ -28,9 +28,18 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    better_errors (1.1.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.1.4)
+    coderay (1.1.0)
+    debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.2.1)
+    faker (1.1.2)
+      i18n (~> 0.5)
     hike (1.2.3)
     i18n (0.6.11)
     json (1.8.1)
@@ -95,6 +104,9 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers
+  better_errors
+  binding_of_caller
+  faker
   pg
   rails (= 4.0.1)
   sass-rails (~> 4.0.0)

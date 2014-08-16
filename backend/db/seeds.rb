@@ -6,6 +6,26 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Posts.create(title: 'Blog 1', body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, quisquam voluptatem nostrum a molestiae officia illo, autem fugit? Nihil odit officiis, incidunt deserunt voluptatum, veritatis magni ullam inventore? Ut, omnis!")
-Posts.create(title: 'Blog 2', body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae perspiciatis repudiandae nulla facere reprehenderit accusantium aut non odio quo est, consequatur minima dolorum adipisci autem. Numquam exercitationem, dicta rem rerum!")
-Posts.create(title: 'Blog 3', body: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil labore, mollitia officiis ipsum eius harum ullam fuga magni quo autem nostrum dolores cum tenetur alias repudiandae accusantium odit asperiores. Mollitia.")
+Posts.create(
+  title: "Title 1",
+  post_slug: "title-1",
+  published_date: Time.now - 4.days,
+  excerpt: Faker::Lorem.sentences(1)[0],
+  body: Faker::Lorem.paragraphs(15)[0]
+)
+
+Posts.create(
+  title: "Title 2",
+  post_slug: "title-2",
+  published_date: Time.now - 2.days,
+  excerpt: Faker::Lorem.sentences(1)[0],
+  body: Faker::Lorem.paragraphs(15)[0]
+)
+
+Posts.create(
+  title: "Title 3",
+  post_slug: "title-3",
+  published_date: Time.now,
+  excerpt: Faker::Lorem.sentences(1)[0],
+  body: Faker::Lorem.paragraphs(15)[0]
+)
