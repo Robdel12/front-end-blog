@@ -1,0 +1,25 @@
+@mixin oswald(){
+  font-family: 'Oswald', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+@mixin opensans(){
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+@mixin inline-block(){
+  display: inline-block;
+  *zoom: 1;
+  vertical-align: middle;
+}
+@mixin flex-box(){
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}

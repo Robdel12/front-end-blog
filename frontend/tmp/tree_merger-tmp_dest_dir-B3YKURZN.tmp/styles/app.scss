@@ -1,0 +1,417 @@
+/*
+Theme Name: Robert DeLucas theme
+Author: Robert DeLuca
+Author URI: http://robert-deluca.com
+Description: One off custom theme created by the awesome coder Robert DeLuca.
+Version: 2.0
+License: GNU General Public License
+*/
+
+// =========================================================== Global ============================================================
+
+$primary_color: #057EA6;
+
+@import "reset"; //Febreze bros, a fresh start.
+@import "mixins";
+
+h1, h2, h3, h4, h5{
+  @include oswald;
+}
+body{
+ @include opensans;
+ h1{
+  font-size: 3rem;
+  margin: 10px 0;
+ }
+ h2{
+    font-size: 2.5rem;
+    margin: 4px 0;
+    line-height: 3.5rem;
+  }
+  h3{
+    font-size: 2rem;
+    line-height: 2.3rem;
+  }
+  h4{
+    font-size: 1.4rem;
+  }
+  p{
+    line-height: 25px;
+    padding: 10px 0;
+    &:empty{
+      padding: 0;
+      line-height: 0;
+    }
+  }
+  a{
+    color: $primary_color;
+    text-decoration: none;
+  }
+  img{
+    max-width: 100%;
+    height: auto;
+  }
+  blockquote{
+    margin: 20px 0 20px 40px;
+    border-left: 4px solid #ddd;
+    padding-left: 10px;
+    font-family: arial, sans-serif;
+    color: #5C5C5C;
+    p{
+      padding: 3px 0;
+    }
+  }
+  code{
+    //hacked together at 11:30pm before bed... yyayyy!
+    padding: 3px;
+    background: #ddd;
+    font-size: 14px;
+    font-family: Courier New;
+    border: 1px solid #C0C0C0;
+  }
+  input,
+  textarea{
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 6px;
+  }
+}
+.alignleft{
+  float: left;
+  margin-right: 25px;
+}
+.alignright{
+  float: right;
+  margin-left: 25px;
+}
+.btn{
+  background: $primary_color;
+  border: 1px solid lighten($primary_color, 14%);
+  border-radius: 6px;
+  padding: 6px 14px;
+  color: white;
+}
+
+// =========================================================== Nav ============================================================
+nav{
+  padding: 15px 0;
+  background-color: #068;
+  text-align: right;
+  ul{
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+  li{
+    @include inline-block;
+    margin-left: 3%;
+    &:first-child{
+      margin-left: 0;
+    }
+    a{
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      &:hover{
+        border-top: 4px solid white;
+        transition: border .15s linear;
+        -webkit-transition: border .15s linear;
+      }
+    }
+  }
+}
+
+// =========================================================== Hero ============================================================
+.hero{
+  background-color: $primary_color;
+  text-align: center;
+  padding: 60px 0;
+  color: white;
+  h1{
+    font-size: 6rem;
+    line-height: 7rem;
+  }
+  p{
+   @include oswald;
+    font-size: 2.4rem;
+    line-height: 4rem;
+  }
+}
+// =========================================================== Container ============================================================
+
+.inner-container{
+  max-width: 1140px;
+  margin: 25px auto;
+  padding: 0 20px;
+}
+
+// =========================================================== Blog Posts ============================================================
+
+.posts{
+  border-bottom: 1px solid #ddd;
+  padding: 0px 0 25px 0;
+  margin: 0px 0 25px 0;
+  @include flex-box; //Woo!
+  .blog-left{
+    @include flex(1);
+    align-self: center;
+    .post-date{
+      height: 75px;
+      width: 75px;
+      display: block;
+      background-color: $primary_color;
+      color: white;
+      font-weight: 700;
+      border-radius: 60px;
+    }
+    .inner-date{
+      line-height: 74px;
+      margin: 0 auto;
+      width: 80%;
+      display: block;
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  }
+  .blog-right{
+    @include flex(10);
+  }
+}
+#loading{
+  cursor: wait;
+  background-color: rgba(0,0,0,0);
+  opacity: .8;
+  border-radius: 50px;
+  margin: 5% auto;
+  animation: loading .5s infinite linear;
+  -moz-animation: loading .5s infinite linear;
+  -webkit-animation: loading .5s infinite linear;
+}
+.spin-3{
+  border: 10px solid $primary_color;
+  border-top: 10px solid rgba(0,0,0,0);
+  border-left: 10px solid rgba(0,0,0,0);
+  width: 40px;
+  height: 40px;
+  border-radius: 40px !important;
+}
+
+ @keyframes loading {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+    };
+}
+
+ @-moz-keyframes loading {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+    };
+}
+
+@-webkit-keyframes loading {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    };
+}
+
+// =========================================================== Blog single post ============================================================
+
+.post{
+  max-width: 960px;
+  margin: 0 auto;
+  h1{
+    font-size: 2.9rem;
+    line-height: 3.2rem;
+    padding-bottom: 10px;
+  }
+  h3{
+    margin: 10px 0;
+  }
+  ul{
+    margin: 4px 0 4px 45px;
+    li{
+      padding: 4px 0;
+      list-style: disc;
+    }
+  }
+  .post-title{
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    h1{
+      font-size: 3.6rem;
+      line-height: 4.5rem;
+    }
+  }
+}
+.comment-wrap{
+  margin-top: 50px;
+}
+
+//Login
+.login-form{
+  width: 21%;
+  input{
+    width: 100%;
+  }
+  .btn{
+    float: right;
+  }
+}
+
+//new post
+.new-post{
+  @include flex-box;
+}
+.new-post-inner{
+  @include flex(2);
+  margin-right: 2%;
+  input,
+  textarea{
+    width: 100%;
+  }
+  textarea{
+    height: 140px;
+  }
+  .btn{
+    float: right;
+  }
+}
+.preview{
+  @include flex(2);
+}
+
+// =========================================================== Timeline ============================================================
+
+.about-page{
+  @include flex-box;
+  margin: 20px 0;
+  .two-sixth{
+    @include flex(2);
+  }
+  .four-sixth{
+    @include flex(6);
+    margin-left: 30px;
+  }
+}
+.timeline{
+  overflow:hidden;
+  position:relative;
+  margin-bottom:2em;
+}
+.timeline .timeline-title{
+  clear: both;
+  text-align: center;
+  border: 2px solid #e2e2e2;
+  background: #f0f0f0;
+  margin: 0 auto 2em;
+  max-width: 8em;
+  padding: 0.25em 0.5em;
+  font-size: 1.7rem;
+}
+.timeline ul{
+  overflow:hidden;
+  margin:0 0 1em;
+  padding:0
+}
+.timeline li{
+  background:#e2e2e2;
+  padding:2%;
+  border-radius:4px;
+  list-style-type:none;
+  margin:0 0 1em 1em;
+  position:relative;
+}
+.timeline li:before{
+  content: '';
+  width: 0;
+  height: 0;
+  border-top: 11px solid transparent;
+  border-bottom: 11px solid transparent;
+  border-right: 11px solid #e2e2e2;
+  position: absolute;
+  left: -0.65rem;
+  top: 1.5rem;
+
+}
+.timeline time{
+  color:#979797;
+  display:block;
+  font-size:0.9em;
+  font-style:italic;
+}
+.timeline .description{
+  margin-bottom:0;
+  line-height: 21px;
+  font-size: 17px;
+  padding: 15px 0;
+}
+.time{
+  @include oswald;
+  font-weight:300;
+  font-style: italic;
+  font-size: 12px;
+}
+
+// =========================================================== Projects ============================================================
+
+.portfolio-gird{
+  @include flex-box;
+  h2{
+    font-size: 2rem;
+  }
+  .one-third{
+    @include flex(1);
+    margin: 25px 15px;
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+}
+.imgcontain{
+  position: relative;
+  .hoverdiv{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.75);
+    p{
+      color: #FFF;
+      text-align: center;
+      margin-top: 20%;
+      font-size: 2rem;
+      line-height: 2rem;
+    }
+  }
+}
+
+
+// =========================================================== Footer ============================================================
+footer{
+  background-color: $primary_color;
+  .footer-content{
+    max-width: 1140px;
+    margin: 65px auto 0 auto;
+    padding: 8px 10px;
+    color: white;
+    a{
+      color: #ddd;
+    }
+  }
+}
+
+// =========================================================== Media Queries ============================================================
+// @import "media_queries"
