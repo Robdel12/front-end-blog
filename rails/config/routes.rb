@@ -9,4 +9,6 @@ Backend::Application.routes.draw do
   end
 
   root 'static#index'
+  resources :templates, only: [:show]
+  get '*path' => 'static#index'
 end
