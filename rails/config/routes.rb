@@ -7,4 +7,6 @@ Backend::Application.routes.draw do
   namespace :api do
     resources :posts
   end
+
+  root 'static#index'
 end

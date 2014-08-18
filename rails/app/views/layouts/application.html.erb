@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Backend</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>FrontEnd</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<%= yield %>
+    <base href="/" />
 
-</body>
+    <link rel="stylesheet" href="ember-assets/vendor-d41d8cd98f00b204e9800998ecf8427e.css">
+    <link rel="stylesheet" href="ember-assets/front-end-6d8cdb3ccce48ef355e0f49d27712324.css">
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
+    <%= csrf_meta_tags %></head>
+  <body>   <%= yield %>
+    <script>
+      window.FrontEndENV = {"environment":"production","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{}};
+      window.EmberENV = window.FrontEndENV.EmberENV;
+    </script>
+    <script src="ember-assets/vendor-89e696e53487a1229dd3912b818f0bb8.js"></script>
+    <script src="ember-assets/front-end-9b9fc44ed475d6cf6550cb7e92e0ad5e.js"></script>
+    <script>
+      window.FrontEnd = require('front-end/app')['default'].create(FrontEndENV.APP);
+    </script>
+  </body>
 </html>
