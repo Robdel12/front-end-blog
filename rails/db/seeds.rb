@@ -29,3 +29,10 @@ Posts.create(
   excerpt: Faker::Lorem.sentences(1)[0],
   body: Faker::Lorem.paragraphs(15)[0]
 )
+
+User.create([
+  {email: 'robert@mail.com',
+   password: '12345678', password_confirmation: '12345678'},
+  {email: 'pink@mail.com',
+   password: '12345678', password_confirmation: '12345678'}
+])
