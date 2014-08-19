@@ -8,7 +8,10 @@ Backend::Application.routes.draw do
     resources :posts
   end
 
+  devise_for :users, controllers: { sessions: 'sessions' }
+
   root 'static#index'
   resources :templates, only: [:show]
   get '*path' => 'static#index'
+
 end

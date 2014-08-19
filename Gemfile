@@ -6,6 +6,9 @@ gem 'rails', '4.0.1'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 
+# Auth
+gem 'devise'
+
 #Fake stuffs
 gem 'faker'
 
