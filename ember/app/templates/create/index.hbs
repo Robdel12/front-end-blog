@@ -1,0 +1,16 @@
+<h1>Login</h1>
+<form {{action "authenticate" on="submit"}}>
+  {{#if error}}
+    <div data-alert class="alert-box alert radius">
+      {{errorMessage}}
+    </div>
+  {{/if}}
+
+  <label for="identification">Email</label>
+  {{view Ember.TextField id="identification" valueBinding="identification" placeholder="Enter Email"}}
+
+  <label for="password">Password</label>
+  {{view Ember.TextField id="password" type="password" valueBinding="password" placeholder="Enter Password"}}
+
+  <button type="submit">Login</button>
+</form>

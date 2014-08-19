@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>FrontEnd</title>
+    <title>FrontEnd Tests</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,21 +11,39 @@
 
     <link rel="stylesheet" href="assets/vendor.css">
     <link rel="stylesheet" href="assets/front-end.css">
-    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/test-support.css">
+    <style>
+      #ember-testing-container {
+        position: absolute;
+        background: white;
+        bottom: 0;
+        right: 0;
+        width: 640px;
+        height: 384px;
+        overflow: auto;
+        z-index: 9999;
+        border: 1px solid #ccc;
+      }
+      #ember-testing {
+        zoom: 50%;
+      }
+    </style>
   </head>
   <body>
+    <div id="qunit"></div>
+    <div id="qunit-fixture"></div>
+
     <script>
       window.FrontEndENV = {"environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"LOG_ACTIVE_GENERATION":true,"LOG_VIEW_LOOKUPS":true}};
       window.EmberENV = window.FrontEndENV.EmberENV;
-      window.ENV['simple-auth'] = {
-        authorizer: 'simple-auth-authorizer:devise'
-      }
     </script>
+    <script src="assets/test-support.js"></script>
     <script src="assets/vendor.js"></script>
     <script src="assets/front-end.js"></script>
+    <script src="testem.js"></script>
     <script>
-      window.FrontEnd = require('front-end/app')['default'].create(FrontEndENV.APP);
+      require('front-end/tests/test-helper');
     </script>
+    <script src="assets/test-loader.js"></script>
   </body>
 </html>

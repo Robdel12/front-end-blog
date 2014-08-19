@@ -6,6 +6,10 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route("about");
+  this.route('login');
+  this.resource("create", function(){
+    this.route("new");
+  });
   this.resource('posts', function() {
     this.route('show', {path: '/:post_slug'});
   });
