@@ -14,13 +14,13 @@
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
     <%= csrf_meta_tags %></head>
-  <body>   <%= yield %>
+  <body>    <%= yield %>
     <script>
-      window.FrontEndENV = {"environment":"production","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{}};
+      window.FrontEndENV = {"environment":"production","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{},"simple-auth":{"authorizer":"simple-auth-authorizer:devise"}};
       window.EmberENV = window.FrontEndENV.EmberENV;
     </script>
-    <script src="ember-assets/vendor-89e696e53487a1229dd3912b818f0bb8.js"></script>
-    <script src="ember-assets/front-end-9b9fc44ed475d6cf6550cb7e92e0ad5e.js"></script>
+    <script src="ember-assets/vendor-191c06bde580b01f851225786c13f70d.js"></script>
+    <script src="ember-assets/front-end-b3fa8a8039c1892b0bd3c3db7ef05292.js"></script>
     <script>
       window.FrontEnd = require('front-end/app')['default'].create(FrontEndENV.APP);
     </script>
