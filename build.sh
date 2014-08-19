@@ -40,7 +40,7 @@ printMessage 14 "inserting csrf_meta_tags in head"
 sed -i.bck 's/<\/head>/  <%= csrf_meta_tags %>&/' public/index.html
 
 printMessage 14 "inserting yield in body"
-sed -i.bck 's/<body>/&\n    <%= yield %>/' public/index.html
+sed -i.bck 's/<body>/&\    <%= yield %>/' public/index.html
 
 printMessage 14 "Replacing application.html.erb with index.html"
 mv public/index.html app/views/layouts/application.html.erb
