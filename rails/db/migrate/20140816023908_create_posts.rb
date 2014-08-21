@@ -3,7 +3,6 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :title
       t.string :post_slug
-      t.datetime :published_date
       t.text :excerpt
       t.text :body
 

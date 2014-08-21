@@ -9,7 +9,7 @@
 Posts.create(
   title: "Title 1",
   post_slug: "title-1",
-  published_date: Time.now - 4.days,
+  created_at: Time.now - 4.days,
   excerpt: Faker::Lorem.sentences(1)[0],
   body: Faker::Lorem.paragraphs(15)[0]
 )
@@ -17,7 +17,7 @@ Posts.create(
 Posts.create(
   title: "Title 2",
   post_slug: "title-2",
-  published_date: Time.now - 2.days,
+  created_at: Time.now - 2.days,
   excerpt: Faker::Lorem.sentences(1)[0],
   body: Faker::Lorem.paragraphs(15)[0]
 )
@@ -25,7 +25,7 @@ Posts.create(
 Posts.create(
   title: "Title 3",
   post_slug: "title-3",
-  published_date: Time.now,
+  created_at: Time.now,
   excerpt: Faker::Lorem.sentences(1)[0],
   body: Faker::Lorem.paragraphs(15)[0]
 )

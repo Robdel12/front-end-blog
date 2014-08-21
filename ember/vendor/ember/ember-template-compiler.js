@@ -1,7 +1,16 @@
+/*!
+ * @overview  Ember - JavaScript Application Framework
+ * @copyright Copyright 2011-2014 Tilde Inc. and contributors
+ *            Portions Copyright 2006-2011 Strobe Inc.
+ *            Portions Copyright 2008-2011 Apple Inc. All rights reserved.
+ * @license   Licensed under MIT license
+ *            See https://raw.github.com/emberjs/ember.js/master/LICENSE
+ * @version   1.6.1
+ */
+
+
 (function() {
 var Ember = { assert: function() {}, FEATURES: { isEnabled: function() {} } };
-/* global Handlebars:true */
-
 /**
 @module ember
 @submodule ember-handlebars-compiler
@@ -10,8 +19,8 @@ var Ember = { assert: function() {}, FEATURES: { isEnabled: function() {} } };
 
 
 // ES6Todo: you'll need to import debugger once debugger is es6'd.
-if (typeof Ember.assert === 'undefined')   { Ember.assert = function(){}; }
-if (typeof Ember.FEATURES === 'undefined') { Ember.FEATURES = { isEnabled: function(){} }; }
+if (typeof Ember.assert === 'undefined')   { Ember.assert = function(){}; };
+if (typeof Ember.FEATURES === 'undefined') { Ember.FEATURES = { isEnabled: function(){} }; };
 
 var objectCreate = Object.create || function(parent) {
   function F() {}
@@ -95,7 +104,7 @@ var EmberHandlebars = Ember.Handlebars = objectCreate(Handlebars);
   Which is functionally equivalent to:
 
   ```handlebars
-  {{view 'calendar'}}
+  {{view App.CalendarView}}
   ```
 
   Options in the helper will be passed to the view in exactly the same
@@ -108,7 +117,7 @@ var EmberHandlebars = Ember.Handlebars = objectCreate(Handlebars);
   @param {String} dependentKeys*
 */
 EmberHandlebars.helper = function(name, value) {
-  if (!View) { View = requireModule('ember-views/views/view')['default']; } // ES6TODO: stupid circular dep
+  if (!View) { View = requireModule('ember-views/views/view')['View']; } // ES6TODO: stupid circular dep
   if (!Component) { Component = requireModule('ember-views/views/component')['default']; } // ES6TODO: stupid circular dep
 
   Ember.assert("You tried to register a component named '" + name + "', but component names must include a '-'", !Component.detect(value) || name.match(/-/));
@@ -208,14 +217,14 @@ EmberHandlebars.JavaScriptCompiler.prototype.appendToBuffer = function(string) {
 // This can go away once the following is closed:
 // https://github.com/wycats/handlebars.js/issues/634
 
-var DOT_LOOKUP_REGEX = /helpers\.(.*?)\)/;
-var BRACKET_STRING_LOOKUP_REGEX = /helpers\['(.*?)'/;
-var INVOCATION_SPLITTING_REGEX = /(.*blockHelperMissing\.call\(.*)(stack[0-9]+)(,.*)/;
+var DOT_LOOKUP_REGEX = /helpers\.(.*?)\)/,
+    BRACKET_STRING_LOOKUP_REGEX = /helpers\['(.*?)'/,
+    INVOCATION_SPLITTING_REGEX = /(.*blockHelperMissing\.call\(.*)(stack[0-9]+)(,.*)/;
 
 EmberHandlebars.JavaScriptCompiler.stringifyLastBlockHelperMissingInvocation = function(source) {
-  var helperInvocation = source[source.length - 1];
-  var helperName = (DOT_LOOKUP_REGEX.exec(helperInvocation) || BRACKET_STRING_LOOKUP_REGEX.exec(helperInvocation))[1];
-  var matches = INVOCATION_SPLITTING_REGEX.exec(helperInvocation);
+  var helperInvocation = source[source.length - 1],
+      helperName = (DOT_LOOKUP_REGEX.exec(helperInvocation) || BRACKET_STRING_LOOKUP_REGEX.exec(helperInvocation))[1],
+      matches = INVOCATION_SPLITTING_REGEX.exec(helperInvocation);
 
   source[source.length - 1] = matches[1] + "'" + helperName + "'" + matches[3];
 };
@@ -268,25 +277,12 @@ EmberHandlebars.Compiler.prototype.mustache = function(mustache) {
   @method precompile
   @for Ember.Handlebars
   @static
-  @param {String|Object} value The template to precompile or an Handlebars AST
+  @param {String} string The template to precompile
   @param {Boolean} asObject optional parameter, defaulting to true, of whether or not the
                             compiled template should be returned as an Object or a String
 */
-EmberHandlebars.precompile = function(value, asObject) {
-  var ast;
-
-  if (Ember.FEATURES.isEnabled("ember-handlebars-compiler-ast-to-precompile")) {
-
-    if ( typeof value === 'string' ) {
-      ast = Handlebars.parse(value);
-    } else if ( typeof value === 'object' ) {
-      ast = value;
-    }
-
-    Ember.assert("You can only pass a template string or a Handlebars AST to precompiled. You passed an item that has the type of " + typeof value + " which is not a template or AST.", typeof value !== "string" || typeof value !== "object");
-  } else {
-    ast = Handlebars.parse(value);
-  }
+EmberHandlebars.precompile = function(string, asObject) {
+  var ast = Handlebars.parse(string);
 
   var options = {
     knownHelpers: {
