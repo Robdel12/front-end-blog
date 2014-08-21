@@ -1,3 +1,3 @@
 class PostsSerializer < ActiveModel::Serializer
-  attributes :id, :title, :body, :published_date, :post_slug, :excerpt
+  attributes :id, :title, :body, :created_at, :post_slug, :excerpt
 end
