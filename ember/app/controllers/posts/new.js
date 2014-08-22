@@ -1,6 +1,6 @@
 import Ember from "ember";
 
-var CreateController = Ember.ObjectController.extend({
+var NewController = Ember.ObjectController.extend({
 
   init: function() {
     this.set("post",  Ember.Object.create());
@@ -16,8 +16,6 @@ var CreateController = Ember.ObjectController.extend({
             body: this.get("post.body"),
             post_slug: this.get("post.title").replace(/\s+$/g,'').replace(/\s+/g, '-').toLowerCase()
           };
-      console.log(postData);
-
       var newPost = this.store.createRecord("post", postData);
 
       newPost.save();
@@ -33,4 +31,4 @@ var CreateController = Ember.ObjectController.extend({
 
 });
 
-export default CreateController;
+export default NewController;

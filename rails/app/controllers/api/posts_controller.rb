@@ -9,7 +9,7 @@ class Api::PostsController < ApplicationController
 
   def create
     puts params
-    post = Posts.new(user_params)
+    post = Posts.new(new_post_params)
 
     if post.save
       render json: post
@@ -18,10 +18,32 @@ class Api::PostsController < ApplicationController
     end
   end
 
+  def update
+    post = Posts.find(params[:id])
+    if post.update_attributes(update_post_params)
+      render json: post
+    else
+      render json: post, status: 422
+    end
+  end
+
+  def destroy
+    post = Posts.find(params[:id])
+    if post.destroy
+      render json: post, status: 204
+    else
+      render json: post
+    end
+  end
+
 private
 
-  def user_params
-    params.require(:post).permit(:post_slug, :title, :excerpt, :body, :published_date)
+  def new_post_params
+    params.require(:post).permit(:post_slug, :title, :excerpt, :body, :published_date, :is_published)
+  end
+
+  def update_post_params
+    params.require(:post).permit(:post_slug, :title, :excerpt, :body, :published_date, :id, :is_published)
   end
 
 end

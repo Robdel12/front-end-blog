@@ -1,0 +1,5 @@
+{{#each}}
+  <h3 class="posts-title">{{link-to title 'posts.show' this}}</h3>
+  <span class="posts-excerpt">{{excerpt}} {{#link-to "posts.show" this}} [Read More] {{/link-to}}</span>
+  {{formatted_date}}
+{{/each}}

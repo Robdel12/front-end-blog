@@ -1,0 +1,27 @@
+{{#if session.isAuthenticated}}
+  <h2>Edit {{title}}</h2>
+  <div class="new-post">
+    <div class="new-post-inner">
+      <form {{action save on='submit'}}>
+        <p>{{input value=title placeholder="Title"}}</p>
+        <p>{{input value=excerpt placeholder="Little excerpt"}}</p>
+        <p>{{textarea value=body placeholder="Body"}}</p>
+        <label for="is_published">Published:</label>
+        <select name="is_published" id="is_published">
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+        <p><button type="submit" class="btn">Edit post</button></p>
+      </form>
+      <a {{action cancel}} href="#">Cancel</a>
+      <a {{action destroy}} href="#">Delete</a>
+    </div>
+    <div class="preview">
+      <h1>{{title}}</h1>
+
+      {{format-markdown body}}
+    </div>
+  </div>
+{{else}}
+  <h1>Please login</h1>
+{{/if}}

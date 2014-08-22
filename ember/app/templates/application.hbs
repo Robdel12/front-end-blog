@@ -3,16 +3,15 @@
     <ul>
       <li>{{#link-to "about"}}About{{/link-to}}</li>
       <li>{{#link-to "posts"}}Blog{{/link-to}}</li>
-      <li>
-        {{#if session.isAuthenticated}}
+      {{#if session.isAuthenticated}}
+        <li>{{#link-to "dashboard"}}Dashboard{{/link-to}}</li>
+        <li>
           <a {{ action 'invalidateSession' }} href="#">Logout</a>
-        {{/if}}
-      </li>
-      <li>
-        {{#if session.isAuthenticated}}
-          {{#link-to "create.index"}}New post{{/link-to}}
-        {{/if}}
-      </li>
+        </li>
+        <li>
+          {{#link-to "posts.new"}}New post{{/link-to}}
+        </li>
+      {{/if}}
     </ul>
   </nav>
   <section class="hero">

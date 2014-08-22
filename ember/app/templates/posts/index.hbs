@@ -1,13 +1,15 @@
-{{#each}}
-  <div class="posts">
-    <div class="blog-left">
-      <span class="post-date">
-        <span class="inner-date">{{formatted_date}}</span>
-      </span>
+{{#if is_published}}
+  {{#each}}
+    <div class="posts">
+      <div class="blog-left">
+        <span class="post-date">
+          <span class="inner-date">{{formatted_date}}</span>
+        </span>
+      </div>
+      <div class="blog-right">
+        <h3 class="posts-title">{{link-to title 'posts.show' this}}</h3>
+        <span class="posts-excerpt">{{excerpt}} {{#link-to "posts.show" this}} [Read More] {{/link-to}}</span>
+      </div>
     </div>
-    <div class="blog-right">
-      <h3 class="posts-title">{{link-to title 'posts.show' this}}</h3>
-      <span class="posts-excerpt">{{excerpt}} {{#link-to "posts.show" this}} [Read More] {{/link-to}}</span>
-    </div>
-  </div>
-{{/each}}
+  {{/each}}
+{{/if}}
