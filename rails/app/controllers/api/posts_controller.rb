@@ -2,7 +2,11 @@ class Api::PostsController < ApplicationController
   def index
     # TODO not sure what you need, but you can do something like this to only return specific fields
     # render json: Posts.all.pluck(:title, :post_slug, :excerpt, :published_date)
-    render json: Posts.all
+    if params[:draft]
+      render json: Posts.draft
+    else
+      render json: Posts.all
+    end
   end
 
   def show
@@ -35,11 +39,6 @@ class Api::PostsController < ApplicationController
     else
       render json: post
     end
-  end
-
-  def draft
-    # TODO Still need to wire this up to Ember somehow...
-    render json: Posts.draft
   end
 
 private

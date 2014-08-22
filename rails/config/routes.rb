@@ -6,8 +6,6 @@ Backend::Application.routes.draw do
   # root 'welcome#index'
   namespace :api do
     resources :posts
-    # This shows the draft posts
-    get 'drafts', to: 'posts#draft'
   end
 
   devise_for :users, controllers: { sessions: 'sessions' }
