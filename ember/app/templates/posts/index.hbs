@@ -1,5 +1,5 @@
-{{#if is_published}}
-  {{#each}}
+{{#each}}
+  {{#if is_published}}
     <div class="posts">
       <div class="blog-left">
         <span class="post-date">
@@ -11,5 +11,5 @@
         <span class="posts-excerpt">{{excerpt}} {{#link-to "posts.show" this}} [Read More] {{/link-to}}</span>
       </div>
     </div>
-  {{/each}}
-{{/if}}
+  {{/if}}
+{{/each}}

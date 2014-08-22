@@ -22,22 +22,21 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 - [ ] dashboard showing all posts (published, draft, unpublished).
 - [ ] dashboard pulling in google analytics API with d3 graphs
 
-### Installation
+# Installation
 Fork the project, then:
 - `git clone`
 
-In rails/
-Run:
-- `bundle install`
-- `bundle exec rake db:setup`
-
-In ember/
-Dependencies:
+Dependencies (if you don't have these installed):
 - npm `brew install npm`
 - Bower (`npm install bower`)
 - Ember CLI (`npm install -g ember-cli`)
 
-Run:
+Setting up the backend:
+- `bundle install`
+- `bundle exec rake db:setup`
+
+Setting up the front end:
+- `cd ember`
 - `npm install`
 - `bower install`
 
