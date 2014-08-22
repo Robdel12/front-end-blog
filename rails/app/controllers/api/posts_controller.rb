@@ -1,5 +1,7 @@
 class Api::PostsController < ApplicationController
   def index
+    # TODO not sure what you need, but you can do something like this to only return specific fields
+    # render json: Posts.all.pluck(:title, :post_slug, :excerpt, :published_date
     render json: Posts.all
   end
 
@@ -8,7 +10,6 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    puts params
     post = Posts.new(new_post_params)
 
     if post.save
@@ -36,9 +37,16 @@ class Api::PostsController < ApplicationController
     end
   end
 
+  def draft
+    # TODO Still need to wire this up to Ember somehow...
+    render json: Posts.draft
+  end
+
 private
 
   def new_post_params
+    # you already have the `is_published` field here, so you just need to add a checkbox and send that over
+    # in the POSt request
     params.require(:post).permit(:post_slug, :title, :excerpt, :body, :published_date, :is_published)
   end
 
