@@ -1,6 +1,8 @@
 import Ember from "ember";
 
 var EditController = Ember.ObjectController.extend({
+  published: [true, false],
+  selectedState: null,
   destroy: function() {
     this.store.find('posts', this.content.id).then(function (post) {
       post.destroyRecord();

@@ -6,6 +6,10 @@
         <p>{{input value=post.title placeholder="Title"}}</p>
         <p>{{input value=post.excerpt placeholder="Little excerpt"}}</p>
         <p>{{textarea value=post.body placeholder="Body"}}</p>
+        {{view Ember.Select
+          content=published
+          selectionBinding=selectedState
+        }}
         <p><button type="submit" class="btn">Publish</button></p>
       </form>
     </div>

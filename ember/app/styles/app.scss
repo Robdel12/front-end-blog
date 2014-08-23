@@ -217,6 +217,19 @@ nav{
     };
 }
 
+.dashboard-posts-list{
+  border-bottom: 1px solid #ddd;
+  padding: 0px 0 25px 0;
+  margin: 0px 0 25px 0;
+}
+.posts-title,
+.posts-date{
+  margin-bottom: 7px;
+}
+.posts-utility-links{
+  float: right;
+}
+
 // =========================================================== Blog single post ============================================================
 
 .post{

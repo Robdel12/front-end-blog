@@ -1,5 +1,25 @@
+<h2>Drafts</h2>
 {{#each}}
-  <h3 class="posts-title">{{link-to title 'posts.show' this}}</h3>
-  <span class="posts-excerpt">{{excerpt}} {{#link-to "posts.show" this}} [Read More] {{/link-to}}</span>
-  {{formatted_date}}
+  {{#if is_published}}
+    {{! I hate this }}
+  {{else}}
+    <div class="dashboard-posts-list">
+      <h3 class="posts-title">{{link-to title 'posts.show' this}}</h3>
+      <div class="posts-date">{{formatted_date}}</div>
+      <div class="posts-utility-links">
+        {{#link-to "posts.edit" this}}Edit{{/link-to}}
+      </div>
+    </div>
+  {{/if}}
+{{/each}}
+
+<h2>All posts</h2>
+{{#each}}
+  <div class="dashboard-posts-list">
+    <h3 class="posts-title">{{link-to title 'posts.show' this}}</h3>
+    <div class="posts-date">{{formatted_date}}</div>
+    <div class="posts-utility-links">
+      {{#link-to "posts.edit" this}}Edit{{/link-to}}
+    </div>
+  </div>
 {{/each}}

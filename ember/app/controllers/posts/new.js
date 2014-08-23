@@ -1,7 +1,8 @@
 import Ember from "ember";
 
 var NewController = Ember.ObjectController.extend({
-
+  published: [true, false],
+  selectedState: null,
   init: function() {
     this.set("post",  Ember.Object.create());
   },
@@ -9,17 +10,14 @@ var NewController = Ember.ObjectController.extend({
   actions: {
 
     publishPost: function() {
-      var date = new Date().getTime(),
-          postData = {
-            title: this.get("post.title"),
-            excerpt: this.get("post.excerpt"),
-            body: this.get("post.body"),
-            post_slug: this.get("post.title").replace(/\s+$/g,'').replace(/\s+/g, '-').toLowerCase()
-          };
-      var newPost = this.store.createRecord("post", postData);
-
+      var newPost = this.store.createRecord("post", {
+        title: this.get("post.title"),
+        excerpt: this.get("post.excerpt"),
+        body: this.get("post.body"),
+        post_slug: this.get("post.title").replace(/\s+$/g,'').replace(/\s+/g, '-').toLowerCase(),
+        is_published: this.get("selectedDate")
+      });
       newPost.save();
-
       this.setProperties({
         "post.title": "",
         "post.excerpt": "",
@@ -27,6 +25,7 @@ var NewController = Ember.ObjectController.extend({
       });
       this.transitionToRoute("posts"); // Do I want this, or the post that was just made?
     }
+
   }
 
 });
