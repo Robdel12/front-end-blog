@@ -10,8 +10,7 @@ var NewController = Ember.ObjectController.extend({
 
   actions: {
     savePost: function() {
-      var self = this,
-          postData = {
+      var postData = {
             title: this.get("post.title"),
             excerpt: this.get("post.excerpt"),
             body: this.get("post.body"),
