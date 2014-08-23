@@ -5,12 +5,8 @@
       <li>{{#link-to "posts"}}Blog{{/link-to}}</li>
       {{#if session.isAuthenticated}}
         <li>{{#link-to "dashboard"}}Dashboard{{/link-to}}</li>
-        <li>
-          <a {{ action 'invalidateSession' }} href="#">Logout</a>
-        </li>
-        <li>
-          {{#link-to "posts.new"}}New post{{/link-to}}
-        </li>
+        <li>{{#link-to "posts.new"}}New post{{/link-to}}</li>
+        <li><a {{ action 'invalidateSession' }} href="#">Logout</a></li>
       {{/if}}
     </ul>
   </nav>

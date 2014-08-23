@@ -7,8 +7,9 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 ### Website todos
 - [x] root route = posts
 - [x] hitting the create page = login page if not logged in.
-- [ ] be able to save drafts
-- [ ] publish and in publish posts
+- [x] be able to save drafts
+- [x] publish and unpublish posts
+- [x] Remove "login" logic from views
 - [x] only show posts that are published
 - [x] create dashboard that shows all posts
 - [x] delete posts
@@ -19,7 +20,8 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 - [ ] SEO fields on the post like the wordpress SEO. (I think taking the excerpt and title would be enough)
 
 ### Nice haves:
-- [ ] dashboard showing all posts (published, draft, unpublished).
+- [ ] Redesign site. Your CSS is disgusting, son.
+- [x] dashboard showing all posts (published, draft, unpublished).
 - [ ] dashboard pulling in google analytics API with d3 graphs
 
 # Installation

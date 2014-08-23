@@ -1,24 +1,21 @@
-{{#if session.isAuthenticated}}
-  <h2>New Post</h2>
-  <div class="new-post">
-    <div class="new-post-inner">
-      <form {{action publishPost on='submit'}}>
-        <p>{{input value=post.title placeholder="Title"}}</p>
-        <p>{{input value=post.excerpt placeholder="Little excerpt"}}</p>
-        <p>{{textarea value=post.body placeholder="Body"}}</p>
-        {{view Ember.Select
-          content=published
-          selectionBinding=selectedState
-        }}
-        <p><button type="submit" class="btn">Publish</button></p>
-      </form>
-    </div>
-    <div class="preview">
-      <h1>{{post.title}}</h1>
-
-      {{format-markdown post.body}}
-    </div>
+<h2>New Post</h2>
+<div class="new-post">
+  <div class="new-post-inner">
+    <form {{action savePost on='submit'}}>
+      <p>{{input value=post.title placeholder="Title"}}</p>
+      <p>{{input value=post.excerpt placeholder="Little excerpt"}}</p>
+      <p>{{textarea value=post.body placeholder="Body"}}</p>
+      <label for="is_published">Published:</label>
+      {{view Ember.Select
+        content=published
+        selectionBinding=selectedState
+      }}
+      <p><button type="submit" class="btn">Save</button></p>
+    </form>
   </div>
-{{else}}
-  <h1>Please login</h1>
-{{/if}}
+  <div class="preview">
+    <h1>{{post.title}}</h1>
+
+    {{format-markdown post.body}}
+  </div>
+</div>

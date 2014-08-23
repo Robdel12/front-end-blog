@@ -1,7 +1,6 @@
+<h1>Login</h1>
 <form {{action authenticate on='submit'}}>
-  <label for="identification">Login</label>
-  {{input id='identification' placeholder='Enter Login' value=identification}}
-  <label for="password">Password</label>
-  {{input id='password' placeholder='Enter Password' type='password' value=password}}
-  <button type="submit">Login</button>
+  <p>{{input id='identification' placeholder='Email' value=identification}}</p>
+  <p>{{input id='password' placeholder='Password' type='password' value=password}}</p>
+  <button type="submit" class="btn">Login</button>
 </form>

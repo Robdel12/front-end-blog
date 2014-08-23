@@ -1,8 +1,9 @@
 import Ember from "ember";
 
 var EditController = Ember.ObjectController.extend({
-  published: [true, false],
+  published: [false, true],
   selectedState: null,
+
   destroy: function() {
     this.store.find('posts', this.content.id).then(function (post) {
       post.destroyRecord();
@@ -13,7 +14,9 @@ var EditController = Ember.ObjectController.extend({
   save: function() {
     return this.content.save().then((function(_this) {
       return function() {
-        return _this.transitionToRoute('posts.show', _this.content);
+        if(_this.content._data.is_published === true){
+          return _this.transitionToRoute('posts.show', _this.content);
+        }
       };
     })(this));
   },
