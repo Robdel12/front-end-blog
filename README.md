@@ -5,6 +5,8 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 
 
 ### Website todos to go live
+- [ ] Import old posts
+- [ ] clean up CSS a little && make responsive
 - [x] root route = posts
 - [x] hitting the create page = login page if not logged in.
 - [x] be able to save drafts
@@ -20,8 +22,10 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 
 ### Nice haves:
 - [ ] Redesign site. Your CSS is disgusting, son.
-- [x] dashboard showing all posts (published, draft, unpublished).
+- [ ] Make the timeline dynamic & tied into rails.
+- [ ] Upload assets to s3 automatically.
 - [ ] dashboard pulling in google analytics API with d3 graphs
+- [x] dashboard showing all posts (published, draft, unpublished).
 
 # Installation
 Fork the project, then:
