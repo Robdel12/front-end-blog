@@ -27,7 +27,7 @@ var NewController = Ember.ObjectController.extend({
         "post.body": ""
       });
       if(postData.is_published === true){
-        this.transitionToRoute("posts.index", postData.post_slug);
+        this.transitionToRoute("posts.show", postData.post_slug);
       } else {
         this.transitionToRoute("posts.edit", postData.post_slug);
       }
