@@ -6,7 +6,7 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 
 ### Website todos to go live
 - [ ] Import old posts
-- [ ] clean up CSS a little && make responsive
+- [x] clean up CSS a little && make responsive
 - [x] Add portfolio section
 - [x] root route = posts
 - [x] hitting the create page = login page if not logged in.

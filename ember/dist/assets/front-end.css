@@ -432,7 +432,7 @@ footer {
       color: #ddd; }
 
 @media screen and (max-width: 850px) {
-  .blog-roll .post .blog-right {
+  .posts .blog-right {
     -webkit-box-flex: 6;
     -moz-box-flex: 6;
     -webkit-flex: 6;
@@ -458,7 +458,7 @@ footer {
     line-height: 2rem; } }
 
 @media screen and (max-width: 640px) {
-  .blog-roll .post .blog-right {
+  .posts .blog-right {
     -webkit-box-flex: 4;
     -moz-box-flex: 4;
     -webkit-flex: 4;
@@ -485,7 +485,7 @@ footer {
       margin-left: 0; } }
 
 @media screen and (max-width: 415px) {
-  .blog-roll .post .blog-right {
+  .posts .blog-right {
     -webkit-box-flex: 3;
     -moz-box-flex: 3;
     -webkit-flex: 3;
@@ -505,7 +505,7 @@ footer {
     line-height: 1.5rem; } }
 
 @media screen and (max-width: 400px) {
-  .blog-roll .post .blog-left {
+  .posts .blog-left {
     display: none; }
   .single-post h1 {
     font-size: 2rem;
@@ -527,7 +527,7 @@ footer {
 @media screen and (max-width: 350px) {
   body blockquote {
     margin: 20px 0 20px 20px; }
-  .blog-roll .post .blog-right {
+  .posts .blog-right {
     -webkit-box-flex: 2;
     -moz-box-flex: 2;
     -webkit-flex: 2;

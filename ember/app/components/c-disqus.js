@@ -2,6 +2,17 @@ import Em from "ember";
 
 var CDisqusComponent = Ember.Component.extend({
 
+  reset: function(){
+    DISQUS.reset({
+      reload: true,
+      config: function () {
+        this.page.identifier = window.location.href;
+        this.page.url = window.location.href;
+        this.page.title = Em.$('title').text();
+      }
+    });
+  },
+
   didInsertElement: function () {
     var page_id = window.location.href,
         disqus_identifier = page_id,
@@ -23,6 +34,7 @@ var CDisqusComponent = Ember.Component.extend({
   willDestroyElement: function () {
     Em.$('#' +  this.get('page_id')).remove();
   }
+
 });
 
 export default CDisqusComponent;

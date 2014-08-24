@@ -1,9 +1,7 @@
 @media screen and (max-width: 850px) {
-  .blog-roll{
-    .post{
-      .blog-right{
-        @include flex(6);
-      }
+  .posts{
+    .blog-right{
+      @include flex(6);
     }
   }
 }
@@ -20,21 +18,19 @@
  }
 }
 @media screen and (max-width: 730px) {
- .portfolio-gird{
-  display: block;
- }
- .imgcontain .hoverdiv p{
+  .portfolio-gird{
+    display: block;
+  }
+  .imgcontain .hoverdiv p{
     margin-top: 21%;
     font-size: 2rem;
     line-height: 2rem;
- }
+  }
 }
 @media screen and (max-width: 640px) {
-  .blog-roll{
-    .post{
-      .blog-right{
-        @include flex(4);
-      }
+  .posts{
+    .blog-right{
+      @include flex(4);
     }
   }
 }
@@ -68,11 +64,9 @@
   }
 }
 @media screen and (max-width: 415px) {
-  .blog-roll{
-    .post{
-      .blog-right{
-        @include flex(3);
-      }
+  .posts{
+    .blog-right{
+      @include flex(3);
     }
   }
   .main-navigation{
@@ -98,11 +92,9 @@
  }
 }
 @media screen and (max-width: 400px) {
-  .blog-roll{
-    .post{
-      .blog-left{
-        display: none;
-      }
+  .posts{
+    .blog-left{
+      display: none;
     }
   }
   .single-post{
@@ -137,11 +129,9 @@
       margin: 20px 0 20px 20px;
     }
   }
-  .blog-roll{
-    .post{
-      .blog-right{
-        @include flex(2);
-      }
+  .posts{
+    .blog-right{
+      @include flex(2);
     }
   }
   .single-post{
