@@ -20,6 +20,7 @@ gem 'uglifier', '>= 1.3.0'
 
 # App tracking
 gem "skylight"
+gem 'newrelic_rpm'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
