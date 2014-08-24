@@ -12,10 +12,11 @@ var EditController = Ember.ObjectController.extend({
   },
 
   save: function() {
-    return this.content.save().then((function(_this) {
+    return this.model.save().then((function(_this) {
       return function() {
-        if(_this.content._data.is_published === true){
-          return _this.transitionToRoute('posts.show', _this.content);
+        if(_this.model._data.is_published === true){
+          debugger;
+          return _this.transitionToRoute('posts.show', _this.model);
         }
       };
     })(this));

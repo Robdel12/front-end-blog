@@ -1,13 +1,18 @@
 <div class="main-container">
-  <nav>
-    <ul>
-      <li>{{#link-to "about"}}About{{/link-to}}</li>
-      <li>{{#link-to "posts"}}Blog{{/link-to}}</li>
-      {{#if session.isAuthenticated}}
+  {{#if session.isAuthenticated}}
+    <nav class="admin-bar">
+      <ul>
         <li>{{#link-to "dashboard"}}Dashboard{{/link-to}}</li>
         <li>{{#link-to "posts.new"}}New post{{/link-to}}</li>
         <li><a {{ action 'invalidateSession' }} href="#">Logout</a></li>
-      {{/if}}
+      </ul>
+    </nav>
+  {{/if}}
+  <nav>
+    <ul>
+      <li>{{#link-to "posts"}}Blog{{/link-to}}</li>
+      <li>{{#link-to "about"}}About{{/link-to}}</li>
+      <li>{{#link-to "portfolio"}}Portfolio{{/link-to}}</li>
     </ul>
   </nav>
   <section class="hero">

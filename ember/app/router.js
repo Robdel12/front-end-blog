@@ -6,6 +6,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route("about");
+  this.route("portfolio");
   this.route("login");
   this.route("dashboard");
   this.resource("posts", function() {

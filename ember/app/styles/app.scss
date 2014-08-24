@@ -108,7 +108,18 @@ nav{
         transition: border .15s linear;
         -webkit-transition: border .15s linear;
       }
+      &.active{
+        border-top: 4px solid white;
+      }
     }
+  }
+}
+.admin-bar{
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.54);
+  padding: 11px 0;
+  a.active{
+    border-top: 4px solid white;
   }
 }
 
@@ -294,6 +305,20 @@ nav{
 }
 .preview{
   @include flex(2);
+  ul{
+    margin: 4px 0 4px 45px;
+    li{
+      padding: 4px 0;
+      list-style: disc;
+    }
+  }
+  ol{
+    margin: 4px 0 4px 45px;
+    li{
+      padding: 4px 0;
+      list-style: decimal;
+    }
+  }
 }
 
 // =========================================================== Timeline ============================================================
