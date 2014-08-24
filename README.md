@@ -4,7 +4,7 @@ Ember Blog
 Ember front end and rails backend. This will eventually replace my wordpress blog I have.
 
 
-### Website todos
+### Website todos to go live
 - [x] root route = posts
 - [x] hitting the create page = login page if not logged in.
 - [x] be able to save drafts
@@ -17,7 +17,6 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 - [x] update routes:
   - posts/:id/edit
   - posts/new
-- [ ] SEO fields on the post like the wordpress SEO. (I think taking the excerpt and title would be enough)
 
 ### Nice haves:
 - [ ] Redesign site. Your CSS is disgusting, son.
