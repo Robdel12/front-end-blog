@@ -6,6 +6,7 @@ var app = new EmberApp();
 
 app.import("vendor/moment/moment.js");
 app.import("vendor/marked/lib/marked.js");
+
 // Use `app.import` to add additional libraries to the generated
 // output files.
 //
