@@ -5,7 +5,15 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 
 
 ### Website todos to go live
-- [ ] Import old posts
+- [ ] replace all images with s3 hosted images
+- [ ] proper github markdown rendering
+- [ ] bring over last few posts
+- [ ] handle errors better when creating blog posts. (Don't just break the page..)
+- [ ] change up the posts new view. It's not deal for writing posts.
+- [ ] auto save draft function. (Every 3min?)
+- [ ] loading animations everywhere
+- [ ] needs 404 page
+- [x] Import old posts
 - [x] clean up CSS a little && make responsive
 - [x] Add portfolio section
 - [x] root route = posts
