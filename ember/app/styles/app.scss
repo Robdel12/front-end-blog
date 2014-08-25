@@ -54,18 +54,21 @@ body{
     }
   }
   code{
-    //hacked together at 11:30pm before bed... yyayyy!
     padding: 3px;
-    background: #ddd;
     font-size: 14px;
     font-family: Courier New;
-    border: 1px solid #C0C0C0;
   }
   input,
   textarea{
     border: 1px solid #ddd;
     padding: 5px;
     border-radius: 6px;
+  }
+  pre{
+    border: 1px solid #C0C0C0;
+    overflow: hidden;
+    background: #DDD;
+    padding: 3px;
   }
 }
 .alignleft{

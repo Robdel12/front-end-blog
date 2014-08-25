@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 var PostsController = Ember.ArrayController.extend({
-  sortProperties: ['id'],
+  sortProperties: ['created_at'],
   sortAscending: false
 });
 

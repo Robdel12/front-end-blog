@@ -77,14 +77,17 @@ body {
       padding: 3px 0; }
   body code {
     padding: 3px;
-    background: #ddd;
     font-size: 14px;
-    font-family: Courier New;
-    border: 1px solid #C0C0C0; }
+    font-family: Courier New; }
   body input, body textarea {
     border: 1px solid #ddd;
     padding: 5px;
     border-radius: 6px; }
+  body pre {
+    border: 1px solid #C0C0C0;
+    overflow: hidden;
+    background: #DDD;
+    padding: 3px; }
 
 .alignleft {
   float: left;

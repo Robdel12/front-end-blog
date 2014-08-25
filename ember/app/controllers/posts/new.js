@@ -14,7 +14,7 @@ var NewController = Ember.ObjectController.extend({
             title: this.get("post.title"),
             excerpt: this.get("post.excerpt"),
             body: this.get("post.body"),
-            post_slug: this.get("post.title").replace(/\s+$/g,'').replace(/\s+/g, '-').toLowerCase(),
+            post_slug: this.get("post.title").replace(/\W/g,'-').replace(/-{1,}/g,'-').replace(/^-|-$/g,'').toLowerCase(),
             is_published: this.get("selectedState")
           },
           newPost;
