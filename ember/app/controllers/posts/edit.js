@@ -5,7 +5,7 @@ var EditController = Ember.ObjectController.extend({
   selectedState: null,
 
   destroy: function() {
-    this.store.find('posts', this.content.id).then(function (post) {
+    this.store.find('posts', this.model.id).then(function (post) {
       post.destroyRecord();
     });
     return this.transitionTo('dashboard');
@@ -15,7 +15,6 @@ var EditController = Ember.ObjectController.extend({
     return this.model.save().then((function(_this) {
       return function() {
         if(_this.model._data.is_published === true){
-          debugger;
           return _this.transitionToRoute('posts.show', _this.model);
         }
       };
@@ -23,10 +22,10 @@ var EditController = Ember.ObjectController.extend({
   },
 
   cancel: function() {
-    if (this.content.isDirty) {
-      this.content.rollback();
+    if (this.model.isDirty) {
+      this.model.rollback();
     }
-    return this.transitionTo('posts.show', this.content);
+    return this.transitionTo('posts.show', this.model);
   },
 
   buttonTitle: 'Edit',
