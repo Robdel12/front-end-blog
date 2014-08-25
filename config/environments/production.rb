@@ -27,7 +27,6 @@ Backend::Application.configure do
 
   #gzip?
   config.middleware.use Rack::Deflater
-  config.middleware.use Rack::JSONP
 
   # config.assets.css_compressor = :sass
 
