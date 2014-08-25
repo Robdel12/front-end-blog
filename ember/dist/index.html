@@ -12,18 +12,18 @@
 
     <base href="/" />
 
-    <link rel="stylesheet" href="assets/vendor-d41d8cd98f00b204e9800998ecf8427e.css">
-    <link rel="stylesheet" href="assets/front-end-3d1b28baa4c1bdcc9b86ae160d5ce47a.css">
+    <link rel="stylesheet" href="assets/vendor.css">
+    <link rel="stylesheet" href="assets/front-end.css">
     <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
   </head>
   <body>
     <script>
-      window.FrontEndENV = {"environment":"production","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{},"simple-auth":{"authorizer":"simple-auth-authorizer:devise"}};
+      window.FrontEndENV = {"environment":"development","baseURL":"/","locationType":"auto","EmberENV":{"FEATURES":{}},"APP":{"LOG_ACTIVE_GENERATION":true,"LOG_VIEW_LOOKUPS":true},"simple-auth":{"authorizer":"simple-auth-authorizer:devise"}};
       window.EmberENV = window.FrontEndENV.EmberENV;
     </script>
-    <script src="assets/vendor-4b0470ec9de598829355cbee1ead3634.js"></script>
-    <script src="assets/front-end-b92150e8fc5c945c6e5a109016bc1d52.js"></script>
+    <script src="assets/vendor.js"></script>
+    <script src="assets/front-end.js"></script>
     <script>
       window.FrontEnd = require('front-end/app')['default'].create(FrontEndENV.APP);
 
