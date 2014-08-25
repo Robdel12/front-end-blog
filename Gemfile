@@ -37,10 +37,7 @@ group :development do
   gem "binding_of_caller"
 end
 
-group :production do
-  # Gzip, yo!
-  gem 'rack-zippy'
-end
+gem 'heroku_rails_deflate'
 
 
 # Use ActiveModel has_secure_password
