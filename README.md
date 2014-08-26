@@ -10,9 +10,10 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 - [ ] bring over last few posts
 - [ ] handle errors better when creating blog posts. (Don't just break the page..)
 - [ ] change up the posts new view. It's not deal for writing posts.
-- [ ] auto save draft function. (Every 3min?)
+- [x] auto save draft function. (went with 2mins)
 - [ ] loading animations everywhere
-- [ ] needs 404 page
+- [x] dashboard ordering needs to be updated
+- [x] needs 404 page
 - [x] Import old posts
 - [x] clean up CSS a little && make responsive
 - [x] Add portfolio section

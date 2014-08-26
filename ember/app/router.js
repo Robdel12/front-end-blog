@@ -14,6 +14,7 @@ Router.map(function() {
     this.route("edit", {path: "/:post_slug/edit"});
     this.route("new");
   });
+  this.route('error404', { path: '/*path' }); //404s son
 });
 
 export default Router;
