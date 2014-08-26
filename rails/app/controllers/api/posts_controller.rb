@@ -1,6 +1,12 @@
 class Api::PostsController < ApplicationController
   def index
-    render json: Posts.all
+    # TODO not sure what you need, but you can do something like this to only return specific fields
+    # render json: Posts.all.pluck(:title, :post_slug, :excerpt, :published_date)
+    if params[:draft]
+      render json: Posts.draft
+    else
+      render json: Posts.all
+    end
   end
 
   def show
@@ -8,7 +14,6 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    puts params
     post = Posts.new(new_post_params)
 
     if post.save
@@ -39,6 +44,8 @@ class Api::PostsController < ApplicationController
 private
 
   def new_post_params
+    # you already have the `is_published` field here, so you just need to add a checkbox and send that over
+    # in the POSt request
     params.require(:post).permit(:post_slug, :title, :excerpt, :body, :published_date, :is_published)
   end
 
