@@ -2,7 +2,6 @@ import Ember from "ember";
 
 var EditController = Ember.ObjectController.extend({
   published: [false, true],
-  selectedState: null,
 
   init: function() {
     this.autoSave();
@@ -10,9 +9,22 @@ var EditController = Ember.ObjectController.extend({
 
   autoSave: function () {
     Ember.run.later(this, function() {
-      this.model.save();
+      var alert = Em.$(".alert");
+
+      this.model.save().catch(function(reason){
+        if(reason.status === 500){
+          alert.text("Server error. Couldn't auto save.");
+        }
+      });
+
+      alert.text("Your post was auto saved");
+
+      window.setTimeout(function(){
+        alert.text("");
+      }, 6000);
+
       this.autoSave();
-    }, 120000); //2 mins
+    }, 120000); //120000 = 2 mins
   },
 
   actions: {

@@ -7,13 +7,12 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 ### Website todos to go live
 - [ ] replace all images with s3 hosted images
 - [ ] paginate posts
-- [ ] can we minify new relic scripts? Come on man...
 - [ ] proper github markdown rendering
 - [ ] bring over last few posts
-- [ ] handle errors better when creating blog posts. (Don't just break the page..)
-- [ ] change up the posts new view. It's not deal for writing posts.
+- [x] handle errors better when creating blog posts. (Don't just break the page..)
+- [x] change up the posts new view. It's not deal for writing posts.
 - [x] auto save draft function. (went with 2mins)
-- [ ] loading animations everywhere
+- [x] loading animations everywhere
 - [x] dashboard ordering needs to be updated
 - [x] needs 404 page
 - [x] Import old posts
@@ -33,6 +32,7 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
   - posts/new
 
 ### Nice haves:
+- [ ] can we minify new relic scripts? Come on man...
 - [ ] Redesign site. Your CSS is disgusting, son.
 - [ ] Make the timeline dynamic & tied into rails.
 - [ ] Make the portfolio section dynamic and tied into rails

@@ -1,11 +1,12 @@
 {{head-title title}}
 <h2>Edit {{title}}</h2>
+<div class="alert">{{!-- Set in the controller --}}</div>
 <div class="new-post">
   <div class="new-post-inner">
     <form {{action save on='submit'}}>
       <p>{{input value=title placeholder="Title"}}</p>
       <p>{{input value=excerpt placeholder="Little excerpt"}}</p>
-      <p>{{textarea value=body placeholder="Body"}}</p>
+      <p>{{textarea value=body placeholder="Body" class="post-text-area"}}</p>
       <label for="is_published">Published:</label>
       {{view Ember.Select
         content=published

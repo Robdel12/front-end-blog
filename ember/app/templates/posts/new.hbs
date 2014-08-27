@@ -1,10 +1,12 @@
+<div class="alert">{{!-- Set in the controller --}}</div>
 <div class="new-post">
   <div class="new-post-inner">
     <h2>New Post</h2>
+    <a href="#" {{action "togglePreview"}}>Toggle Preview</a>
     <form {{action savePost on='submit'}}>
       <p>{{input value=post.title placeholder="Title"}}</p>
       <p>{{input value=post.excerpt placeholder="Little excerpt"}}</p>
-      <p>{{textarea value=post.body placeholder="Body"}}</p>
+      <p>{{textarea value=post.body placeholder="Body" class="post-text-area"}}</p>
       <label for="is_published">Published:</label>
       {{view Ember.Select
         content=published
@@ -13,7 +15,7 @@
       <p><button type="submit" class="btn">Save</button></p>
     </form>
   </div>
-  <div class="preview">
+  <div class="preview hide">
     <h1>{{post.title}}</h1>
 
     {{format-markdown post.body}}

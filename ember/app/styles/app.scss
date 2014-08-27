@@ -90,6 +90,9 @@ body{
   padding: 6px 14px;
   color: white;
 }
+.hide{
+  display: none;
+}
 
 // =========================================================== Nav ============================================================
 nav{
@@ -304,12 +307,12 @@ nav{
   textarea{
     width: 100%;
   }
-  textarea{
-    height: 140px;
-  }
   .btn{
     float: right;
   }
+}
+.post-text-area{
+  height: 300px;
 }
 .preview{
   @include flex(2);
