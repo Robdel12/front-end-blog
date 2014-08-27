@@ -6,7 +6,7 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 
 ### Website todos to go live
 - [ ] replace all images with s3 hosted images
-- [ ] pageinate posts
+- [ ] paginate posts
 - [ ] can we minify new relic scripts? Come on man...
 - [ ] proper github markdown rendering
 - [ ] bring over last few posts

@@ -189,55 +189,6 @@ nav{
     @include flex(10);
   }
 }
-#loading{
-  cursor: wait;
-  background-color: rgba(0,0,0,0);
-  opacity: .8;
-  border-radius: 50px;
-  margin: 5% auto;
-  animation: loading .5s infinite linear;
-  -moz-animation: loading .5s infinite linear;
-  -webkit-animation: loading .5s infinite linear;
-}
-.spin-3{
-  border: 10px solid $primary_color;
-  border-top: 10px solid rgba(0,0,0,0);
-  border-left: 10px solid rgba(0,0,0,0);
-  width: 40px;
-  height: 40px;
-  border-radius: 40px !important;
-}
-
- @keyframes loading {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
-
-    100% {
-        -moz-transform: rotate(360deg);
-    };
-}
-
- @-moz-keyframes loading {
-    0% {
-        -moz-transform: rotate(0deg);
-    }
-
-    100% {
-        -moz-transform: rotate(360deg);
-    };
-}
-
-@-webkit-keyframes loading {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-
-    100% {
-        -webkit-transform: rotate(360deg);
-    };
-}
-
 .dashboard-posts-list{
   border-bottom: 1px solid #ddd;
   padding: 0px 0 10px 0;
@@ -250,6 +201,53 @@ nav{
 .posts-utility-links{
   float: right;
 }
+.loader-container{
+  background: rgba(23, 126, 184, 0.84);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+.loader{
+  margin: 6em auto;
+  font-size: 10px;
+  position: fixed;
+  top: 20%;
+  right: 0;
+  left: 0;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #ffffff;
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+.loader,
+.loader:after{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+@-webkit-keyframes load8{
+  0%{
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100%{
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8{
+  0%{
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100%{
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
 
 // =========================================================== Blog single post ============================================================
 
