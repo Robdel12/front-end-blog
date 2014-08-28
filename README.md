@@ -5,10 +5,10 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 
 
 ### Website todos to go live
-- [ ] replace all images with s3 hosted images
+- [x] replace all images with s3 hosted images
 - [ ] paginate posts
 - [ ] proper github markdown rendering
-- [ ] bring over last few posts
+- [x] bring over last few posts
 - [x] handle errors better when creating blog posts. (Don't just break the page..)
 - [x] change up the posts new view. It's not deal for writing posts.
 - [x] auto save draft function. (went with 2mins)
