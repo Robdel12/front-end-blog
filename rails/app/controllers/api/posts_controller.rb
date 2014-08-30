@@ -1,6 +1,13 @@
 class Api::PostsController < ApplicationController
   def index
-    render json: Posts.all
+    if params[:home]
+      render json:
+      {
+        "posts:" => Posts.all.select(:id, :title, :post_slug, :created_at, :excerpt).where("is_published", true)
+      }
+    else
+      render json: Posts.all
+    end
   end
 
   def show
@@ -8,7 +15,6 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    puts params
     post = Posts.new(new_post_params)
 
     if post.save
