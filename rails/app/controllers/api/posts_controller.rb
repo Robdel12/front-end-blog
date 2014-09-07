@@ -1,13 +1,13 @@
 class Api::PostsController < ApplicationController
   def index
-    if params[:home]
-      render json:
-      {
-        "posts:" => Posts.all.select(:id, :title, :post_slug, :created_at, :excerpt).where("is_published", true)
-      }
-    else
+    if params[:dashboard]
       render json: Posts.all
+    else
+      posts = Posts.all
+      paginate json: posts, per_page: 4 #wtf. I can't get this to STOP returning empty queries.
     end
+
+    # render json: Posts.all
   end
 
   def show
