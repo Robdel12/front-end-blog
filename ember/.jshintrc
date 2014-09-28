@@ -2,6 +2,7 @@
   "predef": {
     "document": true,
     "window": true,
+    "-Promise": true,
     "FrontEndENV": true
   },
   "browser" : true,
@@ -28,7 +29,5 @@
   "white": false,
   "eqnull": true,
   "esnext": true,
-  "unused": true,
-  "moment": true,
-  "markdown": true
+  "unused": true
 }
