@@ -9,7 +9,7 @@ export default Ember.Route.extend(PageRouteMixin, {
   },
 
   model: function(params) {
-    return this.findPaged("post", params);
+    return this.findPaged("posts", params);
   },
 
   afterModel: function() {
