@@ -255,6 +255,16 @@ nav {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
 
+.pagination li {
+  display: inline-block;
+  cursor: pointer;
+  padding: 3px 6px;
+  background-color: #057EA6;
+  font-size: 13px;
+  border-radius: 4px; }
+  .pagination li a {
+    color: white; }
+
 .post {
   max-width: 960px;
   margin: 0 auto; }
