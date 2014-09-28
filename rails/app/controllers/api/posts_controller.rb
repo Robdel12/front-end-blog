@@ -4,7 +4,9 @@ class Api::PostsController < ApplicationController
     if params[:dashboard]
       render json: Posts.all
     else
-      render json: Posts.where(is_published: true)
+      page = (params[:page] || 1).to_i
+      posts = Posts.page(page).per(5)
+      render json: posts, meta: { total_pages: posts.total_pages }
     end
   end
 
