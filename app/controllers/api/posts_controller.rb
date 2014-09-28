@@ -1,6 +1,13 @@
 class Api::PostsController < ApplicationController
+
   def index
-    render json: Posts.all
+    if params[:dashboard]
+      render json: Posts.all
+    else
+      page = (params[:page] || 1).to_i
+      posts = Posts.page(page).per(5)
+      render json: posts, meta: { total_pages: posts.total_pages }
+    end
   end
 
   def show
@@ -8,7 +15,6 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    puts params
     post = Posts.new(new_post_params)
 
     if post.save
