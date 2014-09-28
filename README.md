@@ -9,7 +9,6 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 - [ ] paginate posts
 - [ ] proper github markdown rendering
 - [ ] Store posts in local storage on first page load
-- [ ] Lighten up the fist query with only getting the title, excerpt, and date.
 - [x] bring over last few posts
 - [x] handle errors better when creating blog posts. (Don't just break the page..)
 - [x] change up the posts new view. It's not deal for writing posts.
