@@ -7,6 +7,7 @@ Ember front end and rails backend. This will eventually replace my wordpress blo
 ### Website todos to go live
 - [x] replace all images with s3 hosted images
 - [x] paginate posts
+- [ ] contact page
 - [ ] proper github markdown rendering
 - [ ] Store posts in local storage on first page load
 - [x] bring over last few posts
