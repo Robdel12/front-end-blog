@@ -6,6 +6,7 @@ Backend::Application.routes.draw do
   # root 'welcome#index'
   namespace :api do
     resources :posts
+    resources :timeline
   end
 
   devise_for :users, controllers: { sessions: 'sessions' }

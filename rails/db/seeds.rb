@@ -38,4 +38,11 @@ when "development"
     {email: 'pink@mail.com',
      password: '12345678', password_confirmation: '12345678'}
   ])
+
+  Timeline.create(
+    title: "Dat fake data",
+    description: "Hallo",
+    date: Time.now - 2,
+    created_at: Time.now
+  )
 end
