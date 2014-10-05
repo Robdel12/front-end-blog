@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: '<%= modulePrefix %>',
+    modulePrefix: 'front-end',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
