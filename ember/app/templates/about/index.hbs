@@ -13,9 +13,10 @@
 </div>
 <div class="timelinewrap">
   <h2>Personal Timeline</h2>
-{{!--   {{#each}}
-    {{title}}
-  {{/each}} --}}
+  {{#each}}
+    {{title}} - {{formattedDate}}
+    <p>{{description}}</p>
+  {{/each}}
   {{!-- <div class="timeline">
     <h4 class="timeline-title">2014</h4>
     <ul>
@@ -166,5 +167,3 @@
   </div>
  --}}
 </div>
-<!-- Thanks to Dave Rupert for the inspiration, guidance, and idea! -->
-

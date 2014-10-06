@@ -1,5 +1,11 @@
+import Ember from "ember";
 import DS from 'ember-data';
 
-export default DS.ActiveModelAdapter.extend({
+var AppAdapter = DS.ActiveModelAdapter.extend({
   namespace: "api"
 });
+
+var inflector = Ember.Inflector.inflector;
+inflector.uncountable('timeline'); //only makes call to /advice
+
+export default AppAdapter;
