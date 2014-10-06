@@ -4,4 +4,20 @@ class Api::TimelineController < ApplicationController
     render json: Timeline.all
   end
 
+  def create
+    event = Timeline.new(new_event_params)
+
+    if event.save
+      render json: event
+    else
+      render json: event, status: 422
+    end
+  end
+
+private
+
+  def new_event_params
+    params.require(:timeline).permit(:title, :date, :description, :is_published)
+  end
+
 end
