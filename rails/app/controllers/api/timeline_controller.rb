@@ -17,7 +17,7 @@ class Api::TimelineController < ApplicationController
 private
 
   def new_event_params
-    params.require(:timeline).permit(:title, :date, :description, :is_published)
+    params.require(:timeline).permit(:title, :event_date, :description, :is_published)
   end
 
 end

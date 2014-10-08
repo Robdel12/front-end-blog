@@ -13,15 +13,16 @@ var NewTimelineController = Ember.ObjectController.extend({
     saveEvent: function() {
       var timelineData = {
             title: this.get("timeline.title"),
-            date: this.get("timeline.date"),
-            body: this.get("timeline.description"),
+            event_date: this.get("timeline.event_date"),
+            description: this.get("timeline.description"),
             is_published: this.get("selectedState")
           },
           newEvent;
-
+      debugger;
       newEvent = this.store.createRecord("timeline", timelineData);
 
       newEvent.save().catch(function(reason) {
+
         if(reason.status === 500){
           Ember.$(".alert").text("There was a server error.");
         }

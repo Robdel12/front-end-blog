@@ -6,6 +6,6 @@ var AppAdapter = DS.ActiveModelAdapter.extend({
 });
 
 var inflector = Ember.Inflector.inflector;
-inflector.uncountable('timeline'); //only makes call to /advice
+inflector.uncountable('timeline'); //only makes call to /timeline
 
 export default AppAdapter;
