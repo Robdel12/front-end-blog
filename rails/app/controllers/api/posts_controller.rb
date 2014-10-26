@@ -5,7 +5,7 @@ class Api::PostsController < ApplicationController
       render json: Posts.all
     else
       page = (params[:page] || 1).to_i
-      posts = Posts.order("created_at desc").page(page).per(5)
+      posts = Posts.where(is_published: true).order("created_at desc").page(page).per(5)
       render json: posts, meta: { total_pages: posts.total_pages }
     end
   end
