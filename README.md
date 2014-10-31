@@ -62,4 +62,4 @@ Setting up the front end:
 
 ## Running the servers
 In rails/, run `bundle exec rails s`
-In ember/, run `ember server --proxy http://localhost:3000`
+In ember/, run `ember server`
