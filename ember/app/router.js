@@ -12,7 +12,7 @@ Router.map(function() {
   this.route("dashboard");
   this.resource("posts", function() {
     this.route("show", { path: "/:post_slug" });
-    this.route("edit", { path: "/:post_slug/edit" });
+    this.route("edit", { path: "/:post_id/edit" });
     this.route("new");
   });
   this.route('error404', { path: '/*path' }); //404s son

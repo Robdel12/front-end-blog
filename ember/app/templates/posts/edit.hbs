@@ -8,6 +8,8 @@
       <p>{{input value=title placeholder="Title" id="post_title"}}</p>
       <label for="excerpt">Excerpt:</label>
       <p>{{input value=excerpt placeholder="Little excerpt" id="excerpt"}}</p>
+      <label for="post_slug">Post Slug:</label>
+      <p>{{input value=post_slug placeholder="Post Slug" id="post_slug"}}</p>
       <p>{{textarea value=body placeholder="Body" class="post-text-area"}}</p>
       <label for="is_published">Published:</label>
       {{view Ember.Select content=published selectionBinding="selectedState" value=is_published id="is_published"}}

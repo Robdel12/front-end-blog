@@ -26,7 +26,7 @@ var EditController = Ember.ObjectController.extend({
 
         window.setTimeout(function(){
           alert.text("").hide();
-        }, 60000);
+        }, 5000);
 
       }
       this.autoSave();
@@ -34,17 +34,11 @@ var EditController = Ember.ObjectController.extend({
   },
 
   desktopNotifcation: function(message) {
-    // Let's check if the user is okay to get some notification
     if (Notification.permission === "granted") {
-      // If it's okay let's create a notification
       var notification = new Notification(message);
     }
-    // Otherwise, we need to ask the user for permission
-    // Note, Chrome does not implement the permission static property
-    // So we have to check for NOT 'denied' instead of 'default'
     else if (Notification.permission !== 'denied') {
       Notification.requestPermission(function (permission) {
-        // If the user is okay, let's create a notification
         if (permission === "granted") {
           var notification = new Notification(message);
         }
@@ -55,10 +49,13 @@ var EditController = Ember.ObjectController.extend({
   actions: {
 
     destroy: function() {
-      this.store.find('posts', this.model.id).then(function (post) {
-        post.destroyRecord();
-      });
-      return this.transitionTo('dashboard');
+      var prompt = window.confirm("Are you sure you want to delete this?");
+      if(prompt) {
+        this.store.find('posts', this.model.id).then(function (post) {
+          post.destroyRecord();
+        });
+        return this.transitionTo('dashboard');
+      }
     },
 
     save: function() {
