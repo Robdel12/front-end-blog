@@ -162,6 +162,23 @@ nav{
   padding: 0 20px;
 }
 
+// =========================================================== Contact ============================================================
+
+.contact-form{
+  label{
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 300; //check this **todo**
+  }
+  input{
+    margin-bottom: 16px;
+  }
+  textarea{
+    width: 50%;
+    height: 150px;
+  }
+}
+
 // =========================================================== Blog Posts ============================================================
 
 .posts-excerpt{
