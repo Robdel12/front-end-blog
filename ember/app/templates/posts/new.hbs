@@ -1,4 +1,4 @@
-<div class="alert">{{!-- Set in the controller --}}</div>
+<div class="alert hide">{{!-- Set in the controller --}}</div>
 <div class="new-post">
   <div class="new-post-inner">
     <h2>New Post</h2>
@@ -8,10 +8,7 @@
       <p>{{input value=post.excerpt placeholder="Little excerpt"}}</p>
       <p>{{textarea value=post.body placeholder="Body" class="post-text-area"}}</p>
       <label for="is_published">Published:</label>
-      {{view Ember.Select
-        content=published
-        selectionBinding=selectedState
-      }}
+      {{view Ember.Select content=published selectionBinding="selectedState"}}
       <p><button type="submit" class="btn">Save</button></p>
     </form>
   </div>

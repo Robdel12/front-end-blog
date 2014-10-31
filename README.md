@@ -61,5 +61,5 @@ Setting up the front end:
 - `bower install`
 
 ## Running the servers
-In rails/, run `bundle exec rails s`
+In rails/, run `bundle exec rails s` or `rails s`
 In ember/, run `ember server`
