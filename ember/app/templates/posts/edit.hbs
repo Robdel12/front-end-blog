@@ -1,24 +1,25 @@
 {{head-title title}}
-<h2>Edit {{title}}</h2>
-<div class="alert">{{!-- Set in the controller --}}</div>
+<div class="alert hide">{{!-- Set in the controller --}}</div>
+<h2>Edit: <span class="post-edit-title">{{title}}</span></h2>
 <div class="new-post">
   <div class="new-post-inner">
-    <form {{action save on='submit'}}>
-      <p>{{input value=title placeholder="Title"}}</p>
-      <p>{{input value=excerpt placeholder="Little excerpt"}}</p>
+    <form {{action "save" on='submit'}}>
+      <label for="post_title">Title:</label>
+      <p>{{input value=title placeholder="Title" id="post_title"}}</p>
+      <label for="excerpt">Excerpt:</label>
+      <p>{{input value=excerpt placeholder="Little excerpt" id="excerpt"}}</p>
       <p>{{textarea value=body placeholder="Body" class="post-text-area"}}</p>
       <label for="is_published">Published:</label>
-      {{view Ember.Select
-        content=published
-        selectionBinding=selectedState
-        value=is_published
-      }}
+      {{view Ember.Select content=published selectionBinding="selectedState" value=is_published id="is_published"}}
+      <ul class="edit-posts-list">
+        <li><a href="#" {{action "togglePreview"}}>Toggle Preview</a></li>
+        <li><a {{action cancel}} href="#">Cancel</a></li>
+        <li><a {{action destroy}} href="#">Delete</a></li>
+      </ul>
       <p><button type="submit" class="btn">Edit post</button></p>
     </form>
-    <a {{action cancel}} href="#">Cancel</a>
-    <a {{action destroy}} href="#">Delete</a>
   </div>
-  <div class="preview">
+  <div class="preview hide">
     <h1>{{title}}</h1>
 
     {{format-markdown body}}

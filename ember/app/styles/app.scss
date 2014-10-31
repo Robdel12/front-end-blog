@@ -92,6 +92,12 @@ body{
 .hide{
   display: none;
 }
+.alert{
+  background-color: rgba(0, 125, 196, 0.66);
+  padding: 7px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 125, 196, 1);
+}
 
 // =========================================================== Nav ============================================================
 nav{
@@ -302,6 +308,26 @@ nav{
       font-size: 3.6rem;
       line-height: 4.5rem;
     }
+  }
+}
+.post-edit-title{
+  font-style: italic;
+}
+.edit-posts-list{
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+  li{
+    margin-right: 4px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  a{
+    background-color: $primary_color;
+    padding: 3px 12px;
+    color: white;
+    border-radius: 6px;
+    font-size: 13px;
   }
 }
 .comment-wrap{
