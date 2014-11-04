@@ -4,7 +4,7 @@ import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 export default Ember.Route.extend(RouteMixin, {
 
   model: function(params) {
-    return this.findPaged("posts", params);
+    return this.findPaged("post", params);
   }
 
 });
