@@ -1,7 +1,9 @@
 import Ember from 'ember';
-import PageControllerMixin from 'ember-cli-pagination/controller-mixin';
 
-var PostsController = Ember.ArrayController.extend(PageControllerMixin, {
+var PostsController = Ember.ArrayController.extend({
+  queryParams: ["page"],
+  pageBinding: "content.page",
+  totalPagesBinding: "content.totalPages"
 });
 
 export default PostsController;
