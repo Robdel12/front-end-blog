@@ -12,7 +12,7 @@ var EditController = Ember.ObjectController.extend({
       console.log("hello");
       if(this.get("isDirty")){
         var alert = Ember.$(".alert");
-        var notificationMessage = 'Your post "' + this.get("title") + '" was auto saved';
+        var notificationMessage = 'Your post "' + this.get("title") + ' was auto saved';
 
         this.model.save().catch(function(reason){
           if(reason.status === 500){
@@ -42,7 +42,7 @@ var EditController = Ember.ObjectController.extend({
     if(window.Notification.permission === "granted") {
       new window.Notification(message);
     }
-    else if(window.Notification.permission !== 'denied') {
+    else if(window.Notification.permission !== "denied") {
       window.Notification.requestPermission(function (permission) {
         if(permission === "granted") {
           new window.Notification(message);
@@ -56,10 +56,10 @@ var EditController = Ember.ObjectController.extend({
     destroy: function() {
       var prompt = window.confirm("Are you sure you want to delete this?");
       if(prompt) {
-        this.store.find('posts', this.model.id).then(function (post) {
+        this.store.find("posts", this.model.id).then(function (post) {
           post.destroyRecord();
         });
-        return this.transitionTo('dashboard');
+        return this.transitionTo("dashboard");
       }
     },
 
@@ -67,9 +67,9 @@ var EditController = Ember.ObjectController.extend({
       return this.model.save().then((function(_this) {
         return function() {
           if(_this.model._data.is_published === true){
-            return _this.transitionToRoute('posts.show', _this.model);
+            return _this.transitionToRoute("posts.show", _this.model);
           } else {
-            var notificationMessage = 'Your post was saved';
+            var notificationMessage = "Your post was saved";
             var alert = Ember.$(".alert");
 
             window.setTimeout(function(){
@@ -82,10 +82,10 @@ var EditController = Ember.ObjectController.extend({
     },
 
     cancel: function() {
-      if (this.model.isDirty) {
+      if(this.model.isDirty) {
         this.model.rollback();
       }
-      return this.transitionTo('posts.show', this.model);
+      return this.transitionTo("posts.show", this.model);
     },
 
     togglePreview: function(){
