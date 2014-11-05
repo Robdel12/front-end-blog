@@ -15,12 +15,14 @@
       <li>{{#link-to "portfolio"}}Portfolio{{/link-to}}</li>
     </ul>
   </nav>
-  <section class="hero">
-    <header>
-      <h1>Hi, I'm Robert.</h1>
-      <p>And I create online awesome.</p>
-    </header>
-  </section>
+  {{#unless session.isAuthenticated}}
+    <section class="hero">
+      <header>
+        <h1>Hi, I'm Robert.</h1>
+        <p>And I create online awesome.</p>
+      </header>
+    </section>
+  {{/unless}}
   <div class="inner-container">
     {{outlet}}
   </div>

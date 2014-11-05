@@ -24,7 +24,7 @@ var NewController = Ember.ObjectController.extend({
 
       newPost.save().catch(function(reason) {
         if(reason.status === 500){
-          Em.$(".alert").text("There was a server error.");
+          Ember.$(".alert").text("There was a server error.");
         }
       });
 
@@ -42,7 +42,7 @@ var NewController = Ember.ObjectController.extend({
     },
 
     togglePreview: function(){
-      Em.$(".preview").toggleClass("hide");
+      Ember.$(".preview").toggleClass("hide");
     }
 
   }
