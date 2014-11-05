@@ -8,7 +8,8 @@ var EditController = Ember.ObjectController.extend({
   },
 
   autoSave: function() {
-    Ember.run.later(this, function() {
+    this.timer = Ember.run.later(this, function() {
+      console.log("hello");
       if(this.get("isDirty")){
         var alert = Ember.$(".alert");
         var notificationMessage = 'Your post "' + this.get("title") + '" was auto saved';
@@ -33,14 +34,18 @@ var EditController = Ember.ObjectController.extend({
     }, 60000); //60000 = 1 min
   },
 
+  stopAutoSave: function(){
+    Ember.run.cancel(this.timer);
+  },
+
   desktopNotifcation: function(message) {
-    if (Notification.permission === "granted") {
-      var notification = new Notification(message);
+    if(window.Notification.permission === "granted") {
+      new window.Notification(message);
     }
-    else if (Notification.permission !== 'denied') {
-      Notification.requestPermission(function (permission) {
-        if (permission === "granted") {
-          var notification = new Notification(message);
+    else if(window.Notification.permission !== 'denied') {
+      window.Notification.requestPermission(function (permission) {
+        if(permission === "granted") {
+          new window.Notification(message);
         }
       });
     }
