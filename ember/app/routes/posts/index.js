@@ -1,19 +1,10 @@
 import Ember from "ember";
-import PageRouteMixin from 'ember-cli-pagination/route-mixin';
+import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
 
-export default Ember.Route.extend(PageRouteMixin, {
-
-  beforeModel: function() {
-    // Assume the "loading" class displays an overlay with a loading animation
-    Ember.$("body").append("<div class='loader-container'><div class='loader'></div></div>");
-  },
+export default Ember.Route.extend(RouteMixin, {
 
   model: function(params) {
-    return this.findPaged("posts", params);
-  },
-
-  afterModel: function() {
-    Ember.$(".loader-container").remove();
+    return this.findPaged("post", params);
   }
 
 });
