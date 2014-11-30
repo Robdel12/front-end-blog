@@ -14,3 +14,6 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+
+rails/config/settings.yml
+rails/config/Robert-Blog-c80191c13972.p12
