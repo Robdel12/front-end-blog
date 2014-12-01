@@ -1,5 +1,7 @@
 import DS from 'ember-data';
 
-export default DS.ActiveModelAdapter.extend({
+var AppAdapter = DS.ActiveModelAdapter.extend({
   namespace: "api"
 });
+
+export default AppAdapter;
