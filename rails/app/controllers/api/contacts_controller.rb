@@ -5,12 +5,13 @@ class Api::ContactsController < ApplicationController
   end
 
   def create
-    contacts = Contacts.new(new_contacts_params)
+    contact = Contacts.new(new_contacts_params)
 
-    if contacts.save
-      render json: contacts
+    if contact.save
+      ContactMailer.contact_email(contact).deliver
+      render json: contact
     else
-      render json: contacts, status: 422
+      render json: contact, status: 422
     end
   end
 
