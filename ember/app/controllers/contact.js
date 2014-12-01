@@ -10,12 +10,11 @@ export default Ember.ObjectController.extend({
     submitContact: function(){
       var newContact;
       var contactData = {
-          name: this.get("contact.name"),
-          email: this.get("contact.email"),
-          reason: this.get("contact.reason"),
-          comments: this.get("contact.comments")
-        };
-      debugger;
+        name: this.get("contact.name"),
+        email: this.get("contact.email"),
+        reason: this.get("contact.reason"),
+        comments: this.get("contact.comments")
+      };
 
       newContact = this.store.createRecord("contact", contactData);
 
