@@ -13,14 +13,21 @@ export default Ember.ObjectController.extend({
         name: this.get("contact.name"),
         email: this.get("contact.email"),
         reason: this.get("contact.reason"),
-        comments: this.get("contact.comments")
+        comments: this.get("contact.comments"),
+        honeypot: this.get("contact.honeypot")
       };
+
+      //No spam!
+      if(contactData.honeypot !== undefined) {
+        Ember.$(".alert").text("Form error. Please try again later").show();
+        return false;
+      }
 
       newContact = this.store.createRecord("contact", contactData);
 
       newContact.save().catch(function(reason) {
-        if(reason.status === 500){
-          Ember.$(".alert").text("There was a server error.");
+        if(reason.status === 500) {
+          Ember.$(".alert").text("There was a server error. Please try again.").show();
         }
       });
 
@@ -31,6 +38,7 @@ export default Ember.ObjectController.extend({
         "contact.reason": "",
         "contact.comments": ""
       });
+
     }
 
   }

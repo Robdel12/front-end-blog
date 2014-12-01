@@ -1,5 +1,5 @@
-<h1>Contact</h1>
 <div class="alert hide"></div>
+<h1>Contact</h1>
 <form accept-charset="UTF-8" {{action "submitContact" on="submit"}} method="POST" class="contact-form">
   <input type="hidden" name="utf8" value="✓">
 
@@ -10,10 +10,12 @@
   {{input value=contact.email placeholder="Email address" id="email" required="true"}}
 
   <label for="reason_for_contact">Reason for contact:</label>
-  {{input value=contact.reason placeholder="Reason for contact" id="reason_for_contact" required="true"}}
+  {{input value=contact.reason placeholder="Reason for contact" id="reason_for_contact" }}
 
   <label for="comments">Comments:</label>
   <p>{{textarea value=contact.comments class="post-text-area"}}</p>
 
-  <p><button type="submit" class="btn">Submit</button></p>
+  {{input value=contact.honeypot placeholder="Anything else?" class="honey-pot"}}
+
+  <p><button type="submit" class="btn">Send me an email!</button></p>
 </form>

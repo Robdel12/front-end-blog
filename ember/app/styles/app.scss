@@ -93,10 +93,10 @@ body{
   display: none;
 }
 .alert{
-  background-color: rgba(0, 125, 196, 0.66);
+  background-color: rgba(196, 0, 0, 0.66);
   padding: 7px;
   border-radius: 8px;
-  border: 1px solid rgba(0, 125, 196, 1);
+  border: 1px solid rgba(196, 0, 0, 1);
 }
 
 // =========================================================== Nav ============================================================
@@ -168,7 +168,7 @@ nav{
   label{
     display: block;
     margin-bottom: 6px;
-    font-weight: 300; //check this **todo**
+    font-weight: 300;
   }
   input{
     margin-bottom: 16px;
@@ -177,6 +177,9 @@ nav{
     width: 50%;
     height: 150px;
   }
+}
+.honey-pot{
+  // display: none;
 }
 
 // =========================================================== Blog Posts ============================================================
