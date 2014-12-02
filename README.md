@@ -1,46 +1,20 @@
-Ember Blog
+Robert's Ember Blog
 ====
 
-Ember front end and rails backend. This will eventually replace my wordpress blog I have.
+Ember front end and rails back end.
 
-
-### Website todos to go live
-- [x] replace all images with s3 hosted images
-- [x] paginate posts
+### TODO
+- [ ] Update readme to something better than this!
 - [ ] contact page
 - [ ] proper github markdown rendering
 - [ ] Store posts in local storage on first page load
-- [x] bring over last few posts
-- [x] handle errors better when creating blog posts. (Don't just break the page..)
-- [x] change up the posts new view. It's not deal for writing posts.
-- [x] auto save draft function. (went with 2mins)
-- [x] loading animations everywhere
-- [x] dashboard ordering needs to be updated
-- [x] needs 404 page
-- [x] Import old posts
-- [x] clean up CSS a little && make responsive
-- [x] Add portfolio section
-- [x] root route = posts
-- [x] hitting the create page = login page if not logged in.
-- [x] be able to save drafts
-- [x] publish and unpublish posts
-- [x] Remove "login" logic from views
-- [x] only show posts that are published
-- [x] create dashboard that shows all posts
-- [x] delete posts
-- [x] edit posts
-- [x] update routes:
-  - posts/:id/edit
-  - posts/new
-
-### Nice haves:
 - [ ] can we minify new relic scripts? Come on man...
 - [ ] Redesign site. Your CSS is disgusting, son.
 - [ ] Make the timeline dynamic & tied into rails.
 - [ ] Make the portfolio section dynamic and tied into rails
 - [ ] Upload assets to s3 automatically.
 - [ ] dashboard pulling in google analytics API with d3 graphs
-- [x] dashboard showing all posts (published, draft, unpublished).
+
 
 # Installation
 Fork the project, then:

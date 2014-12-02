@@ -17,7 +17,6 @@ gem "kaminari"
 
 # App tracking
 gem "skylight"
-gem "newrelic_rpm"
 
 # Settings
 gem "rails_config"
