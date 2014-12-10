@@ -23,3 +23,8 @@
   -ms-flex:  $values;
   flex:  $values;
 }
+@mixin center-x{
+  transform: translateX(-50%);
+  position: absolute;
+  left: 50%;
+}

@@ -88,6 +88,7 @@ body{
   border-radius: 6px;
   padding: 6px 14px;
   color: white;
+  cursor: pointer;
 }
 .hide{
   display: none;
@@ -178,8 +179,40 @@ nav{
     height: 150px;
   }
 }
+.thank-you{
+  @include center-x;
+  text-align: center;
+  border: 1px solid lighten($primary_color, 14%);
+  position: absolute;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  top: 25%;
+  z-index: 9999;
+  p{
+    margin-bottom: 15px;
+  }
+}
+body.modal-backing{
+  &:after{
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.76);
+    width: 100%;
+    height: 100%;
+  }
+}
+.modal-btn{
+  display: block;
+  margin: 0 auto;
+  width: 80px;
+}
 .honey-pot{
-  // display: none;
+  display: none;
 }
 
 // =========================================================== Blog Posts ============================================================

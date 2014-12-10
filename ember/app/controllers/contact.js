@@ -39,6 +39,13 @@ export default Ember.ObjectController.extend({
         "contact.comments": ""
       });
 
+      Ember.$(".thank-you").removeClass("hide");
+      Ember.$("body").addClass("modal-backing");
+    },
+
+    closeModal: function() {
+      Ember.$(".thank-you").addClass("hide");
+      Ember.$("body").removeClass("modal-backing");
     }
 
   }
