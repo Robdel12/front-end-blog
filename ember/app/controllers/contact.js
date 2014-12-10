@@ -39,12 +39,12 @@ export default Ember.ObjectController.extend({
         "contact.comments": ""
       });
 
-      Ember.$(".thank-you").removeClass("hide");
+      Ember.$(".thank-you").removeClass("closed");
       Ember.$("body").addClass("modal-backing");
     },
 
     closeModal: function() {
-      Ember.$(".thank-you").addClass("hide");
+      Ember.$(".thank-you").addClass("closed");
       Ember.$("body").removeClass("modal-backing");
     }
 

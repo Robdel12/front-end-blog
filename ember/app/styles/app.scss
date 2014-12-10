@@ -189,8 +189,15 @@ nav{
   border-radius: 5px;
   top: 25%;
   z-index: 9999;
+  opacity: 1;
+  transition-property: all;
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   p{
     margin-bottom: 15px;
+  }
+  &.closed{
+    opacity: 0;
   }
 }
 body.modal-backing{
