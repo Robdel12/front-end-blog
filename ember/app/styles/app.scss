@@ -190,6 +190,7 @@ nav{
   top: 25%;
   z-index: 9999;
   opacity: 1;
+  visibility: visible;
   transition-property: all;
   transition-duration: 1s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
@@ -197,6 +198,7 @@ nav{
     margin-bottom: 15px;
   }
   &.modal-closed{
+    visibility: hidden;
     opacity: 0;
   }
 }
@@ -219,7 +221,7 @@ body.modal-backing{
   width: 80px;
 }
 .honey-pot{
-  display: none;
+  // display: none;
 }
 
 // =========================================================== Blog Posts ============================================================

@@ -25,6 +25,9 @@
     </section>
   {{/unless}}
   <div class="inner-container">
+    {{#each flash in flashes.content}}
+      {{flash-message flash=flash}}
+    {{/each}}
     {{outlet}}
   </div>
   <footer>

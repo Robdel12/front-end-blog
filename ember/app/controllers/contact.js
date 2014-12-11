@@ -6,6 +6,7 @@ export default Ember.ObjectController.extend({
 
   init: function() {
     this.set("contact",  Ember.Object.create());
+    this.set("contact.honeypot",  "blue"); //temp
   },
 
   actions: {
@@ -22,7 +23,8 @@ export default Ember.ObjectController.extend({
 
       //No spam!
       if(contactData.honeypot !== undefined) {
-        Ember.$(".alert").text("Form error. Please try again later").show();
+        // debugger;
+        this.get('flashes').danger("Form error.");
         return false;
       }
 
@@ -30,7 +32,7 @@ export default Ember.ObjectController.extend({
 
       newContact.save().catch(function(reason) {
         if(reason.status === 500) {
-          Ember.$(".alert").text("There was a server error. Please try again.").show();
+          this.get('flashes').danger('There was a server error. Please try again.');
         }
       });
 
