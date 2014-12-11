@@ -1,6 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.ObjectController.extend({
+  modalClosed: true,
+  thankYou: true,
+
   init: function() {
     this.set("contact",  Ember.Object.create());
   },
@@ -39,13 +42,13 @@ export default Ember.ObjectController.extend({
         "contact.comments": ""
       });
 
-      Ember.$(".thank-you").removeClass("closed");
-      Ember.$("body").addClass("modal-backing");
+      this.set("modalClosed", false);
+      Ember.$("body").addClass("modal-backing"); //how to do this?
     },
 
     closeModal: function() {
-      Ember.$(".thank-you").addClass("closed");
-      Ember.$("body").removeClass("modal-backing");
+      this.set("modalClosed", true);
+      Ember.$("body").removeClass("modal-backing"); //how to do this?
     }
 
   }
