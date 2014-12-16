@@ -7,8 +7,8 @@ export default Ember.Object.extend({
   isDanger:    Ember.computed.equal('type', 'danger'),
 
   init: function(){
-    // Ember.run.later(this, function(){
-    //   this.destroy();
-    // }, Ember.get(this, 'timeout'));
+    Ember.run.later(this, function(){
+      this.destroy();
+    }, Ember.get(this, 'timeout'));
   }
 });

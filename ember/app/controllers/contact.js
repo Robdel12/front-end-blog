@@ -6,7 +6,6 @@ export default Ember.ObjectController.extend({
 
   init: function() {
     this.set("contact",  Ember.Object.create());
-    this.set("contact.honeypot",  "blue"); //temp
   },
 
   actions: {
@@ -23,8 +22,7 @@ export default Ember.ObjectController.extend({
 
       //No spam!
       if(contactData.honeypot !== undefined) {
-        // debugger;
-        this.get('flashes').danger("Form error.");
+        this.get('flashes').danger("Form error. Please try again later");
         return false;
       }
 
