@@ -9,7 +9,6 @@ var EditController = Ember.ObjectController.extend({
 
   autoSave: function() {
     this.timer = Ember.run.later(this, function() {
-      console.log("hello");
       if(this.get("isDirty")){
         var alert = Ember.$(".alert");
         var notificationMessage = 'Your post "' + this.get("title") + ' was auto saved';
@@ -56,7 +55,7 @@ var EditController = Ember.ObjectController.extend({
     destroy: function() {
       var prompt = window.confirm("Are you sure you want to delete this?");
       if(prompt) {
-        this.store.find("posts", this.model.id).then(function (post) {
+        this.store.find("post", this.model.id).then(function (post) {
           post.destroyRecord();
         });
         return this.transitionTo("dashboard");
@@ -67,7 +66,7 @@ var EditController = Ember.ObjectController.extend({
       return this.model.save().then((function(_this) {
         return function() {
           if(_this.model._data.is_published === true){
-            return _this.transitionToRoute("posts.show", _this.model);
+            return _this.transitionToRoute("post.show", _this.model);
           } else {
             var notificationMessage = "Your post was saved";
             var alert = Ember.$(".alert");
@@ -85,7 +84,7 @@ var EditController = Ember.ObjectController.extend({
       if(this.model.isDirty) {
         this.model.rollback();
       }
-      return this.transitionTo("posts.show", this.model);
+      return this.transitionTo("post.show", this.model);
     },
 
     togglePreview: function(){
