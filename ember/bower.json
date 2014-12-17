@@ -15,7 +15,6 @@
     "qunit": "~1.15.0",
     "ember-simple-auth": "0.7.2",
     "moment": "~2.8.1",
-    "marked": "~0.3.2",
-    "dropkick": "2.0.2"
+    "marked": "~0.3.2"
   }
 }
