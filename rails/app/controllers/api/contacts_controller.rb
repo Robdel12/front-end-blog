@@ -1,4 +1,5 @@
 class Api::ContactsController < ApplicationController
+  before_filter :authorize_user, only: ["index"]
 
   def index
     render json: Contacts.all
