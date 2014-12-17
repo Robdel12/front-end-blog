@@ -15,8 +15,8 @@
       {{view Ember.Select content=published selectionBinding="selectedState" value=is_published id="is_published"}}
       <ul class="edit-posts-list">
         <li><a href="#" {{action "togglePreview"}}>Toggle Preview</a></li>
-        <li><a {{action cancel}} href="#">Cancel</a></li>
-        <li><a {{action destroy}} href="#">Delete</a></li>
+        <li><a {{action "cancel"}} href="#">Cancel</a></li>
+        <li><a {{action "destroy"}} href="#">Delete</a></li>
       </ul>
       <p><button type="submit" class="btn">Edit post</button></p>
     </form>
@@ -24,6 +24,6 @@
   <div class="preview hide">
     <h1>{{title}}</h1>
 
-    {{format-markdown body}}
+    {{{format-markdown body}}}
   </div>
 </div>

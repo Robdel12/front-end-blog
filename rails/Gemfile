@@ -12,6 +12,8 @@ gem "devise"
 #Fake stuffs
 gem "faker"
 
+gem "byebug"
+
 #pagination
 gem "kaminari"
 

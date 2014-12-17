@@ -1,4 +1,5 @@
 class Api::PostsController < ApplicationController
+  before_filter :authorize_user, only: [:create, :update, :destroy]
 
   def index
     if params[:dashboard]
