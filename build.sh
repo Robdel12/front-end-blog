@@ -48,4 +48,13 @@ mv public/index.html app/views/layouts/application.html.erb
 printMessage 14 "Cleaning Up"
 rm public/index.html.bck
 
+printMessage 14 "Git add -A"
+git add -A
+
+printMessage 14 "Git commit"
+git commit -am "deploy"
+
+printMessage 14 "Deploy"
+git push heroku master
+
 boldMessage 14 "Done"
