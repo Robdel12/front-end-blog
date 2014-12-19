@@ -1,11 +1,16 @@
 class Api::ContactsController < ApplicationController
-  before_filter :authorize_user, only: ["index"]
+  before_filter :authorize_user, only: [:index]
 
   def index
     render json: Contacts.all
   end
 
   def create
+
+    if new_contacts_params[:honeypot].present?
+      return render json: "Nope", status: 422
+    end
+
     contact = Contacts.new(new_contacts_params)
 
     if contact.save
@@ -19,7 +24,7 @@ class Api::ContactsController < ApplicationController
 private
 
   def new_contacts_params
-    params.require(:contact).permit(:name, :reason, :email, :comments)
+    params.require(:contact).permit(:name, :reason, :email, :comments, :honeypot)
   end
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201020837) do
+ActiveRecord::Schema.define(version: 20141216223124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20141201020837) do
     t.string   "email"
     t.text     "reason"
     t.text     "comments"
+    t.string   "honeypot"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -32,7 +33,8 @@ ActiveRecord::Schema.define(version: 20141201020837) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_published", default: false
+    t.boolean  "is_published",         default: false
+    t.string   "authentication_token"
   end
 
   create_table "products", force: true do |t|

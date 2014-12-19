@@ -6,6 +6,7 @@ export default Ember.ObjectController.extend({
 
   init: function() {
     this.set("contact",  Ember.Object.create());
+    this._super();
   },
 
   actions: {
@@ -20,9 +21,14 @@ export default Ember.ObjectController.extend({
         honeypot: this.get("contact.honeypot")
       };
 
+      if(!this.contactIsValid()) {
+        this.get('flashes').danger("Make sure all of the required fields are filled out");
+        return false;
+      }
+
       //No spam!
       if(contactData.honeypot !== undefined) {
-        this.get('flashes').danger("Form error. Please try again later");
+        this.get('flashes').danger("Uh oh, seems like you're a bot.");
         return false;
       }
 
@@ -30,7 +36,7 @@ export default Ember.ObjectController.extend({
 
       newContact.save().catch(function(reason) {
         if(reason.status === 500) {
-          this.get('flashes').danger('There was a server error. Please try again.');
+          this.get('flashes').danger("There was a server error. If it happens more than once contact me on twitter: @robdel12");
         }
       });
 
@@ -51,6 +57,16 @@ export default Ember.ObjectController.extend({
       Ember.$("body").removeClass("modal-backing"); //how to do this?
     }
 
+  },
+
+  contactIsValid: function() {
+    var isValid = true;
+    ['contact.name', 'contact.email', 'contact.reason'].forEach(function(field) {
+      if (this.get(field) === '' || this.get(field) === undefined) {
+        isValid = false;
+      }
+    }, this);
+    return isValid;
   }
 
 });

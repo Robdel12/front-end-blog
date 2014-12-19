@@ -5,7 +5,7 @@ export default Ember.Object.extend({
   queue:   Ember.A([]),
   content: Ember.computed.alias('queue'),
   isEmpty: Ember.computed.equal('queue.length', 0),
-  timeout: 2000,
+  timeout: 30000,
 
   success: function(msg){
     this._add(msg, 'success');

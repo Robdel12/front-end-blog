@@ -5,6 +5,7 @@ class AddContactTable < ActiveRecord::Migration
       t.string :email
       t.text :reason
       t.text :comments
+      t.string :honeypot
 
       t.timestamps
     end
