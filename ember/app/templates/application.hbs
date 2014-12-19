@@ -4,7 +4,7 @@
       <ul>
         <li>{{#link-to "dashboard"}}Dashboard{{/link-to}}</li>
         <li>{{#link-to "posts.new"}}New post{{/link-to}}</li>
-        <li><a {{ action 'invalidateSession' }} href="#">Logout</a></li>
+        <li><a {{action 'invalidateSession'}} href="#">Logout</a></li>
       </ul>
     </nav>
   {{/if}}
@@ -13,6 +13,7 @@
       <li>{{#link-to "posts"}}Blog{{/link-to}}</li>
       <li>{{#link-to "about"}}About{{/link-to}}</li>
       <li>{{#link-to "portfolio"}}Portfolio{{/link-to}}</li>
+      <li>{{#link-to "contact"}}Contact{{/link-to}}</li>
     </ul>
   </nav>
   {{#unless session.isAuthenticated}}
@@ -24,6 +25,9 @@
     </section>
   {{/unless}}
   <div class="inner-container">
+    {{#each flash in flashes.content}}
+      {{flash-message flash=flash}}
+    {{/each}}
     {{outlet}}
   </div>
   <footer>

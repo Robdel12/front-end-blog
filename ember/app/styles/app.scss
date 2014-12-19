@@ -88,15 +88,16 @@ body{
   border-radius: 6px;
   padding: 6px 14px;
   color: white;
+  cursor: pointer;
 }
 .hide{
   display: none;
 }
 .alert{
-  background-color: rgba(0, 125, 196, 0.66);
+  background-color: rgba(196, 0, 0, 0.66);
   padding: 7px;
   border-radius: 8px;
-  border: 1px solid rgba(0, 125, 196, 1);
+  border: 1px solid rgba(196, 0, 0, 1);
 }
 
 // =========================================================== Nav ============================================================
@@ -160,6 +161,67 @@ nav{
   max-width: 1140px;
   margin: 25px auto;
   padding: 0 20px;
+}
+
+// =========================================================== Contact ============================================================
+
+.contact-form{
+  label{
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 300;
+  }
+  input{
+    margin-bottom: 16px;
+  }
+  textarea{
+    width: 50%;
+    height: 150px;
+  }
+}
+.thank-you{
+  @include center-x;
+  text-align: center;
+  border: 1px solid lighten($primary_color, 14%);
+  position: absolute;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  top: 25%;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition-property: all;
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  p{
+    margin-bottom: 15px;
+  }
+  &.modal-closed{
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+body.modal-backing{
+  &:after{
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.76);
+    width: 100%;
+    height: 100%;
+  }
+}
+.modal-btn{
+  display: block;
+  margin: 0 auto;
+  width: 80px;
+}
+.honey-pot{
+  display: none;
 }
 
 // =========================================================== Blog Posts ============================================================
@@ -489,6 +551,29 @@ nav{
   }
 }
 
+//Dashboard
+.dashboard-container{
+  @include flex-box;
+}
+.dashboard-main{
+  @include flex(5);
+  margin-right: 40px;
+}
+.dashboard-sidebar{
+  @include flex(1);
+
+  h4{
+    margin-bottom: 16px;
+  }
+}
+.recent-contact{
+  margin: 8px 0 0 0;
+  padding: 5px 0;
+  border-top: 1px solid #ddd;
+  p{
+    padding: 0;
+  }
+}
 
 // =========================================================== Footer ============================================================
 footer{
