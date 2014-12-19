@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>From: <%= @contact.name %></h1>
+    <p><strong>Reason:</strong> <%= @contact.reason %></p>
+    <p><strong>Email:</strong> <%= @contact.email %></p>
+
+    <% if @contact.comments.present? %>
+      <p><strong>Comments:</strong> <%= @contact.comments %></p>
+    <% end %>
+  </body>
+</html>

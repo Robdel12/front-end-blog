@@ -37,17 +37,27 @@ Backend::Application.configure do
   config.assets.digest = true
 
   # Version of your assets, change this if you want to expire all your assets.
-  config.assets.version = '1.0'
+  config.assets.version = "1.0"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
+  # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
   config.log_level = :info
+
+  config.action_mailer.smtp_settings = {
+    :address   => "smtp.gmail.com",
+    :port      => 587,
+    :enable_starttls_auto => true,
+    :user_name => ENV["GMAIL_NAME"],
+    :password  => ENV["GMAIL_PASS"],
+    :authentication => "plain",
+    :domain => "robert-deluca.com",
+  }
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
