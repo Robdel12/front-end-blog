@@ -1,19 +1,24 @@
+<h2>Contacts</h2>
+{{#each contact in contacts}}
+  {{contact.name}}
+{{/each}}
+
 <h2>Drafts</h2>
-{{#each post}}
-  {{#if is_published}}
+{{#each post in model}}
+  {{#if post.is_published}}
     {{! I hate this }}
   {{else}}
     <div class="dashboard-posts-list">
-      <h3 class="posts-title">{{link-to title 'posts.edit' this}}</h3>
+      <h3 class="posts-title">{{link-to post.title 'posts.edit' post}}</h3>
     </div>
   {{/if}}
 {{/each}}
 
 <h2>Published</h2>
-{{#each post}}
-  {{#if is_published}}
+{{#each post in model}}
+  {{#if post.is_published}}
     <div class="dashboard-posts-list">
-      <h3 class="posts-title">{{link-to title 'posts.edit' this}}</h3>
+      <h3 class="posts-title">{{link-to post.title 'posts.edit' post}}</h3>
     </div>
   {{/if}}
 {{/each}}

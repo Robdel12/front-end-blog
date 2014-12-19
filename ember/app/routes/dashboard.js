@@ -3,9 +3,12 @@ import AuthenticatedRouteMixin from "simple-auth/mixins/authenticated-route-mixi
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model: function() {
-    return Ember.RSVP.hash({
-      contact: this.store.find("contact"),
-      post: this.store.find("post", { dashboard: true })
-    });
+    return this.store.find("post", { dashboard: true });
+  },
+
+  setupController: function(controller) {
+    this._super.apply(this, arguments);
+
+    controller.set('contacts', this.store.find('contact'));
   }
 });
