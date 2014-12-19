@@ -551,6 +551,29 @@ body.modal-backing{
   }
 }
 
+//Dashboard
+.dashboard-container{
+  @include flex-box;
+}
+.dashboard-main{
+  @include flex(5);
+  margin-right: 40px;
+}
+.dashboard-sidebar{
+  @include flex(1);
+
+  h4{
+    margin-bottom: 16px;
+  }
+}
+.recent-contact{
+  margin: 8px 0 0 0;
+  padding: 5px 0;
+  border-top: 1px solid #ddd;
+  p{
+    padding: 0;
+  }
+}
 
 // =========================================================== Footer ============================================================
 footer{
