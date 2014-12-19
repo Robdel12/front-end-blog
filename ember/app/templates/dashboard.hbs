@@ -1,5 +1,5 @@
 <h2>Drafts</h2>
-{{#each}}
+{{#each post}}
   {{#if is_published}}
     {{! I hate this }}
   {{else}}
@@ -10,7 +10,7 @@
 {{/each}}
 
 <h2>Published</h2>
-{{#each}}
+{{#each post}}
   {{#if is_published}}
     <div class="dashboard-posts-list">
       <h3 class="posts-title">{{link-to title 'posts.edit' this}}</h3>
