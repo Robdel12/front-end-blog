@@ -102,7 +102,7 @@ body{
 
 // =========================================================== Nav ============================================================
 nav{
-  padding: 15px 0;
+  padding: 15px 10px;
   background-color: #068;
   text-align: right;
   ul{
@@ -222,6 +222,23 @@ body.modal-backing{
 }
 .honey-pot{
   display: none;
+}
+
+@media screen and (max-width: 540px){
+  .thank-you{
+    width: 90%;
+    top: 15%;
+  }
+}
+@media screen and (max-width: 380px){
+  .contact-form{
+    input{
+      width: 75%;
+    }
+    textarea{
+      width: 100%;
+    }
+  }
 }
 
 // =========================================================== Blog Posts ============================================================

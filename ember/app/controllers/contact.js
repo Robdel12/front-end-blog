@@ -49,12 +49,13 @@ export default Ember.ObjectController.extend({
       });
 
       this.set("modalClosed", false);
-      Ember.$("body").addClass("modal-backing"); //how to do this?
+      Ember.$("body").addClass("modal-backing");
+      window.scrollTo(0, 0);
     },
 
     closeModal: function() {
       this.set("modalClosed", true);
-      Ember.$("body").removeClass("modal-backing"); //how to do this?
+      Ember.$("body").removeClass("modal-backing");
     }
 
   },
