@@ -200,6 +200,7 @@ nav{
   &.modal-closed{
     visibility: hidden;
     opacity: 0;
+    display: none;
   }
 }
 body.modal-backing{
