@@ -24,7 +24,6 @@
   flex:  $values;
 }
 @mixin center-x{
-  -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   position: absolute;
   left: 50%;

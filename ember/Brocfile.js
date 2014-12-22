@@ -2,7 +2,12 @@
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
-var app = new EmberApp();
+var app = new EmberApp({
+  autoprefixer: {
+    browsers: ['last 2 versions'],
+    cascade: false
+  }
+});
 
 app.import("bower_components/moment/moment.js");
 app.import("bower_components/marked/lib/marked.js");
