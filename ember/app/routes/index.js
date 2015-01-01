@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 var IndexRoute = Ember.Route.extend({
   redirect: function() {
-    this.transitionTo("posts");
+    this.replaceWith("posts");
   }
 });
 

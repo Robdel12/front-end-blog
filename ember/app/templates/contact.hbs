@@ -1,0 +1,26 @@
+<h1>Contact</h1>
+<form accept-charset="UTF-8" {{action "submitContact" on="submit"}} method="POST" class="contact-form">
+  <input type="hidden" name="utf8" value="✓">
+
+  <label for="name">Name:*</label>
+  {{input type="text" value=contact.name placeholder="Name" id="name" required="true"}}
+
+  <label for="email">Email:*</label>
+  {{input type="email" value=contact.email placeholder="Email address" id="email" required="true"}}
+
+  <label for="reason_for_contact">Reason for contact:*</label>
+  {{input type="text" value=contact.reason placeholder="Reason for contact" id="reason_for_contact" required="true"}}
+
+  <label for="comments">Comments:</label>
+  <p>{{textarea value=contact.comments class="post-text-area"}}</p>
+
+  {{input type="text" value=contact.honeypot placeholder="Anything else?" class="honey-pot"}}
+
+  <p><button type="submit" class="btn">Send me an email!</button></p>
+</form>
+
+<div {{bind-attr class="thankYou modalClosed"}}>
+  <h1>Thank you!</h1>
+  <p>Your email has been sent. I should be in contact shortly :)</p>
+  <a href="#" {{action "closeModal"}} class="btn modal-btn">Got it!</a>
+</div>

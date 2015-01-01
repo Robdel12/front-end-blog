@@ -1,19 +1,32 @@
-<h2>Drafts</h2>
-{{#each}}
-  {{#if is_published}}
-    {{! I hate this }}
-  {{else}}
-    <div class="dashboard-posts-list">
-      <h3 class="posts-title">{{link-to title 'posts.edit' this}}</h3>
-    </div>
-  {{/if}}
-{{/each}}
+<div class="dashboard-container">
+  <div class="dashboard-main">
+    <h2>Drafts</h2>
+    {{#each post in model}}
+      {{#if post.is_published}}
+        {{! I hate this }}
+      {{else}}
+        <div class="dashboard-posts-list">
+          <h3 class="posts-title">{{link-to post.title 'posts.edit' post}}</h3>
+        </div>
+      {{/if}}
+    {{/each}}
 
-<h2>Published</h2>
-{{#each}}
-  {{#if is_published}}
-    <div class="dashboard-posts-list">
-      <h3 class="posts-title">{{link-to title 'posts.edit' this}}</h3>
-    </div>
-  {{/if}}
-{{/each}}
+    <h2>Published</h2>
+    {{#each post in model}}
+      {{#if post.is_published}}
+        <div class="dashboard-posts-list">
+          <h3 class="posts-title">{{link-to post.title 'posts.edit' post}}</h3>
+        </div>
+      {{/if}}
+    {{/each}}
+  </div>
+  <div class="dashboard-sidebar">
+    <h4>Recent Contacts</h4>
+    {{#each contact in contacts}}
+      <div class="recent-contact">
+        <p><strong>Name:</strong> {{contact.name}}</p>
+        <p><strong>Reason:</strong> {{contact.reason}}</p>
+      </div>
+    {{/each}}
+  </div>
+</div>
