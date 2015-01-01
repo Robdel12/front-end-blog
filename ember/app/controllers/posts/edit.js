@@ -11,7 +11,7 @@ var EditController = Ember.ObjectController.extend({
     this.timer = Ember.run.later(this, function() {
       if(this.get("isDirty")){
         var alert = Ember.$(".alert");
-        var notificationMessage = 'Your post "' + this.get("title") + ' was auto saved';
+        var notificationMessage = 'Your post "' + this.get("title") + '" was auto saved';
 
         this.model.save().catch(function(reason){
           if(reason.status === 500){
