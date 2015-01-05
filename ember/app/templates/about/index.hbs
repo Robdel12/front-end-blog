@@ -3,21 +3,21 @@
   <h1>About Robert DeLuca</h1>
   <div class="about-page">
     <div class="two-sixth">
-      <a href="https://s3.amazonaws.com/robert-blog-assets/IMG_2449.jpg">
-        <img alt="Robert DeLuca's portrait" src="https://s3.amazonaws.com/robert-blog-assets/IMG_2449.jpg" />
-      </a>
+      Needs new image
     </div>
     <div class="four-sixth">
-      <p>Since his first contact with computers, Robert has been a genius. For the past several years he has been building websites for both fun and profit that take the latest front end technologies to their limits, doing wildly improbable things like recreating the Mac OS X desktop in the browser. He eats CSS3/HTML5/JavaScript/ and jQuery for breakfast -- even if there's no milk. His latest passion is ensuring that the sites we build are as Responsive as possible, and he won't have it any other way -- the first thing that comes out of his mouth for a new client is "I can't wait to see it on mobile!"</p>
-      <p>In his spare time he's usually found on a basketball court, the couch, involved in the innards of a website, or under his Mustang trying to coax every last pony out for fun.</p>
+      <p>UPDATE DISS</p>
     </div>
   </div>
 </div>
 <div class="timelinewrap">
   <h2>Personal Timeline</h2>
   {{#each}}
-    {{title}} - {{formattedDate}}
-    <p>{{description}}</p>
+    <div class="timeline-card">
+      <h4>{{title}}</h4>
+      <p>{{description}}</p>
+      <span class="date">{{formattedDate}}</span>
+    </div>
   {{/each}}
 
   {{!-- <div class="timeline">

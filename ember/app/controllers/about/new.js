@@ -39,7 +39,11 @@ var NewTimelineController = Ember.ObjectController.extend({
     },
 
     togglePreview: function() {
-      this.set("openPreview", true);
+      if(this.get("openPreview") === false) {
+        this.set("openPreview", true);
+      } else {
+        this.set("openPreview", false);
+      }
     }
 
   }

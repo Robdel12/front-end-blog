@@ -6,6 +6,6 @@ export default DS.Model.extend({
   event_date: DS.attr("string"),
   created_at: DS.attr("date"),
   formattedDate: function(){
-    return moment(this.get("event_date")).format("MMMM Do YYYY");
+    return moment(this.get("event_date")).format("MMMM Do, YYYY");
   }.property("event_date")
 });

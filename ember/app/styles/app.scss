@@ -475,6 +475,40 @@ body.modal-backing{
     margin-left: 30px;
   }
 }
+.timeline-card{
+  padding: 10px 10px 10px 20px;
+  background-color: #E5E5E5;
+  border-radius: 8px;
+  width: 46%;
+  margin-bottom: 25px;
+  position: relative;
+  display: inline-block;
+  &:after{
+    position: absolute;
+    content: " ";
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background-color: #00A8FF;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  &:nth-child(odd){
+    text-align: right;
+    margin-left: 83px;
+    &:after{
+      background-color: $primary_color;
+    }
+  }
+  .date{
+    font-size: 12px;
+    text-align: right;
+    display: block;
+    font-style: italic;
+  }
+
+}
 .timeline{
   overflow:hidden;
   position:relative;

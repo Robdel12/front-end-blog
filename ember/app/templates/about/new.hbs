@@ -3,6 +3,7 @@
   <p>{{input value=timeline.title placeholder="Title"}}</p>
   <p>{{date-picker date=timeline.event_date format="MMMM Do YYYY" valueFormat='YYYY-MM-DD'}}</p>
   <p>{{textarea value=timeline.description placeholder="Body" class="timeline-text-area"}}</p>
+  <p><a href="#" {{action "togglePreview"}}>Toggle Preview</a></p>
   <label for="is_published">Published:</label>
   {{view Ember.Select
     content=published
@@ -10,8 +11,8 @@
   }}
   <p><button type="submit" class="btn">Save</button></p>
 </form>
-<div class="timeline-preview hide">
-  {{!-- <h1>{{timeline.title}}</h1> --}}
+<div {{bind-attr class=":timeline-preview openPreview:show:hide"}}>
+  <h1>{{timeline.title}}</h1>
 
-  {{!-- {{format-markdown timeline.body}} --}}
+  {{{format-markdown timeline.description}}}
 </div>
