@@ -24,13 +24,15 @@ Router.map(function() {
   this.route('error404', { path: '/*path' }); //404s son
 });
 
-Router.reopen({
-  notifyGoogleAnalytics: function() {
-    return window.ga('send', 'pageview', {
-      'page': this.get('url'),
-      'title': this.get('url')
-    });
-  }.on('didTransition')
-});
+if(config.environment === "production") {
+  Router.reopen({
+    notifyGoogleAnalytics: function() {
+      return window.ga('send', 'pageview', {
+        'page': this.get('url'),
+        'title': this.get('url')
+      });
+    }.on('didTransition')
+  });
+}
 
 export default Router;

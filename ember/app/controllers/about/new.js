@@ -3,9 +3,11 @@ import Ember from "ember";
 var NewTimelineController = Ember.ObjectController.extend({
   published: [false, true],
   selectedState: null,
+  openPreview: false,
 
   init: function() {
     this.set("timeline",  Ember.Object.create());
+    this._super();
   },
 
   actions: {
@@ -18,13 +20,12 @@ var NewTimelineController = Ember.ObjectController.extend({
             is_published: this.get("selectedState")
           },
           newEvent;
-      debugger;
+
       newEvent = this.store.createRecord("timeline", timelineData);
 
       newEvent.save().catch(function(reason) {
-
-        if(reason.status === 500){
-          Ember.$(".alert").text("There was a server error.");
+        if(reason.status === 500) {
+          this.get('flashes').danger("There was a server error.");
         }
       });
 
@@ -34,15 +35,11 @@ var NewTimelineController = Ember.ObjectController.extend({
         "timeline.description": ""
       });
 
-      if(timelineData.is_published === true){
-        this.transitionToRoute("about");
-      } else {
-        this.transitionToRoute("about.edit", timelineData.id);
-      }
+      this.transitionToRoute("about");
     },
 
-    togglePreview: function(){
-      Ember.$(".preview").toggleClass("hide");
+    togglePreview: function() {
+      this.set("openPreview", true);
     }
 
   }

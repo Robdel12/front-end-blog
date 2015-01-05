@@ -1,8 +1,7 @@
-<div class="alert">{{!-- Set in the controller --}}</div>
 <h2>New Timeline Event</h2>
-<form {{action "saveEvent" on='submit'}}>
+<form {{action "saveEvent" on='submit'}} class="form">
   <p>{{input value=timeline.title placeholder="Title"}}</p>
-  <p>{{input value=timeline.event_date placeholder="Date"}}</p>
+  <p>{{date-picker date=timeline.event_date format="MMMM Do YYYY" valueFormat='YYYY-MM-DD'}}</p>
   <p>{{textarea value=timeline.description placeholder="Body" class="timeline-text-area"}}</p>
   <label for="is_published">Published:</label>
   {{view Ember.Select
