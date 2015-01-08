@@ -495,8 +495,7 @@ body.modal-backing{
     border-bottom-left-radius: 8px;
   }
   &:nth-child(odd){
-    text-align: right;
-    margin-left: 83px;
+    margin-left: 49%;
     &:after{
       background-color: $primary_color;
     }

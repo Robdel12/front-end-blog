@@ -1,5 +1,5 @@
 class Api::TimelineController < ApplicationController
-  before_filter :authorize_user, only: [:create]
+  before_filter :authorize_user, only: [:create, :update, :destroy]
 
   def index
     render json: Timeline.order("created_at DESC").all
