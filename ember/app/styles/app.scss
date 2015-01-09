@@ -542,6 +542,17 @@ body.modal-backing{
   position:relative;
   margin-bottom:2em;
 }
+@media screen and (max-width: 650px) {
+  h4{
+    line-height: 2.3rem;
+  }
+  .timeline-card{
+    width: 100%;
+    &:nth-child(odd){
+      margin-left: 0;
+    }
+  }
+}
 
 // =========================================================== Projects ============================================================
 
