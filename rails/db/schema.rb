@@ -46,9 +46,10 @@ ActiveRecord::Schema.define(version: 20141216223124) do
   end
 
   create_table "timelines", force: true do |t|
-    t.string   "title"
+    t.text     "title"
     t.datetime "event_date"
-    t.string   "description"
+    t.text     "description"
+    t.boolean  "is_published"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

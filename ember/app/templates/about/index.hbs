@@ -1,0 +1,38 @@
+{{head-title "About"}}
+<div class="contentPage">
+  <h1>About Robert DeLuca</h1>
+  <div class="about-page">
+    <div class="two-sixth">
+      <img src="https://s3.amazonaws.com/robert-blog-assets/IMG_0852.jpg" alt="Robert and his girlfriend Kaylie">
+    </div>
+    <div class="four-sixth">
+      <p>Robert DeLuca is a young but highly motivated Front End Developer. He loves to write in languages like CSS (Scss), JavaScript, and Ruby. Lately he has been totally infatuated with Ember.js and started building things <a href="http://github.com/robdel12/blog">like this blog</a> in it.</p>
+      <p>Robert has a passion for building things that gives users the best user experience as possible. His mom is totally blind so that drives him to create sites that work for those who have disability. He takes it personally when his mom can't use a site because of accessibility issues.</p>
+      <p>He's a friendly guy so you can reach out to him on <a href="http://twitter.com/robdel12">Twitter</a>, <a href="http://github.com/robdel12">GitHub</a>, or by contacting him {{#link-to "contact"}}here.{{/link-to}}</p>
+    </div>
+  </div>
+</div>
+<div class="timelinewrap">
+  <h2>Personal Timeline</h2>
+  {{#if session.isAuthenticated}}
+    {{#each timeline in model}}
+      <div class="timeline-card">
+        <h4>{{timeline.title}}</h4>
+        <p>{{{timeline.description}}}</p>
+        <span class="date">{{timeline.formattedDate}}</span>
+        {{link-to "Edit" 'about.edit' timeline}}
+        Published: {{timeline.is_published}}
+      </div>
+    {{/each}}
+  {{else}}
+    {{#each timeline in model}}
+      {{#if timeline.is_published}}
+        <div class="timeline-card">
+          <h4>{{timeline.title}}</h4>
+          <p>{{{timeline.description}}}</p>
+          <span class="date">{{timeline.formattedDate}}</span>
+        </div>
+      {{/if}}
+    {{/each}}
+  {{/if}}
+</div>

@@ -5,13 +5,13 @@ var EditController = Ember.ObjectController.extend({
 
   init: function() {
     this.autoSave();
-    this._super();
   },
 
   autoSave: function() {
     this.timer = Ember.run.later(this, function() {
       if(this.get("isDirty")){
-        var notificationMessage = 'Your post "' + this.get("title") + '" was auto saved';
+        var alert = Ember.$(".alert");
+        var notificationMessage = 'Your timeline "' + this.get("title") + '" was auto saved';
 
         this.model.save().catch(function(reason){
           if(reason.status === 500){
@@ -19,9 +19,11 @@ var EditController = Ember.ObjectController.extend({
           }
         });
 
+        alert.text(notificationMessage).show();
         if(document.hidden){
           this.desktopNotifcation(notificationMessage);
         }
+
       }
       this.autoSave();
     }, 60000); //60000 = 1 min
@@ -49,34 +51,19 @@ var EditController = Ember.ObjectController.extend({
     destroy: function() {
       var prompt = window.confirm("Are you sure you want to delete this?");
       if(prompt) {
-        this.store.find("post", this.model.id).then(function (post) {
-          post.destroyRecord();
+        this.store.find("timeline", this.model.id).then(function (event) {
+          event.destroyRecord();
         });
-        return this.transitionTo("dashboard");
+        return this.transitionTo("about.index");
       }
     },
 
     save: function() {
       return this.model.save().then((function(_this) {
         return function() {
-          if(_this.model._data.is_published === true){
-            return _this.transitionToRoute("post.show", _this.model);
-          } else {
-            Ember.get(_this, 'flashes').info("Your post was saved.");
-          }
+          return _this.transitionToRoute("about.index");
         };
       })(this));
-    },
-
-    cancel: function() {
-      if(this.model.isDirty) {
-        this.model.rollback();
-      }
-      return this.transitionTo("post.show", this.model);
-    },
-
-    togglePreview: function(){
-      Ember.$(".preview").toggleClass("hide");
     }
 
   }
