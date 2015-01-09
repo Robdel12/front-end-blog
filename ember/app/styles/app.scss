@@ -508,63 +508,32 @@ body.modal-backing{
   }
 
 }
+.new-about-inner{
+  @include flex(2);
+  margin-right: 2%;
+  input,
+  textarea{
+    width: 100%;
+  }
+  .btn{
+    float: right;
+  }
+}
+.timeline{
+  @include flex-box;
+}
+.timeline-preview{
+  .timeline-card{
+    width: 100%;
+    &:nth-child(odd){
+      margin-left: 0;
+    }
+  }
+}
 .timeline{
   overflow:hidden;
   position:relative;
   margin-bottom:2em;
-}
-.timeline .timeline-title{
-  clear: both;
-  text-align: center;
-  border: 2px solid #e2e2e2;
-  background: #f0f0f0;
-  margin: 0 auto 2em;
-  max-width: 8em;
-  padding: 0.25em 0.5em;
-  font-size: 1.7rem;
-}
-.timeline ul{
-  overflow:hidden;
-  margin:0 0 1em;
-  padding:0
-}
-.timeline li{
-  background:#e2e2e2;
-  padding:2%;
-  border-radius: 4px;
-  list-style-type:none;
-  margin:0 0 1em 1em;
-  position:relative;
-}
-.timeline li:before{
-  content: '';
-  width: 0;
-  height: 0;
-  border-top: 11px solid transparent;
-  border-bottom: 11px solid transparent;
-  border-right: 11px solid #e2e2e2;
-  position: absolute;
-  left: -0.65rem;
-  top: 1.5rem;
-
-}
-.timeline time{
-  color:#979797;
-  display:block;
-  font-size:0.9em;
-  font-style:italic;
-}
-.timeline .description{
-  margin-bottom:0;
-  line-height: 21px;
-  font-size: 17px;
-  padding: 15px 0;
-}
-.time{
-  @include oswald;
-  font-weight:300;
-  font-style: italic;
-  font-size: 12px;
 }
 
 // =========================================================== Projects ============================================================

@@ -1,0 +1,23 @@
+<h2>Edit {{title}}</h2>
+<div class="timeline">
+  <div class="new-about-inner">
+    <form {{action "save" on='submit'}}>
+      <p>{{input value=title placeholder="Title"}}</p>
+      <p>{{date-picker date=event_date format="MMMM Do YYYY" valueFormat='YYYY-MM-DD'}}</p>
+      <p>{{textarea value=description placeholder="Body" class="timeline-text-area"}}</p>
+      <label for="is_published">Published:</label>
+      {{view Ember.Select content=published selectionBinding="selectedState" id="is_published" value=is_published}}
+      <ul class="edit-posts-list">
+        <li><a href="#" {{action "destroy"}}>Delete</a></li>
+      </ul>
+      <p><button type="submit" class="btn">Save</button></p>
+    </form>
+  </div>
+  <div {{bind-attr class=":timeline-preview :preview"}}>
+    <div class="timeline-card">
+      <h4>{{title}}</h4>
+      {{{format-markdown description}}}
+      <span class="date">{{formattedDate}}</span>
+    </div>
+  </div>
+</div>
