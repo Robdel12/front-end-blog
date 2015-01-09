@@ -94,9 +94,16 @@ body{
   display: none;
 }
 .alert{
-  background-color: rgba(196, 0, 0, 0.66);
   padding: 7px;
   border-radius: 8px;
+}
+.alert-info{
+  background-color: rgba(0, 102, 136, 0.71);
+  border: 1px solid #068;
+  color: white;
+}
+.alert-danger{
+  background-color: rgba(196, 0, 0, 0.66);
   border: 1px solid rgba(196, 0, 0, 1);
 }
 

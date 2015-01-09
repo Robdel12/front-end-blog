@@ -15,7 +15,7 @@ var EditController = Ember.ObjectController.extend({
 
         this.model.save().catch(function(reason){
           if(reason.status === 500){
-            alert.text("Server error. Couldn't auto save.");
+            this.get('flashes').danger("Server error. Couldn't auto save.");
           }
         });
 
@@ -23,10 +23,6 @@ var EditController = Ember.ObjectController.extend({
         if(document.hidden){
           this.desktopNotifcation(notificationMessage);
         }
-
-        window.setTimeout(function(){
-          alert.text("").hide();
-        }, 5000);
 
       }
       this.autoSave();
