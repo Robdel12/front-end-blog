@@ -5,12 +5,9 @@ Ember front end and rails back end.
 
 ### TODO
 - [ ] Update readme to something better than this!
-- [ ] contact page
 - [ ] proper github markdown rendering
 - [ ] Store posts in local storage on first page load
-- [ ] can we minify new relic scripts? Come on man...
 - [ ] Redesign site. Your CSS is disgusting, son.
-- [ ] Make the timeline dynamic & tied into rails.
 - [ ] Make the portfolio section dynamic and tied into rails
 - [ ] Upload assets to s3 automatically.
 - [ ] dashboard pulling in google analytics API with d3 graphs
