@@ -3,6 +3,9 @@ import Ember from "ember";
 var NewController = Ember.ObjectController.extend({
   published: [false, true],
   selectedState: null,
+  settings: {
+    mobile: true
+  },
 
   init: function() {
     this.set("post",  Ember.Object.create());

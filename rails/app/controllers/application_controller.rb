@@ -18,4 +18,11 @@ private
       end
     end
   end
+
+  def authorize_user
+    unless current_user
+      render text: "", status: 401
+    end
+  end
+
 end

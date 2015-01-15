@@ -5,30 +5,25 @@ var EditController = Ember.ObjectController.extend({
 
   init: function() {
     this.autoSave();
+    this._super();
   },
 
   autoSave: function() {
     this.timer = Ember.run.later(this, function() {
-      console.log("hello");
       if(this.get("isDirty")){
-        var alert = Ember.$(".alert");
-        var notificationMessage = 'Your post "' + this.get("title") + ' was auto saved';
+        var notificationMessage = 'Your post "' + this.get("title") + '" was auto saved';
 
         this.model.save().catch(function(reason){
           if(reason.status === 500){
-            alert.text("Server error. Couldn't auto save.");
+            this.get('flashes').danger("Server error. Couldn't auto save.");
           }
         });
 
-        alert.text(notificationMessage).show();
+        this.get("flashes").info(notificationMessage);
+
         if(document.hidden){
           this.desktopNotifcation(notificationMessage);
         }
-
-        window.setTimeout(function(){
-          alert.text("").hide();
-        }, 5000);
-
       }
       this.autoSave();
     }, 60000); //60000 = 1 min
@@ -56,7 +51,7 @@ var EditController = Ember.ObjectController.extend({
     destroy: function() {
       var prompt = window.confirm("Are you sure you want to delete this?");
       if(prompt) {
-        this.store.find("posts", this.model.id).then(function (post) {
+        this.store.find("post", this.model.id).then(function (post) {
           post.destroyRecord();
         });
         return this.transitionTo("dashboard");
@@ -69,13 +64,7 @@ var EditController = Ember.ObjectController.extend({
           if(_this.model._data.is_published === true){
             return _this.transitionToRoute("posts.show", _this.model);
           } else {
-            var notificationMessage = "Your post was saved";
-            var alert = Ember.$(".alert");
-
-            window.setTimeout(function(){
-              alert.text("").hide();
-            }, 5000);
-            alert.text(notificationMessage).show();
+            Ember.get(_this, 'flashes').info("Your post was saved.");
           }
         };
       })(this));
@@ -85,7 +74,7 @@ var EditController = Ember.ObjectController.extend({
       if(this.model.isDirty) {
         this.model.rollback();
       }
-      return this.transitionTo("posts.show", this.model);
+      return this.transitionTo("posts.index");
     },
 
     togglePreview: function(){

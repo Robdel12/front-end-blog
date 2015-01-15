@@ -7,6 +7,8 @@ Backend::Application.routes.draw do
   namespace :api do
     resources :posts
     resources :analytics
+    resources :timeline
+    resources :contacts
   end
 
   devise_for :users, controllers: { sessions: 'sessions' }

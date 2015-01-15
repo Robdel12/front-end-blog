@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140822012235) do
+ActiveRecord::Schema.define(version: 20141216223124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contacts", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "reason"
+    t.text     "comments"
+    t.string   "honeypot"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "posts", force: true do |t|
     t.string   "title"
@@ -23,7 +33,25 @@ ActiveRecord::Schema.define(version: 20140822012235) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_published", default: false
+    t.boolean  "is_published",         default: false
+    t.string   "authentication_token"
+  end
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.string   "description"
+    t.string   "imageurl"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "timelines", force: true do |t|
+    t.text     "title"
+    t.datetime "event_date"
+    t.text     "description"
+    t.boolean  "is_published"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
