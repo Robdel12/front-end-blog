@@ -19,6 +19,8 @@ var EditController = Ember.ObjectController.extend({
           }
         });
 
+        this.get("flashes").info(notificationMessage);
+
         if(document.hidden){
           this.desktopNotifcation(notificationMessage);
         }
@@ -60,7 +62,7 @@ var EditController = Ember.ObjectController.extend({
       return this.model.save().then((function(_this) {
         return function() {
           if(_this.model._data.is_published === true){
-            return _this.transitionToRoute("post.show", _this.model);
+            return _this.transitionToRoute("posts.show", _this.model);
           } else {
             Ember.get(_this, 'flashes').info("Your post was saved.");
           }
@@ -72,7 +74,7 @@ var EditController = Ember.ObjectController.extend({
       if(this.model.isDirty) {
         this.model.rollback();
       }
-      return this.transitionTo("post.show", this.model);
+      return this.transitionTo("posts.index");
     },
 
     togglePreview: function(){
