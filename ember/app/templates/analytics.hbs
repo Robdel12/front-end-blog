@@ -7,5 +7,13 @@
   {{date-picker date=endDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' placeholder="End Date"}}
   <button type="submit" class="btn">Save</button>
 </form>
-{{c3-chart data=controllerData axis=axis bar=bar}}
+
+<div {{bind-attr class=":chart-container loadingData:loading:loaded"}}>
+  {{c3-chart data=controllerData axis=axis bar=bar}}
+
+  <div {{bind-attr class=":loading-spinner loadingData:show:hide"}}>
+    <div class="double-bounce1"></div>
+    <div class="double-bounce2"></div>
+  </div>
+</div>
 

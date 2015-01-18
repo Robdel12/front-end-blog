@@ -141,8 +141,17 @@ nav{
   text-align: center;
   background-color: rgba(0, 0, 0, 0.54);
   padding: 11px 0;
+  li{
+    margin-left: 2%;
+    a{
+      font-size: 1rem;
+      &:hover{
+        border-top: 2px solid white;
+      }
+    }
+  }
   a.active{
-    border-top: 4px solid white;
+    border-top: 2px solid white;
   }
 }
 
@@ -611,6 +620,58 @@ body.modal-backing{
   border-top: 1px solid #ddd;
   p{
     padding: 0;
+  }
+}
+
+.chart-container{
+  position: relative;
+  margin-top: 15px;
+  min-height: 300px;
+  &.loading{
+    .c3-chart-component{
+      opacity: 0.2;
+    }
+  }
+  .loading-spinner{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 28%;
+    left: 50%;
+  }
+}
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid $primary_color;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
   }
 }
 

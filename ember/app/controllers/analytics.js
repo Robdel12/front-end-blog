@@ -2,8 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   controllerData: null,
-  startDate: "2015-01-01",
-  endDate: "2015-01-15",
+  loadingData: false,
+  startDate: moment().subtract(1, 'weeks').startOf('isoWeek').format("YYYY-MM-DD"),
+  endDate: moment().format("YYYY-MM-DD"),
 
   axis: {
     x: {
@@ -20,8 +21,12 @@ export default Ember.Controller.extend({
     startDate = this.get("startDate") || startDate;
     endDate = this.get("endDate") || endDate;
 
+    this.set("loadingData", true);
+
     return Ember.$.getJSON('http://localhost:3000/api/analytics?startDate=' + startDate + '&endDate=' + endDate).then(function(data) {
       graphData = data.analytics;
+      self.set("loadingData", false);
+
       return self.set("controllerData", {
         x: "date",
         columns: graphData,
