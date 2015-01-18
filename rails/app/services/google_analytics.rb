@@ -2,21 +2,21 @@ require 'google/api_client'
 require 'date'
 class GoogleAnalytics
   def initialize
-    @client  = Google::APIClient.new(:application_name => "RobertBlog", :application_version => '1.0')
-    key_file = File.join('config', Settings.key_file)
+    @client  = Google::APIClient.new(:application_name => ENV["GA_APP_NAME"], :application_version => '1.0')
+    key_file = File.join('config', 'analytics_cert.p12')
     scope    = "https://www.googleapis.com/auth/analytics.readonly"
-    key      = Google::APIClient::PKCS12.load_key(key_file, Settings.key_file_password)
-    service_account = Google::APIClient::JWTAsserter.new(Settings.analytics_email, scope, key)
+    key      = Google::APIClient::PKCS12.load_key(key_file, "notasecret")
+    service_account = Google::APIClient::JWTAsserter.new(ENV["GA_EMAIL"], scope, key)
     @client.authorization = service_account.authorize
     @analytics = @client.discovered_api('analytics', 'v3')
   end
 
   def visitors(startDate, endDate)
     results = @client.execute(:api_method => @analytics.data.ga.get, :parameters => {
-      'ids'         => Settings.google_analytics_profile_id,
+      'ids'         => ENV['GA_ID'],
       'start-date'  => startDate,
       'end-date'    => endDate,
-      'metrics'     => "ga:visitors",
+      'metrics'     => "ga:visits",
       'dimensions'  => "ga:year,ga:month,ga:day",
       'sort'        => "ga:year,ga:month,ga:day"
     })

@@ -1,0 +1,11 @@
+<p>
+  From: <strong>{{startDate}}</strong>
+  To: <strong>{{endDate}}</strong>
+</p>
+<form {{action "updateData" on='submit'}}>
+  {{date-picker date=startDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' placeholder="Start Date"}}
+  {{date-picker date=endDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' placeholder="End Date"}}
+  <button type="submit" class="btn">Save</button>
+</form>
+{{c3-chart data=controllerData axis=axis bar=bar}}
+
