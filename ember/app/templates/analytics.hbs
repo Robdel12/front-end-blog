@@ -3,8 +3,8 @@
   To: <strong>{{endDate}}</strong>
 </p>
 <form {{action "updateData" on='submit'}}>
-  {{date-picker date=startDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' placeholder="Start Date"}}
-  {{date-picker date=endDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' placeholder="End Date"}}
+  {{date-picker date=graphStartDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=maxDate placeholder="Start Date"}}
+  {{date-picker date=graphEndDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=maxDate placeholder="End Date"}}
   <button type="submit" class="btn">Save</button>
 </form>
 

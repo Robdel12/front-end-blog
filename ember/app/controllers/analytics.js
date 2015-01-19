@@ -3,8 +3,9 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   controllerData: null,
   loadingData: false,
-  startDate: moment().subtract(1, 'weeks').startOf('isoWeek').format("YYYY-MM-DD"),
-  endDate: moment().format("YYYY-MM-DD"),
+  graphStartDate: moment().subtract(1, 'weeks').startOf('isoWeek').format("YYYY-MM-DD"),
+  graphEndDate: moment().format("YYYY-MM-DD"),
+  maxDate: moment().toDate(),
 
   axis: {
     x: {
@@ -18,8 +19,8 @@ export default Ember.Controller.extend({
   setDateAndData: function(startDate, endDate) {
     var graphData;
     var self = this;
-    startDate = this.get("startDate") || startDate;
-    endDate = this.get("endDate") || endDate;
+    startDate = this.get("graphStartDate") || startDate;
+    endDate = this.get("graphEndDate") || endDate;
 
     this.set("loadingData", true);
 
