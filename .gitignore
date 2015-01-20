@@ -1,3 +1,5 @@
 .DS_Store
 ember/node_modules
 ember/tmp
+rails/config/analytics_cert.p12
+rails/config/application.yml
