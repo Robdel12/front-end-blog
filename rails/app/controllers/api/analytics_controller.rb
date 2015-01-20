@@ -1,22 +1,27 @@
 class Api::AnalyticsController < ApplicationController
+  before_filter :authorize_user, only: [:index]
 
   def index
-    params[:startDate] || params[:startDate] = "2015-01-01"
-    params[:endDate] || params[:endDate] = "2015-01-16"
-    google_analytics = GoogleAnalytics.new
-    keyArray = ["date"]
-    valueArray = ["Pageviews"]
-    finalArray = []
+    params[:startDate] ||= "2015-01-01"
+    params[:endDate] ||= "2015-01-16"
 
+    analytic = {
+      analytic: [
+        id: "current",
+        date: ["date"],
+        pageview: ["Pageview"]
+      ]
+    }
+
+    google_analytics = GoogleAnalytics.new
     data = google_analytics.visitors(params[:startDate], params[:endDate])
 
     data.each do |key, value|
-      keyArray.push("#{key}")
-      valueArray.push(value)
+      analytic[:analytic][0][:date] << key
+      analytic[:analytic][0][:pageview] << value
     end
-    finalArray.push(keyArray, valueArray)
 
-    render json: finalArray
+    render json: analytic
   end
 
 end

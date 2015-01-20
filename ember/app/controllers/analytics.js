@@ -17,23 +17,29 @@ export default Ember.Controller.extend({
   },
 
   setDateAndData: function(startDate, endDate) {
-    var graphData;
-    var self = this;
     startDate = this.get("graphStartDate") || startDate;
     endDate = this.get("graphEndDate") || endDate;
 
+    var dateArray;
+    var pageViewArray;
+    var self = this;
+
     this.set("loadingData", true);
 
-    return Ember.$.getJSON('http://localhost:3000/api/analytics?startDate=' + startDate + '&endDate=' + endDate).then(function(data) {
-      graphData = data.analytics;
+    return this.store.find('analytic', { startDate: startDate, endDate: endDate }).then(function(data) {
+      var graphData = data.content[0]._data;
       self.set("loadingData", false);
 
       return self.set("controllerData", {
         x: "date",
-        columns: graphData,
+        columns: [
+          graphData.date,
+          graphData.pageview
+        ],
         type: "bar"
       });
     });
+
   }.on("init"),
 
   actions: {
