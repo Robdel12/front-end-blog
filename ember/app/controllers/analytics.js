@@ -19,9 +19,6 @@ export default Ember.Controller.extend({
   setDateAndData: function(startDate, endDate) {
     startDate = this.get("graphStartDate") || startDate;
     endDate = this.get("graphEndDate") || endDate;
-
-    var dateArray;
-    var pageViewArray;
     var self = this;
 
     this.set("loadingData", true);
