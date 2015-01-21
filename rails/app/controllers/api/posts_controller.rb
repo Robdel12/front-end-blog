@@ -3,7 +3,7 @@ class Api::PostsController < ApplicationController
 
   def index
     if params[:dashboard]
-      render json: Posts.all
+      render json: Posts.all.order("created_at desc")
     else
       page = (params[:page] || 1).to_i
       posts = Posts.where(is_published: true).order("created_at desc").page(page).per(5)
