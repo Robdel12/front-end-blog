@@ -3,7 +3,7 @@ require 'date'
 class GoogleAnalytics
   def initialize
     @client  = Google::APIClient.new(:application_name => ENV["GA_APP_NAME"], :application_version => '1.0')
-    key_file = File.join('config', 'analytics_cert.p12')
+    key_file = File.join('config', 'analytic_cert.p12')
     scope    = "https://www.googleapis.com/auth/analytics.readonly"
     key      = Google::APIClient::PKCS12.load_key(key_file, "notasecret")
     service_account = Google::APIClient::JWTAsserter.new(ENV["GA_EMAIL"], scope, key)
