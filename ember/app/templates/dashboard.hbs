@@ -7,6 +7,7 @@
       {{else}}
         <div class="dashboard-posts-list">
           <h3 class="posts-title">{{link-to post.title 'posts.edit' post}}</h3>
+          <span class="dashboatd-date">{{post.formatted_date}}</span>
         </div>
       {{/if}}
     {{/each}}
@@ -16,6 +17,7 @@
       {{#if post.is_published}}
         <div class="dashboard-posts-list">
           <h3 class="posts-title">{{link-to post.title 'posts.edit' post}}</h3>
+          <span class="dashboatd-date">{{post.formatted_date}}</span>
         </div>
       {{/if}}
     {{/each}}

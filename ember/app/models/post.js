@@ -9,5 +9,8 @@ export default DS.Model.extend({
   is_published: DS.attr("boolean"),
   formatted_date: function() {
     return moment(this.get("created_at")).format("MMM Do");
+  }.property("created_at"),
+  full_formatted_date: function() {
+    return moment(this.get("created_at")).format('MMMM Do YYYY, h:mm a');
   }.property("created_at")
 });
