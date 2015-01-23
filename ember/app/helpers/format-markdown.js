@@ -4,7 +4,7 @@ import Ember from "ember";
 export default Ember.Handlebars.makeBoundHelper(function(value, options) {
   if(!value || !options){ return; }
 
-  window.marked.setOptions({
+  marked.setOptions({
     highlight: function(code) {
       return hljs.highlightAuto(code).value;
     }

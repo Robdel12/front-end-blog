@@ -9,16 +9,22 @@ gem "pg"
 # Auth
 gem "devise"
 
-#Fake stuffs
+# Fake stuffs
 gem "faker"
 
 gem "byebug"
+
+# Keep the api keys out of the repo
+gem 'figaro'
 
 #pagination
 gem "kaminari"
 
 # App tracking
 gem "skylight"
+
+# Google analytics
+gem "google-api-client"
 
 # Settings
 gem "rails_config"

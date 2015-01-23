@@ -1,14 +1,14 @@
 {{head-title "Blog"}}
-{{#each}}
+{{#each post in model}}
   <div class="posts">
     <div class="blog-left">
       <span class="post-date">
-        <span class="inner-date">{{formatted_date}}</span>
+        <span class="inner-date">{{post.formatted_date}}</span>
       </span>
     </div>
     <div class="blog-right">
-      <h3 class="posts-title">{{link-to title 'posts.show' this}}</h3>
-      <span class="posts-excerpt">{{excerpt}} {{#link-to "posts.show" this}} [Read More] {{/link-to}}</span>
+      <h3 class="posts-title">{{link-to post.title 'posts.show' post}}</h3>
+      <span class="posts-excerpt">{{post.excerpt}} {{#link-to "posts.show" post}} [Read More] {{/link-to}}</span>
     </div>
   </div>
 {{/each}}

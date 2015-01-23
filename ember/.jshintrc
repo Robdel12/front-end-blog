@@ -1,10 +1,12 @@
 {
-  "predef": [
-    "document",
-    "window",
-    "-Promise",
-    "moment"
-  ],
+  "predef": {
+    "document": true,
+    "window": true,
+    "-Promise": true,
+    "marked": true,
+    "moment": true,
+    "d3": true
+  },
   "browser": true,
   "boss": true,
   "curly": true,
