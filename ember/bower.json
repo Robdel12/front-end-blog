@@ -18,5 +18,8 @@
     "marked": "~0.3.2",
     "dropkick": "~2.0.2",
     "pikaday": "~1.2.0"
+  },
+  "devDependencies": {
+    "highlight-js": "~7.0.1"
   }
 }

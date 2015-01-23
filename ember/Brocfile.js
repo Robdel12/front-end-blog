@@ -11,6 +11,9 @@ var app = new EmberApp({
 
 app.import("bower_components/moment/moment.js");
 app.import("bower_components/marked/lib/marked.js");
+app.import("bower_components/highlight-js/src/highlight.js");
+app.import("bower_components/highlight-js/src/languages/javascript.js");
+app.import("bower_components/highlight-js/src/styles/default.css");
 
 // Use `app.import` to add additional libraries to the generated
 // output files.
