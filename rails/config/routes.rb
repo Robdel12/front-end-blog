@@ -6,7 +6,7 @@ Backend::Application.routes.draw do
   # root 'welcome#index'
   namespace :api do
     resources :posts
-    resources :analytics
+    resources :analytics, only: [:index]
     resources :timeline
     resources :contacts
   end
