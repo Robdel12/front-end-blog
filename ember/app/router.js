@@ -22,6 +22,7 @@ Router.map(function() {
     this.route("edit", { path: "/:timeline_id/edit" });
   });
   this.route('error404', { path: '/*path' }); //404s son
+  this.route('analytics');
 });
 
 if(config.environment === "production") {
@@ -32,7 +33,7 @@ if(config.environment === "production") {
         'title': this.get('url')
       });
     }.on('didTransition')
-  });
+});
 }
 
 export default Router;
