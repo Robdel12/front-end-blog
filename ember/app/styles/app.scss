@@ -287,9 +287,17 @@ body.modal-backing{
   }
 }
 .dashboard-posts-list{
+  @include flex-box;
   border-bottom: 1px solid #ddd;
   padding: 0px 0 10px 0;
   margin: 0px 0 25px 0;
+  .posts-title{
+    @include flex(10);
+  }
+  .dashboatd-date{
+    @include flex(1);
+    align-self: flex-end;
+  }
 }
 .posts-title,
 .posts-date{
@@ -343,6 +351,12 @@ body.modal-backing{
       font-size: 3.6rem;
       line-height: 4.5rem;
     }
+  }
+  .title-sub-heading{
+    font-size: 13px;
+    font-style: italic;
+    color: #6C6C6C;
+    margin-bottom: 15px;
   }
 }
 .post-edit-title{
