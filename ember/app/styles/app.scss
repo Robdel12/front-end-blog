@@ -65,7 +65,11 @@ body{
     background: #f8f8f8;
     -webkit-text-size-adjust: none;
     padding: 15px;
+  }
+  code{
+    color: #333;
     font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background: #f8f8f8;
   }
 }
 .btn{
