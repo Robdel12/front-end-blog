@@ -52,11 +52,6 @@ body{
       padding: 3px 0;
     }
   }
-  code{
-    padding: 3px;
-    font-size: 14px;
-    font-family: Courier New;
-  }
   input,
   textarea{
     border: 1px solid #ddd;
@@ -64,15 +59,17 @@ body{
     border-radius: 6px;
   }
   pre{
-    border: 1px solid #C0C0C0;
     overflow-y: hidden;
     overflow-x: scroll;
-    background: #DDD;
-    padding: 3px;
-    code{
-      background: transparent;
-      border: none;
-    }
+    color: #333;
+    background: #f8f8f8;
+    -webkit-text-size-adjust: none;
+    padding: 15px;
+  }
+  code{
+    color: #333;
+    font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    background: #f8f8f8;
   }
 }
 .btn{
