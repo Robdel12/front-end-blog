@@ -1,11 +1,7 @@
 import Ember from "ember";
+import TimelineBaseController from "./base";
 
-var EditController = Ember.ObjectController.extend({
-  published: [false, true],
-
-  init: function() {
-    this.autoSave();
-  },
+export default TimelineBaseController.extend({
 
   autoSave: function() {
     this.timer = Ember.run.later(this, function() {
@@ -27,7 +23,7 @@ var EditController = Ember.ObjectController.extend({
       }
       this.autoSave();
     }, 60000); //60000 = 1 min
-  },
+  }.on("init"),
 
   stopAutoSave: function(){
     Ember.run.cancel(this.timer);
@@ -56,18 +52,7 @@ var EditController = Ember.ObjectController.extend({
         });
         return this.transitionTo("about.index");
       }
-    },
-
-    save: function() {
-      return this.model.save().then((function(_this) {
-        return function() {
-          return _this.transitionToRoute("about.index");
-        };
-      })(this));
     }
-
   }
 
 });
-
-export default EditController;
