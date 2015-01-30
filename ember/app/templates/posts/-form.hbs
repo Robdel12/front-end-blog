@@ -11,7 +11,7 @@
       <p>{{input value=model.post_slug placeholder="Post Slug" id="post_slug"}}</p>
       <p>{{textarea value=model.body placeholder="Body" class="post-text-area"}}</p>
       <label for="is_published">Published:</label>
-      {{view "dk-select" content=published settings=settings selectionBinding="selectedState" id="is_published"}}
+      {{view "dk-select" content=published settings=settings selectionBinding="model.is_published" id="is_published"}}
       <ul class="edit-posts-list">
         <li><a href="#" {{action "togglePreview"}}>Toggle Preview</a></li>
         <li><a {{action "destroy"}} href="#">Delete</a></li>
