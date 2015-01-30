@@ -2,7 +2,7 @@ class Api::TimelineController < ApplicationController
   before_filter :authorize_user, only: [:create, :update, :destroy]
 
   def index
-    render json: Timeline.order("created_at ASC").all
+    render json: Timeline.order("event_date DESC").all
   end
 
   def show
