@@ -1,19 +1,14 @@
 import Ember from "ember";
+import PostsBaseController from './base';
 
-var EditController = Ember.ObjectController.extend({
-  published: [false, true],
-
-  init: function() {
-    this.autoSave();
-    this._super();
-  },
+var EditController = PostsBaseController.extend({
 
   autoSave: function() {
     this.timer = Ember.run.later(this, function() {
       if(this.get("isDirty")){
-        var notificationMessage = 'Your post "' + this.get("title") + '" was auto saved';
+        var notificationMessage = 'Your post "' + this.get("model.title") + '" was auto saved';
 
-        this.model.save().catch(function(reason){
+        this.get("model").save().catch(function(reason){
           if(reason.status === 500){
             this.get('flashes').danger("Server error. Couldn't auto save.");
           }
@@ -27,7 +22,7 @@ var EditController = Ember.ObjectController.extend({
       }
       this.autoSave();
     }, 60000); //60000 = 1 min
-  },
+  }.on("init"),
 
   stopAutoSave: function(){
     Ember.run.cancel(this.timer);
@@ -68,19 +63,7 @@ var EditController = Ember.ObjectController.extend({
           }
         };
       })(this));
-    },
-
-    cancel: function() {
-      if(this.model.isDirty) {
-        this.model.rollback();
-      }
-      return this.transitionTo("posts.index");
-    },
-
-    togglePreview: function(){
-      Ember.$(".preview").toggleClass("hide");
     }
-
   }
 
 });
