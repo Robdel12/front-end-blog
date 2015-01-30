@@ -1,0 +1,27 @@
+{{head-title model.title}}
+<h2>Edit: <span class="post-edit-title">{{model.title}}</span></h2>
+<div class="new-post">
+  <div class="new-post-inner">
+    <form {{action "save" on='submit'}}>
+      <label for="post_title">Title:</label>
+      <p>{{input value=model.title placeholder="Title" id="post_title"}}</p>
+      <label for="excerpt">Excerpt:</label>
+      <p>{{input value=model.excerpt placeholder="Little excerpt" id="excerpt"}}</p>
+      <label for="post_slug">Post Slug:</label>
+      <p>{{input value=model.post_slug placeholder="Post Slug" id="post_slug"}}</p>
+      <p>{{textarea value=model.body placeholder="Body" class="post-text-area"}}</p>
+      <label for="is_published">Published:</label>
+      {{view "dk-select" content=published settings=settings selectionBinding="model.is_published" id="is_published"}}
+      <ul class="edit-posts-list">
+        <li><a href="#" {{action "togglePreview"}}>Toggle Preview</a></li>
+        <li><a {{action "destroy"}} href="#">Delete</a></li>
+      </ul>
+      <p><button type="submit" class="btn">Edit post</button></p>
+    </form>
+  </div>
+  <div {{bind-attr class=":preview preview:show:hide"}}>
+    <h1>{{model.title}}</h1>
+
+    {{format-markdown model.body}}
+  </div>
+</div>
