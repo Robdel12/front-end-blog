@@ -5,7 +5,7 @@ export default TimelineBaseController.extend({
 
   autoSave: function() {
     this.timer = Ember.run.later(this, function() {
-      if(this.get("isDirty")){
+      if(this.get("model").get("isDirty")) {
         var alert = Ember.$(".alert");
         var notificationMessage = 'Your timeline "' + this.get("title") + '" was auto saved';
 

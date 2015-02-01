@@ -5,7 +5,7 @@ var EditController = PostsBaseController.extend({
 
   autoSave: function() {
     this.timer = Ember.run.later(this, function() {
-      if(this.get("isDirty")){
+      if(this.get("model").get("isDirty")) {
         var notificationMessage = 'Your post "' + this.get("model.title") + '" was auto saved';
 
         this.get("model").save().catch(function(reason){
