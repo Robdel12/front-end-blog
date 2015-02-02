@@ -3,11 +3,12 @@
   <div class="new-about-inner">
     <form {{action "save" on='submit'}}>
       <p>{{input value=model.title placeholder="Title"}}</p>
-      <p>{{date-picker date=model.event_date format="MMMM Do YYYY" valueFormat='YYYY-MM-DD'}}</p>
+      <p>{{date-picker date=model.eventDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD'}}</p>
       <p>{{textarea value=model.description placeholder="Body" class="timeline-text-area"}}</p>
       <p><a href="#" {{action "togglePreview"}}>Toggle Preview</a></p>
+
       <label for="is_published">Published:</label>
-      {{view Ember.Select content=published selectionBinding="selectedState" id="is_published" value=model.is_published}}
+      {{view Ember.Select content=published selectionBinding="selectedState" id="isPublished" value=model.is_published}}
       <ul class="edit-posts-list">
         <li><a href="#" {{action "destroy"}}>Delete</a></li>
       </ul>

@@ -12,7 +12,7 @@ Router.map(function() {
   this.route("contact");
 
   this.resource("posts", function() {
-    this.route("show", { path: "/:post_slug" });
+    this.route("show", { path: "/:postSlug" });
     this.route("edit", { path: "/:post_id/edit" });
     this.route("new");
   });

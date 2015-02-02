@@ -21,12 +21,12 @@
         <p>{{{timeline.description}}}</p>
         <span class="date">{{timeline.formattedDate}}</span>
         {{link-to "Edit" 'about.edit' timeline}}
-        Published: {{timeline.is_published}}
+        Published: {{timeline.isPublished}}
       </div>
     {{/each}}
   {{else}}
     {{#each timeline in model}}
-      {{#if timeline.is_published}}
+      {{#if timeline.isPublished}}
         <div class="timeline-card">
           <h4>{{timeline.title}}</h4>
           <p>{{{timeline.description}}}</p>

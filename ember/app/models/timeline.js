@@ -3,10 +3,10 @@ import DS from 'ember-data';
 export default DS.Model.extend({
   title: DS.attr("string"),
   description: DS.attr("string"),
-  event_date: DS.attr("string"),
-  created_at: DS.attr("date"),
-  is_published: DS.attr("boolean"),
-  formattedDate: function(){
-    return moment(this.get("event_date")).format("MMMM Do, YYYY");
-  }.property("event_date")
+  eventDate: DS.attr("string"),
+  createdAt: DS.attr("date"),
+  isPublished: DS.attr("boolean"),
+  formattedDate: function() {
+    return moment(this.get("createdAt")).format("MMMM Do, YYYY");
+  }.property("createdAt")
 });
