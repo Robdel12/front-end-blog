@@ -1,16 +1,16 @@
 import DS from "ember-data";
 
 export default DS.Model.extend({
-  post_slug: DS.attr("string"),
+  postSlug: DS.attr("string"),
   title: DS.attr("string"),
-  created_at: DS.attr("date"),
+  createdAt: DS.attr("date"),
   excerpt: DS.attr("string"),
   body: DS.attr("string"),
-  is_published: DS.attr("boolean"),
-  formatted_date: function() {
-    return moment(this.get("created_at")).format("MMM Do");
-  }.property("created_at"),
-  full_formatted_date: function() {
-    return moment(this.get("created_at")).format('MMMM Do YYYY, h:mm a');
-  }.property("created_at")
+  isPublished: DS.attr("boolean"),
+  formattedDate: function() {
+    return moment(this.get("createdAt")).format("MMM Do");
+  }.property("createdAt"),
+  fullFormattedDate: function() {
+    return moment(this.get("createdAt")).format('MMMM Do YYYY, h:mm a');
+  }.property("createdAt")
 });

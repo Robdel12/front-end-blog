@@ -2,22 +2,22 @@
   <div class="dashboard-main">
     <h2>Drafts</h2>
     {{#each post in model}}
-      {{#if post.is_published}}
+      {{#if post.isPublished}}
         {{! I hate this }}
       {{else}}
         <div class="dashboard-posts-list">
           <h3 class="posts-title">{{link-to post.title 'posts.edit' post}}</h3>
-          <span class="dashboatd-date">{{post.formatted_date}}</span>
+          <span class="dashboatd-date">{{post.formattedDate}}</span>
         </div>
       {{/if}}
     {{/each}}
 
     <h2>Published</h2>
     {{#each post in model}}
-      {{#if post.is_published}}
+      {{#if post.isPublished}}
         <div class="dashboard-posts-list">
           <h3 class="posts-title">{{link-to post.title 'posts.edit' post}}</h3>
-          <span class="dashboatd-date">{{post.formatted_date}}</span>
+          <span class="dashboatd-date">{{post.formattedDate}}</span>
         </div>
       {{/if}}
     {{/each}}

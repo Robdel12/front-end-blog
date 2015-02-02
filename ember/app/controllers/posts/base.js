@@ -11,9 +11,9 @@ export default Ember.Controller.extend({
   setUrl: function() {
     if(!this.get("model.title")){ return false; }
 
-    var postSlug = this.get("model.title").replace(/\W/g,'-').replace(/-{1,}/g,'-').replace(/^-|-$/g,'').toLowerCase();
+    var currentPostSlug = this.get("model.title").replace(/\W/g,'-').replace(/-{1,}/g,'-').replace(/^-|-$/g,'').toLowerCase();
 
-    return this.set("model.post_slug", postSlug);
+    return this.set("model.postSlug", currentPostSlug);
   }.observes("model.title"),
 
   actions: {
@@ -25,10 +25,10 @@ export default Ember.Controller.extend({
         }
       });
 
-      if(this.get("model.is_published") === true){
-        this.transitionToRoute("posts.show", this.get("model.post_slug"));
+      if(this.get("model.isPublished") === true){
+        this.transitionToRoute("posts.show", this.get("model.postSlug"));
       } else {
-        this.transitionToRoute("posts.edit", this.get("model.post_slug"));
+        this.transitionToRoute("posts.edit", this.get("model.postSlug"));
       }
       return false;
     },
