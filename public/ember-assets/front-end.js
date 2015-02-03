@@ -286,7 +286,7 @@ define('front-end/controllers/about/index', ['exports', 'ember'], function (expo
   'use strict';
 
   exports['default'] = Ember['default'].ArrayController.extend({
-    sortProperties: ["event_date"],
+    sortProperties: ["eventDate"],
     sortAscending: false
   });
 
@@ -461,9 +461,9 @@ define('front-end/controllers/posts/base', ['exports', 'ember'], function (expor
         return false;
       }
 
-      var postSlug = this.get("model.title").replace(/\W/g, "-").replace(/-{1,}/g, "-").replace(/^-|-$/g, "").toLowerCase();
+      var currentPostSlug = this.get("model.title").replace(/\W/g, "-").replace(/-{1,}/g, "-").replace(/^-|-$/g, "").toLowerCase();
 
-      return this.set("model.post_slug", postSlug);
+      return this.set("model.postSlug", currentPostSlug);
     }).observes("model.title"),
 
     actions: {
@@ -474,10 +474,10 @@ define('front-end/controllers/posts/base', ['exports', 'ember'], function (expor
           }
         });
 
-        if (this.get("model.is_published") === true) {
-          this.transitionToRoute("posts.show", this.get("model.post_slug"));
+        if (this.get("model.isPublished") === true) {
+          this.transitionToRoute("posts.show", this.get("model.postSlug"));
         } else {
-          this.transitionToRoute("posts.edit", this.get("model.post_slug"));
+          this.transitionToRoute("posts.edit", this.get("model.postSlug"));
         }
         return false;
       },
@@ -571,9 +571,11 @@ define('front-end/controllers/posts/index', ['exports', 'ember'], function (expo
   'use strict';
 
   var PostsController = Ember['default'].ArrayController.extend({
-    queryParams: ["page"],
+    queryParams: ["page", "perPage"],
     pageBinding: "content.page",
-    totalPagesBinding: "content.totalPages"
+    totalPagesBinding: "content.totalPages",
+    page: 1,
+    perPage: 10
   });
 
   exports['default'] = PostsController;
@@ -718,18 +720,18 @@ define('front-end/models/post', ['exports', 'ember-data'], function (exports, DS
   'use strict';
 
   exports['default'] = DS['default'].Model.extend({
-    post_slug: DS['default'].attr("string"),
+    postSlug: DS['default'].attr("string"),
     title: DS['default'].attr("string"),
-    created_at: DS['default'].attr("date"),
+    createdAt: DS['default'].attr("date"),
     excerpt: DS['default'].attr("string"),
     body: DS['default'].attr("string"),
-    is_published: DS['default'].attr("boolean"),
-    formatted_date: (function () {
-      return moment(this.get("created_at")).format("MMM Do");
-    }).property("created_at"),
-    full_formatted_date: (function () {
-      return moment(this.get("created_at")).format("MMMM Do YYYY, h:mm a");
-    }).property("created_at")
+    isPublished: DS['default'].attr("boolean"),
+    formattedDate: (function () {
+      return moment(this.get("createdAt")).format("MMM Do");
+    }).property("createdAt"),
+    fullFormattedDate: (function () {
+      return moment(this.get("createdAt")).format("MMMM Do YYYY, h:mm a");
+    }).property("createdAt")
   });
 
 });
@@ -740,12 +742,12 @@ define('front-end/models/timeline', ['exports', 'ember-data'], function (exports
   exports['default'] = DS['default'].Model.extend({
     title: DS['default'].attr("string"),
     description: DS['default'].attr("string"),
-    event_date: DS['default'].attr("string"),
-    created_at: DS['default'].attr("date"),
-    is_published: DS['default'].attr("boolean"),
+    eventDate: DS['default'].attr("string"),
+    createdAt: DS['default'].attr("date"),
+    isPublished: DS['default'].attr("boolean"),
     formattedDate: (function () {
-      return moment(this.get("event_date")).format("MMMM Do, YYYY");
-    }).property("event_date")
+      return moment(this.get("createdAt")).format("MMMM Do, YYYY");
+    }).property("createdAt")
   });
 
 });
@@ -764,7 +766,7 @@ define('front-end/router', ['exports', 'ember', './config/environment'], functio
     this.route("contact");
 
     this.resource("posts", function () {
-      this.route("show", { path: "/:post_slug" });
+      this.route("show", { path: "/:postSlug" });
       this.route("edit", { path: "/:post_id/edit" });
       this.route("new");
     });
@@ -931,7 +933,7 @@ define('front-end/routes/posts/show', ['exports', 'ember'], function (exports, E
 
   var PostsRoute = Ember['default'].Route.extend({
     model: function (params) {
-      return this.store.find("post", params.post_slug).then(function (slug) {
+      return this.store.find("post", params.postSlug).then(function (slug) {
         return slug;
       });
     }
@@ -1029,7 +1031,7 @@ define('front-end/templates/about/-form', ['exports'], function (exports) {
     data.buffer.push(escapeExpression(((helpers['date-picker'] || (depth0 && depth0['date-picker']) || helperMissing).call(depth0, {"name":"date-picker","hash":{
       'valueFormat': ("YYYY-MM-DD"),
       'format': ("MMMM Do YYYY"),
-      'date': ("model.event_date")
+      'date': ("model.eventDate")
     },"hashTypes":{'valueFormat': "STRING",'format': "STRING",'date': "ID"},"hashContexts":{'valueFormat': depth0,'format': depth0,'date': depth0},"types":[],"contexts":[],"data":data}))));
     data.buffer.push("</p>\n      <p>");
     data.buffer.push(escapeExpression(((helpers.textarea || (depth0 && depth0.textarea) || helperMissing).call(depth0, {"name":"textarea","hash":{
@@ -1039,10 +1041,10 @@ define('front-end/templates/about/-form', ['exports'], function (exports) {
     },"hashTypes":{'class': "STRING",'placeholder': "STRING",'value': "ID"},"hashContexts":{'class': depth0,'placeholder': depth0,'value': depth0},"types":[],"contexts":[],"data":data}))));
     data.buffer.push("</p>\n      <p><a href=\"#\" ");
     data.buffer.push(escapeExpression(helpers.action.call(depth0, "togglePreview", {"name":"action","hash":{},"hashTypes":{},"hashContexts":{},"types":["STRING"],"contexts":[depth0],"data":data})));
-    data.buffer.push(">Toggle Preview</a></p>\n      <label for=\"is_published\">Published:</label>\n      ");
+    data.buffer.push(">Toggle Preview</a></p>\n\n      <label for=\"is_published\">Published:</label>\n      ");
     data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {"name":"view","hash":{
       'value': ("model.is_published"),
-      'id': ("is_published"),
+      'id': ("isPublished"),
       'selectionBinding': ("selectedState"),
       'content': ("published")
     },"hashTypes":{'value': "ID",'id': "STRING",'selectionBinding': "STRING",'content': "ID"},"hashContexts":{'value': depth0,'id': depth0,'selectionBinding': depth0,'content': depth0},"types":["ID"],"contexts":[depth0],"data":data})));
@@ -1104,7 +1106,7 @@ define('front-end/templates/about/index', ['exports'], function (exports) {
     data.buffer.push("</span>\n        ");
     data.buffer.push(escapeExpression(((helpers['link-to'] || (depth0 && depth0['link-to']) || helperMissing).call(depth0, "Edit", "about.edit", "timeline", {"name":"link-to","hash":{},"hashTypes":{},"hashContexts":{},"types":["STRING","STRING","ID"],"contexts":[depth0,depth0,depth0],"data":data}))));
     data.buffer.push("\n        Published: ");
-    stack1 = helpers._triageMustache.call(depth0, "timeline.is_published", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
+    stack1 = helpers._triageMustache.call(depth0, "timeline.isPublished", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
     if (stack1 != null) { data.buffer.push(stack1); }
     data.buffer.push("\n      </div>\n");
     return buffer;
@@ -1115,7 +1117,7 @@ define('front-end/templates/about/index', ['exports'], function (exports) {
     return buffer;
   },"7":function(depth0,helpers,partials,data) {
     var stack1, buffer = '';
-    stack1 = helpers['if'].call(depth0, "timeline.is_published", {"name":"if","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(8, data),"inverse":this.noop,"types":["ID"],"contexts":[depth0],"data":data});
+    stack1 = helpers['if'].call(depth0, "timeline.isPublished", {"name":"if","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(8, data),"inverse":this.noop,"types":["ID"],"contexts":[depth0],"data":data});
     if (stack1 != null) { data.buffer.push(stack1); }
     return buffer;
   },"8":function(depth0,helpers,partials,data) {
@@ -1435,7 +1437,7 @@ define('front-end/templates/dashboard', ['exports'], function (exports) {
 
   exports['default'] = Ember.Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1, buffer = '';
-    stack1 = helpers['if'].call(depth0, "post.is_published", {"name":"if","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(2, data),"inverse":this.program(4, data),"types":["ID"],"contexts":[depth0],"data":data});
+    stack1 = helpers['if'].call(depth0, "post.isPublished", {"name":"if","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(2, data),"inverse":this.program(4, data),"types":["ID"],"contexts":[depth0],"data":data});
     if (stack1 != null) { data.buffer.push(stack1); }
     return buffer;
   },"2":function(depth0,helpers,partials,data) {
@@ -1445,13 +1447,13 @@ define('front-end/templates/dashboard', ['exports'], function (exports) {
     data.buffer.push("        <div class=\"dashboard-posts-list\">\n          <h3 class=\"posts-title\">");
     data.buffer.push(escapeExpression(((helpers['link-to'] || (depth0 && depth0['link-to']) || helperMissing).call(depth0, "post.title", "posts.edit", "post", {"name":"link-to","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID","STRING","ID"],"contexts":[depth0,depth0,depth0],"data":data}))));
     data.buffer.push("</h3>\n          <span class=\"dashboatd-date\">");
-    stack1 = helpers._triageMustache.call(depth0, "post.formatted_date", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
+    stack1 = helpers._triageMustache.call(depth0, "post.formattedDate", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
     if (stack1 != null) { data.buffer.push(stack1); }
     data.buffer.push("</span>\n        </div>\n");
     return buffer;
   },"6":function(depth0,helpers,partials,data) {
     var stack1, buffer = '';
-    stack1 = helpers['if'].call(depth0, "post.is_published", {"name":"if","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(4, data),"inverse":this.noop,"types":["ID"],"contexts":[depth0],"data":data});
+    stack1 = helpers['if'].call(depth0, "post.isPublished", {"name":"if","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(4, data),"inverse":this.noop,"types":["ID"],"contexts":[depth0],"data":data});
     if (stack1 != null) { data.buffer.push(stack1); }
     return buffer;
   },"8":function(depth0,helpers,partials,data) {
@@ -1549,32 +1551,32 @@ define('front-end/templates/posts/-form', ['exports'], function (exports) {
       'placeholder': ("Title"),
       'value': ("model.title")
     },"hashTypes":{'id': "STRING",'placeholder': "STRING",'value': "ID"},"hashContexts":{'id': depth0,'placeholder': depth0,'value': depth0},"types":[],"contexts":[],"data":data}))));
-    data.buffer.push("</p>\n      <label for=\"excerpt\">Excerpt:</label>\n      <p>");
+    data.buffer.push("</p>\n\n      <label for=\"excerpt\">Excerpt:</label>\n      <p>");
     data.buffer.push(escapeExpression(((helpers.input || (depth0 && depth0.input) || helperMissing).call(depth0, {"name":"input","hash":{
       'id': ("excerpt"),
       'placeholder': ("Little excerpt"),
       'value': ("model.excerpt")
     },"hashTypes":{'id': "STRING",'placeholder': "STRING",'value': "ID"},"hashContexts":{'id': depth0,'placeholder': depth0,'value': depth0},"types":[],"contexts":[],"data":data}))));
-    data.buffer.push("</p>\n      <label for=\"post_slug\">Post Slug:</label>\n      <p>");
+    data.buffer.push("</p>\n\n      <label for=\"post_slug\">Post Slug:</label>\n      <p>");
     data.buffer.push(escapeExpression(((helpers.input || (depth0 && depth0.input) || helperMissing).call(depth0, {"name":"input","hash":{
       'id': ("post_slug"),
       'placeholder': ("Post Slug"),
-      'value': ("model.post_slug")
+      'value': ("model.postSlug")
     },"hashTypes":{'id': "STRING",'placeholder': "STRING",'value': "ID"},"hashContexts":{'id': depth0,'placeholder': depth0,'value': depth0},"types":[],"contexts":[],"data":data}))));
-    data.buffer.push("</p>\n      <p>");
+    data.buffer.push("</p>\n\n      <p>");
     data.buffer.push(escapeExpression(((helpers.textarea || (depth0 && depth0.textarea) || helperMissing).call(depth0, {"name":"textarea","hash":{
       'class': ("post-text-area"),
       'placeholder': ("Body"),
       'value': ("model.body")
     },"hashTypes":{'class': "STRING",'placeholder': "STRING",'value': "ID"},"hashContexts":{'class': depth0,'placeholder': depth0,'value': depth0},"types":[],"contexts":[],"data":data}))));
-    data.buffer.push("</p>\n      <label for=\"is_published\">Published:</label>\n      ");
+    data.buffer.push("</p>\n\n      <label for=\"is_published\">Published:</label>\n      ");
     data.buffer.push(escapeExpression(helpers.view.call(depth0, "dk-select", {"name":"view","hash":{
       'id': ("is_published"),
-      'selectionBinding': ("model.is_published"),
+      'selectionBinding': ("model.isPublished"),
       'settings': ("settings"),
       'content': ("published")
     },"hashTypes":{'id': "STRING",'selectionBinding': "STRING",'settings': "ID",'content': "ID"},"hashContexts":{'id': depth0,'selectionBinding': depth0,'settings': depth0,'content': depth0},"types":["STRING"],"contexts":[depth0],"data":data})));
-    data.buffer.push("\n      <ul class=\"edit-posts-list\">\n        <li><a href=\"#\" ");
+    data.buffer.push("\n\n      <ul class=\"edit-posts-list\">\n        <li><a href=\"#\" ");
     data.buffer.push(escapeExpression(helpers.action.call(depth0, "togglePreview", {"name":"action","hash":{},"hashTypes":{},"hashContexts":{},"types":["STRING"],"contexts":[depth0],"data":data})));
     data.buffer.push(">Toggle Preview</a></li>\n        <li><a ");
     data.buffer.push(escapeExpression(helpers.action.call(depth0, "destroy", {"name":"action","hash":{},"hashTypes":{},"hashContexts":{},"types":["STRING"],"contexts":[depth0],"data":data})));
@@ -1611,15 +1613,15 @@ define('front-end/templates/posts/index', ['exports'], function (exports) {
   exports['default'] = Ember.Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = '';
     data.buffer.push("  <div class=\"posts\">\n    <div class=\"blog-left\">\n      <span class=\"post-date\">\n        <span class=\"inner-date\">");
-    stack1 = helpers._triageMustache.call(depth0, "post.formatted_date", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
+    stack1 = helpers._triageMustache.call(depth0, "post.formattedDate", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
     if (stack1 != null) { data.buffer.push(stack1); }
     data.buffer.push("</span>\n      </span>\n    </div>\n    <div class=\"blog-right\">\n      <h3 class=\"posts-title\">");
-    data.buffer.push(escapeExpression(((helpers['link-to'] || (depth0 && depth0['link-to']) || helperMissing).call(depth0, "post.title", "posts.show", "post", {"name":"link-to","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID","STRING","ID"],"contexts":[depth0,depth0,depth0],"data":data}))));
+    data.buffer.push(escapeExpression(((helpers['link-to'] || (depth0 && depth0['link-to']) || helperMissing).call(depth0, "post.title", "posts.show", "post.postSlug", {"name":"link-to","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID","STRING","ID"],"contexts":[depth0,depth0,depth0],"data":data}))));
     data.buffer.push("</h3>\n      <span class=\"posts-excerpt\">");
     stack1 = helpers._triageMustache.call(depth0, "post.excerpt", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
     if (stack1 != null) { data.buffer.push(stack1); }
     data.buffer.push(" ");
-    stack1 = ((helpers['link-to'] || (depth0 && depth0['link-to']) || helperMissing).call(depth0, "posts.show", "post", {"name":"link-to","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(2, data),"inverse":this.noop,"types":["STRING","ID"],"contexts":[depth0,depth0],"data":data}));
+    stack1 = ((helpers['link-to'] || (depth0 && depth0['link-to']) || helperMissing).call(depth0, "posts.show", "post.postSlug", {"name":"link-to","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(2, data),"inverse":this.noop,"types":["STRING","ID"],"contexts":[depth0,depth0],"data":data}));
     if (stack1 != null) { data.buffer.push(stack1); }
     data.buffer.push("</span>\n    </div>\n  </div>\n");
     return buffer;
@@ -1662,7 +1664,7 @@ define('front-end/templates/posts/show', ['exports'], function (exports) {
     stack1 = helpers._triageMustache.call(depth0, "title", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
     if (stack1 != null) { data.buffer.push(stack1); }
     data.buffer.push("</h1>\n  <div class=\"title-sub-heading\">Posted: ");
-    stack1 = helpers._triageMustache.call(depth0, "full_formatted_date", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
+    stack1 = helpers._triageMustache.call(depth0, "fullFormattedDate", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
     if (stack1 != null) { data.buffer.push(stack1); }
     data.buffer.push("</div>\n\n  ");
     data.buffer.push(escapeExpression(((helpers['format-markdown'] || (depth0 && depth0['format-markdown']) || helperMissing).call(depth0, "body", {"name":"format-markdown","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data}))));
@@ -1688,6 +1690,279 @@ define('front-end/templates/posts/show', ['exports'], function (exports) {
     data.buffer.push(" />\n");
     return buffer;
   },"useData":true})
+
+});
+define('front-end/tests/helpers/resolver', ['exports', 'ember/resolver', '../../config/environment'], function (exports, Resolver, config) {
+
+  'use strict';
+
+  var resolver = Resolver['default'].create();
+
+  resolver.namespace = {
+    modulePrefix: config['default'].modulePrefix,
+    podModulePrefix: config['default'].podModulePrefix
+  };
+
+  exports['default'] = resolver;
+
+});
+define('front-end/tests/helpers/start-app', ['exports', 'ember', '../../app', '../../router', '../../config/environment'], function (exports, Ember, Application, Router, config) {
+
+  'use strict';
+
+  function startApp(attrs) {
+    var application;
+
+    var attributes = Ember['default'].merge({}, config['default'].APP);
+    attributes = Ember['default'].merge(attributes, attrs); // use defaults, but you can override;
+
+    Ember['default'].run(function () {
+      application = Application['default'].create(attributes);
+      application.setupForTesting();
+      application.injectTestHelpers();
+    });
+
+    return application;
+  }
+  exports['default'] = startApp;
+
+});
+define('front-end/tests/test-helper', ['./helpers/resolver', 'ember-qunit'], function (resolver, ember_qunit) {
+
+	'use strict';
+
+	ember_qunit.setResolver(resolver['default']);
+
+	document.write("<div id=\"ember-testing-container\"><div id=\"ember-testing\"></div></div>");
+
+	QUnit.config.urlConfig.push({ id: "nocontainer", label: "Hide container" });
+	var containerVisibility = QUnit.urlParams.nocontainer ? "hidden" : "visible";
+	document.getElementById("ember-testing-container").style.visibility = containerVisibility;
+
+});
+define('front-end/tests/unit/controllers/about/base-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor("controller:about/base", "AboutBaseController", {});
+
+  // Replace this with your real tests.
+  ember_qunit.test("it exists", function () {
+    var controller = this.subject();
+    ok(controller);
+  });
+  // Specify the other units that are required for this test.
+  // needs: ['controller:foo']
+
+});
+define('front-end/tests/unit/controllers/about/index-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor("controller:about/index", "AboutIndexController", {});
+
+  // Replace this with your real tests.
+  ember_qunit.test("it exists", function () {
+    var controller = this.subject();
+    ok(controller);
+  });
+  // Specify the other units that are required for this test.
+  // needs: ['controller:foo']
+
+});
+define('front-end/tests/unit/controllers/contact-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor("controller:contact", "ContactController", {});
+
+  // Replace this with your real tests.
+  ember_qunit.test("it exists", function () {
+    var controller = this.subject();
+    ok(controller);
+  });
+  // Specify the other units that are required for this test.
+  // needs: ['controller:foo']
+
+});
+define('front-end/tests/unit/controllers/dashboard-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor("controller:dashboard", "DashboardController", {});
+
+  // Replace this with your real tests.
+  ember_qunit.test("it exists", function () {
+    var controller = this.subject();
+    ok(controller);
+  });
+  // Specify the other units that are required for this test.
+  // needs: ['controller:foo']
+
+});
+define('front-end/tests/unit/controllers/posts/base-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor("controller:posts/base", "PostsBaseController", {});
+
+  // Replace this with your real tests.
+  ember_qunit.test("it exists", function () {
+    var controller = this.subject();
+    ok(controller);
+  });
+  // Specify the other units that are required for this test.
+  // needs: ['controller:foo']
+
+});
+define('front-end/tests/unit/models/analytic-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleForModel("analytic", "Analytic", {
+    // Specify the other units that are required for this test.
+    needs: []
+  });
+
+  ember_qunit.test("it exists", function () {
+    var model = this.subject();
+    // var store = this.store();
+    ok(!!model);
+  });
+
+});
+define('front-end/tests/unit/models/contact-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleForModel("contact", "Contact", {
+    // Specify the other units that are required for this test.
+    needs: []
+  });
+
+  ember_qunit.test("it exists", function () {
+    var model = this.subject();
+    // var store = this.store();
+    ok(!!model);
+  });
+
+});
+define('front-end/tests/unit/models/dashboard-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleForModel("dashboard", "Dashboard", {
+    // Specify the other units that are required for this test.
+    needs: []
+  });
+
+  ember_qunit.test("it exists", function () {
+    var model = this.subject();
+    // var store = this.store();
+    ok(model);
+  });
+
+});
+define('front-end/tests/unit/models/posts-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleForModel("posts", "Posts", {
+    // Specify the other units that are required for this test.
+    needs: []
+  });
+
+  ember_qunit.test("it exists", function () {
+    var model = this.subject();
+    // var store = this.store();
+    ok(model);
+  });
+
+});
+define('front-end/tests/unit/models/timeline-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleForModel("timeline", "Timeline", {
+    // Specify the other units that are required for this test.
+    needs: []
+  });
+
+  ember_qunit.test("it exists", function () {
+    var model = this.subject();
+    // var store = this.store();
+    ok(model);
+  });
+
+});
+define('front-end/tests/unit/routes/about-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor("route:about", "AboutRoute", {});
+
+  ember_qunit.test("it exists", function () {
+    var route = this.subject();
+    ok(route);
+  });
+  // Specify the other units that are required for this test.
+  // needs: ['controller:foo']
+
+});
+define('front-end/tests/unit/routes/contact-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor("route:contact", "ContactRoute", {});
+
+  ember_qunit.test("it exists", function () {
+    var route = this.subject();
+    ok(route);
+  });
+  // Specify the other units that are required for this test.
+  // needs: ['controller:foo']
+
+});
+define('front-end/tests/unit/routes/dashboard-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor("route:dashboard", "DashboardRoute", {});
+
+  ember_qunit.test("it exists", function () {
+    var route = this.subject();
+    ok(route);
+  });
+  // Specify the other units that are required for this test.
+  // needs: ['controller:foo']
+
+});
+define('front-end/tests/unit/services/flash-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor("service:flash", "FlashService", {});
+
+  // Replace this with your real tests.
+  ember_qunit.test("it exists", function () {
+    var service = this.subject();
+    ok(service);
+  });
+  // Specify the other units that are required for this test.
+  // needs: ['service:foo']
+
+});
+define('front-end/tests/unit/views/line-graph-test', ['ember-qunit'], function (ember_qunit) {
+
+  'use strict';
+
+  ember_qunit.moduleFor("view:line-graph", "LineGraphView");
+
+  // Replace this with your real tests.
+  ember_qunit.test("it exists", function () {
+    var view = this.subject();
+    ok(view);
+  });
 
 });
 define('front-end/views/dk-select', ['exports', 'ember', 'ember-dropkick/views/dk-select'], function (exports, Ember, DropKick) {
@@ -1725,3 +2000,4 @@ if (runningTests) {
 }
 
 /* jshint ignore:end */
+//# sourceMappingURL=front-end.map
