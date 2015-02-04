@@ -12,6 +12,9 @@
       <label for="post_slug">Post Slug:</label>
       <p>{{input value=model.postSlug placeholder="Post Slug" id="post_slug"}}</p>
 
+      <label for="post_slug">Publish Date:</label>
+      <p>{{date-picker date=model.publishedDate format="MMMM Do YYYY" valueFormat='date' placeholder="Publish Date"}}</p>
+
       <p>{{textarea value=model.body placeholder="Body" class="post-text-area"}}</p>
 
       <label for="is_published">Published:</label>
