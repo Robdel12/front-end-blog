@@ -1,7 +1,7 @@
 import Ember from "ember";
 
 var DashboardController = Ember.ArrayController.extend({
-  sortProperties: ["created_at"],
+  sortProperties: ["publishedDate"],
   sortAscending: false
 });
 
