@@ -427,7 +427,7 @@ define('front-end/controllers/dashboard', ['exports', 'ember'], function (export
   'use strict';
 
   var DashboardController = Ember['default'].ArrayController.extend({
-    sortProperties: ["created_at"],
+    sortProperties: ["publishedDate"],
     sortAscending: false
   });
 
@@ -723,15 +723,16 @@ define('front-end/models/post', ['exports', 'ember-data'], function (exports, DS
     postSlug: DS['default'].attr("string"),
     title: DS['default'].attr("string"),
     createdAt: DS['default'].attr("date"),
+    publishedDate: DS['default'].attr("date"),
     excerpt: DS['default'].attr("string"),
     body: DS['default'].attr("string"),
     isPublished: DS['default'].attr("boolean"),
     formattedDate: (function () {
-      return moment(this.get("createdAt")).format("MMM Do");
-    }).property("createdAt"),
+      return moment(this.get("publishedDate")).format("MMM Do");
+    }).property("publishedDate"),
     fullFormattedDate: (function () {
-      return moment(this.get("createdAt")).format("MMMM Do YYYY, h:mm a");
-    }).property("createdAt")
+      return moment(this.get("publishedDate")).format("MMMM Do YYYY, h:mm a");
+    }).property("publishedDate")
   });
 
 });
@@ -1563,6 +1564,13 @@ define('front-end/templates/posts/-form', ['exports'], function (exports) {
       'placeholder': ("Post Slug"),
       'value': ("model.postSlug")
     },"hashTypes":{'id': "STRING",'placeholder': "STRING",'value': "ID"},"hashContexts":{'id': depth0,'placeholder': depth0,'value': depth0},"types":[],"contexts":[],"data":data}))));
+    data.buffer.push("</p>\n\n      <label for=\"post_slug\">Publish Date:</label>\n      <p>");
+    data.buffer.push(escapeExpression(((helpers['date-picker'] || (depth0 && depth0['date-picker']) || helperMissing).call(depth0, {"name":"date-picker","hash":{
+      'placeholder': ("Publish Date"),
+      'valueFormat': ("date"),
+      'format': ("MMMM Do YYYY"),
+      'date': ("model.publishedDate")
+    },"hashTypes":{'placeholder': "STRING",'valueFormat': "STRING",'format': "STRING",'date': "ID"},"hashContexts":{'placeholder': depth0,'valueFormat': depth0,'format': depth0,'date': depth0},"types":[],"contexts":[],"data":data}))));
     data.buffer.push("</p>\n\n      <p>");
     data.buffer.push(escapeExpression(((helpers.textarea || (depth0 && depth0.textarea) || helperMissing).call(depth0, {"name":"textarea","hash":{
       'class': ("post-text-area"),
