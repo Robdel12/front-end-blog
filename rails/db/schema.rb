@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20150204014145) do
     t.datetime "updated_at"
     t.boolean  "is_published",         default: false
     t.string   "authentication_token"
-    t.datetime "published_at"
     t.datetime "published_date"
   end
 
