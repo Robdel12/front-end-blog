@@ -872,13 +872,13 @@ define('front-end/routes/dashboard', ['exports', 'ember', 'simple-auth/mixins/au
   });
 
 });
-define('front-end/routes/index', ['exports', 'ember'], function (exports, Ember) {
+define('front-end/routes/index', ['exports', 'ember', 'ember-cli-pagination/remote/route-mixin'], function (exports, Ember, RouteMixin) {
 
   'use strict';
 
-  var IndexRoute = Ember['default'].Route.extend({
-    redirect: function () {
-      this.replaceWith("posts");
+  var IndexRoute = Ember['default'].Route.extend(RouteMixin['default'], {
+    model: function (params) {
+      return this.findPaged("post", params);
     }
   });
 
@@ -1492,6 +1492,18 @@ define('front-end/templates/error404', ['exports'], function (exports) {
     },"useData":true})
 
 });
+define('front-end/templates/index', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = '';
+    data.buffer.push(escapeExpression(((helpers.partial || (depth0 && depth0.partial) || helperMissing).call(depth0, "partials/blog-post-list", {"name":"partial","hash":{},"hashTypes":{},"hashContexts":{},"types":["STRING"],"contexts":[depth0],"data":data}))));
+    data.buffer.push("\n");
+    return buffer;
+  },"useData":true})
+
+});
 define('front-end/templates/login', ['exports'], function (exports) {
 
   'use strict';
@@ -1516,6 +1528,41 @@ define('front-end/templates/login', ['exports'], function (exports) {
       'id': ("password")
     },"hashTypes":{'value': "ID",'type': "STRING",'placeholder': "STRING",'id': "STRING"},"hashContexts":{'value': depth0,'type': depth0,'placeholder': depth0,'id': depth0},"types":[],"contexts":[],"data":data}))));
     data.buffer.push("</p>\n  <button type=\"submit\" class=\"btn\">Login</button>\n</form>\n");
+    return buffer;
+  },"useData":true})
+
+});
+define('front-end/templates/partials/-blog-post-list', ['exports'], function (exports) {
+
+  'use strict';
+
+  exports['default'] = Ember.Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = '';
+    data.buffer.push("  <div class=\"posts\">\n    <div class=\"blog-left\">\n      <span class=\"post-date\">\n        <span class=\"inner-date\">");
+    stack1 = helpers._triageMustache.call(depth0, "post.formattedDate", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
+    if (stack1 != null) { data.buffer.push(stack1); }
+    data.buffer.push("</span>\n      </span>\n    </div>\n    <div class=\"blog-right\">\n      <h3 class=\"posts-title\">");
+    data.buffer.push(escapeExpression(((helpers['link-to'] || (depth0 && depth0['link-to']) || helperMissing).call(depth0, "post.title", "posts.show", "post.postSlug", {"name":"link-to","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID","STRING","ID"],"contexts":[depth0,depth0,depth0],"data":data}))));
+    data.buffer.push("</h3>\n      <span class=\"posts-excerpt\">");
+    stack1 = helpers._triageMustache.call(depth0, "post.excerpt", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
+    if (stack1 != null) { data.buffer.push(stack1); }
+    data.buffer.push(" ");
+    stack1 = ((helpers['link-to'] || (depth0 && depth0['link-to']) || helperMissing).call(depth0, "posts.show", "post.postSlug", {"name":"link-to","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(2, data),"inverse":this.noop,"types":["STRING","ID"],"contexts":[depth0,depth0],"data":data}));
+    if (stack1 != null) { data.buffer.push(stack1); }
+    data.buffer.push("</span>\n    </div>\n  </div>\n");
+    return buffer;
+  },"2":function(depth0,helpers,partials,data) {
+    data.buffer.push(" [Read More] ");
+    },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = '';
+    data.buffer.push(escapeExpression(((helpers['head-title'] || (depth0 && depth0['head-title']) || helperMissing).call(depth0, "Blog", {"name":"head-title","hash":{},"hashTypes":{},"hashContexts":{},"types":["STRING"],"contexts":[depth0],"data":data}))));
+    data.buffer.push("\n");
+    stack1 = helpers.each.call(depth0, "post", "in", "model", {"name":"each","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(1, data),"inverse":this.noop,"types":["ID","ID","ID"],"contexts":[depth0,depth0,depth0],"data":data});
+    if (stack1 != null) { data.buffer.push(stack1); }
+    data.buffer.push(escapeExpression(((helpers['page-numbers'] || (depth0 && depth0['page-numbers']) || helperMissing).call(depth0, {"name":"page-numbers","hash":{
+      'content': ("content")
+    },"hashTypes":{'content': "ID"},"hashContexts":{'content': depth0},"types":[],"contexts":[],"data":data}))));
+    data.buffer.push("\n");
     return buffer;
   },"useData":true})
 
@@ -1618,32 +1665,9 @@ define('front-end/templates/posts/index', ['exports'], function (exports) {
 
   'use strict';
 
-  exports['default'] = Ember.Handlebars.template({"1":function(depth0,helpers,partials,data) {
-    var stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = '';
-    data.buffer.push("  <div class=\"posts\">\n    <div class=\"blog-left\">\n      <span class=\"post-date\">\n        <span class=\"inner-date\">");
-    stack1 = helpers._triageMustache.call(depth0, "post.formattedDate", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
-    if (stack1 != null) { data.buffer.push(stack1); }
-    data.buffer.push("</span>\n      </span>\n    </div>\n    <div class=\"blog-right\">\n      <h3 class=\"posts-title\">");
-    data.buffer.push(escapeExpression(((helpers['link-to'] || (depth0 && depth0['link-to']) || helperMissing).call(depth0, "post.title", "posts.show", "post.postSlug", {"name":"link-to","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID","STRING","ID"],"contexts":[depth0,depth0,depth0],"data":data}))));
-    data.buffer.push("</h3>\n      <span class=\"posts-excerpt\">");
-    stack1 = helpers._triageMustache.call(depth0, "post.excerpt", {"name":"_triageMustache","hash":{},"hashTypes":{},"hashContexts":{},"types":["ID"],"contexts":[depth0],"data":data});
-    if (stack1 != null) { data.buffer.push(stack1); }
-    data.buffer.push(" ");
-    stack1 = ((helpers['link-to'] || (depth0 && depth0['link-to']) || helperMissing).call(depth0, "posts.show", "post.postSlug", {"name":"link-to","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(2, data),"inverse":this.noop,"types":["STRING","ID"],"contexts":[depth0,depth0],"data":data}));
-    if (stack1 != null) { data.buffer.push(stack1); }
-    data.buffer.push("</span>\n    </div>\n  </div>\n");
-    return buffer;
-  },"2":function(depth0,helpers,partials,data) {
-    data.buffer.push(" [Read More] ");
-    },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    var stack1, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = '';
-    data.buffer.push(escapeExpression(((helpers['head-title'] || (depth0 && depth0['head-title']) || helperMissing).call(depth0, "Blog", {"name":"head-title","hash":{},"hashTypes":{},"hashContexts":{},"types":["STRING"],"contexts":[depth0],"data":data}))));
-    data.buffer.push("\n");
-    stack1 = helpers.each.call(depth0, "post", "in", "model", {"name":"each","hash":{},"hashTypes":{},"hashContexts":{},"fn":this.program(1, data),"inverse":this.noop,"types":["ID","ID","ID"],"contexts":[depth0,depth0,depth0],"data":data});
-    if (stack1 != null) { data.buffer.push(stack1); }
-    data.buffer.push(escapeExpression(((helpers['page-numbers'] || (depth0 && depth0['page-numbers']) || helperMissing).call(depth0, {"name":"page-numbers","hash":{
-      'content': ("content")
-    },"hashTypes":{'content': "ID"},"hashContexts":{'content': depth0},"types":[],"contexts":[],"data":data}))));
+  exports['default'] = Ember.Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = '';
+    data.buffer.push(escapeExpression(((helpers.partial || (depth0 && depth0.partial) || helperMissing).call(depth0, "partials/blog-post-list", {"name":"partial","hash":{},"hashTypes":{},"hashContexts":{},"types":["STRING"],"contexts":[depth0],"data":data}))));
     data.buffer.push("\n");
     return buffer;
   },"useData":true})
