@@ -747,8 +747,8 @@ define('front-end/models/timeline', ['exports', 'ember-data'], function (exports
     createdAt: DS['default'].attr("date"),
     isPublished: DS['default'].attr("boolean"),
     formattedDate: (function () {
-      return moment(this.get("createdAt")).format("MMMM Do, YYYY");
-    }).property("createdAt")
+      return moment(this.get("eventDate")).format("MMMM Do, YYYY");
+    }).property("eventDate")
   });
 
 });
