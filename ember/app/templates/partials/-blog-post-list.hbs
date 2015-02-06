@@ -1,0 +1,15 @@
+{{head-title "Blog"}}
+{{#each post in model}}
+  <div class="posts">
+    <div class="blog-left">
+      <span class="post-date">
+        <span class="inner-date">{{post.formattedDate}}</span>
+      </span>
+    </div>
+    <div class="blog-right">
+      <h3 class="posts-title">{{link-to post.title 'posts.show' post.postSlug}}</h3>
+      <span class="posts-excerpt">{{post.excerpt}} {{#link-to "posts.show" post.postSlug}} [Read More] {{/link-to}}</span>
+    </div>
+  </div>
+{{/each}}
+{{page-numbers content=content}}
