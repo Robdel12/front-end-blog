@@ -10,11 +10,11 @@ var EditController = PostsBaseController.extend({
 
         this.get("model").save().catch(function(reason){
           if(reason.status === 500){
-            this.get('flashes').danger("Server error. Couldn't auto save.");
+            this.get('flashes').danger("Server error. Couldn't auto save.", 5000);
           }
         });
 
-        this.get("flashes").info(notificationMessage);
+        this.get("flashes").info(notificationMessage, 5000);
 
         if(document.hidden){
           this.desktopNotifcation(notificationMessage);

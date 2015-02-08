@@ -27,7 +27,7 @@
     </section>
   {{/unless}}
   <div class="inner-container">
-    {{#each flash in flashes.content}}
+    {{#each flash in flashes.queue}}
       {{flash-message flash=flash}}
     {{/each}}
     {{outlet}}
