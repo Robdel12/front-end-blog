@@ -20,6 +20,7 @@
     "dropkick": "v2.1",
     "pikaday": "~1.3.1",
     "ember-c3": "~0.1.3",
-    "highlightjs": "~8.4.0"
+    "highlightjs": "~8.4.0",
+    "pretender": "0.1.0"
   }
 }
