@@ -19,28 +19,26 @@ module('Acceptance: Adding a post', {
 });
 
 test('Creating a new post', function() {
-  pretender.get('/api/posts', function(request) {
-    return [200, { 'Content-Type': 'application/json' }, JSON.stringify({
-      post: [],
-      meta: { total_pages: 1 }
-    })];
-  });
+  var post = {
+    id: 101,
+    title: 'My new post',
+    excerpt: "This is my excerpt",
+    body: 'The post body.',
+    post_slug: "my-new-post",
+    publishedDate: new Date(),
+    isPublished: true
+  };
 
-  visit('/posts');
-  click('a:contains("New post")');
-  fillIn('#post_title', 'My new post');
-  fillIn('.post-text-area', 'The post body.');
-  find('select').val('true');
+  visit('/posts/new');
+  fillIn('#post_title', post.title);
+  fillIn('#excerpt', post.excerpt);
+  fillIn('.post-text-area', post.body);
+  fillIn('select', post.isPublished);
   click('button:contains("Edit post")');
 
   pretender.post('api/posts', function(req) {
     return [201, { 'Content-Type': 'application/json' }, JSON.stringify({
-      posts: {
-        id: 101,
-        title: 'My new post',
-        body: 'The post body.',
-        post_slug: "my-new-post"
-      }
+      posts: post
     })];
   });
 
@@ -48,20 +46,13 @@ test('Creating a new post', function() {
 
   pretender.get('/api/posts', function(request) {
     return [200, { 'Content-Type': 'application/json' }, JSON.stringify({
-      post: [{
-        id: 101,
-        title: 'My new post',
-        body: 'The post body.',
-        excerpt: "This is my excerpt",
-        post_slug: "my-new-post",
-        publishedDate: new Date()
-      }],
+      post: [post],
       meta: { total_pages: 1 }
     })];
   });
 
   andThen(function() {
-    ok(find('h3:contains("My new post")').length,
+    ok(find('h3:contains("'+ post.title +'")').length,
       'expected to see "My new post"');
   });
 });

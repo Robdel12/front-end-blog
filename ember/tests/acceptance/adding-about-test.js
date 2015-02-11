@@ -6,7 +6,7 @@ import simpleAuth from 'simple-auth-testing/test-helpers';
 var application;
 var pretender;
 
-module('Acceptance: AddingAbout', {
+module('Acceptance: Adding an about', {
   setup: function() {
     application = startApp();
     pretender = new Pretender();
@@ -29,7 +29,7 @@ test('Create new about', function() {
   visit('/about/new');
   fillIn(".title", timeline.title);
   fillIn(".date", timeline.eventDate);
-  fillIn(".description", "My new abouts description");
+  fillIn(".description", timeline.description);
   fillIn("#isPublished", timeline.isPublished);
   click("button:contains('Save')");
 
@@ -41,12 +41,12 @@ test('Create new about', function() {
 
   pretender.get('api/timeline', function() {
     return [201, { 'Content-Type': 'application/json' }, JSON.stringify({
-      timeline: timeline
+      timelines: [timeline]
     })];
   });
 
   andThen(function() {
     ok(find('h4:contains("'+ timeline.title +'")').length,
-      'expected to see "My new post"');
+      'expected to see "'+ timeline.title + '"');
   });
 });
