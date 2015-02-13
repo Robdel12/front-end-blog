@@ -52,7 +52,6 @@ test('Creating a new post', function() {
   });
 
   andThen(function() {
-    ok(find('h3:contains("'+ post.title +'")').length,
-      'expected to see "My new post"');
+    ok(find('h3:contains("'+ post.title +'")').length, 'expected to see "My new post"');
   });
 });
