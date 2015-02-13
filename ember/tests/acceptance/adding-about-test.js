@@ -21,7 +21,7 @@ test('Create new about', function() {
   var timeline = {
     id: 101,
     title: 'My new About',
-    eventDate: new Date(2014, 03, 03),
+    eventDate: new Date(2014, 02, 03), //March 3rd, 2014
     description: "My new abouts description",
     isPublished: true
   };
@@ -46,7 +46,8 @@ test('Create new about', function() {
   });
 
   andThen(function() {
-    ok(find('h4:contains("'+ timeline.title +'")').length,
-      'expected to see "'+ timeline.title + '"');
+    ok(find('h4:contains("'+ timeline.title +'")').length, 'expected to see "'+ timeline.title + '"');
+    ok(find('p:contains("'+ timeline.description +'")').length, 'expected to see "'+ timeline.title + '"');
+    ok(find('.date:contains("March 3rd, 2014")').length, 'expected to see "March 3rd, 2014"');
   });
 });
