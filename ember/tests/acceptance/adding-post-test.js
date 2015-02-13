@@ -25,18 +25,22 @@ test('Creating a new post', function() {
     excerpt: "This is my excerpt",
     body: 'The post body.',
     post_slug: "my-new-post",
-    publishedDate: new Date(),
-    isPublished: true
+    publishedDate: new Date()
   };
 
   visit('/posts/new');
   fillIn('#post_title', post.title);
   fillIn('#excerpt', post.excerpt);
   fillIn('.post-text-area', post.body);
-  fillIn('select', post.isPublished);
   click('button:contains("Edit post")');
 
   pretender.post('api/posts', function(req) {
+    var post = JSON.parse(req.requestBody).post;
+
+    equal(post.title, "My new post");
+    equal(post.excerpt, "This is my excerpt");
+    equal(post.body, "The post body.");
+
     return [201, { 'Content-Type': 'application/json' }, JSON.stringify({
       posts: post
     })];
@@ -44,7 +48,7 @@ test('Creating a new post', function() {
 
   visit("/posts");
 
-  pretender.get('/api/posts', function(request) {
+  pretender.get('/api/posts', function(req) {
     return [200, { 'Content-Type': 'application/json' }, JSON.stringify({
       post: [post],
       meta: { total_pages: 1 }
@@ -53,5 +57,7 @@ test('Creating a new post', function() {
 
   andThen(function() {
     ok(find('h3:contains("'+ post.title +'")').length, 'expected to see "My new post"');
+    ok(find('span:contains("'+ post.excerpt +'")').length, 'expected to see "This is my excerpt"');
+    ok(find(!!$(".inner-date").text(), 'expected to see "This is my excerpt"'));
   });
 });
