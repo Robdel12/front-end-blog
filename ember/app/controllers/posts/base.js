@@ -1,8 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  published: [false, true],
-  selectedState: null,
+  published: [true, false],
   preview: false,
   settings: {
     mobile: true
@@ -25,9 +24,6 @@ export default Ember.Controller.extend({
         }
       });
 
-      if(this.get("model.isPublished") === true){
-        this.transitionToRoute("posts.show", this.get("model.postSlug"));
-      }
       return false;
     },
 

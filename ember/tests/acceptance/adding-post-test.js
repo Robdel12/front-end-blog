@@ -25,21 +25,26 @@ test('Creating a new post', function() {
     excerpt: "This is my excerpt",
     body: 'The post body.',
     post_slug: "my-new-post",
-    publishedDate: new Date()
+    is_published: true,
+    published_date: new Date(2015, 02, 03)
   };
 
   visit('/posts/new');
   fillIn('#post_title', post.title);
   fillIn('#excerpt', post.excerpt);
   fillIn('.post-text-area', post.body);
-  click('button:contains("Edit post")');
+  // fillIn('.published-date', post.published_date);
+  find('.ember-select').val(post.is_published);
+  click('button:contains("Save post")');
 
   pretender.post('api/posts', function(req) {
-    var post = JSON.parse(req.requestBody).post;
+    var postResponse = JSON.parse(req.requestBody).post;
 
-    equal(post.title, "My new post");
-    equal(post.excerpt, "This is my excerpt");
-    equal(post.body, "The post body.");
+    equal(postResponse.title, "My new post");
+    equal(postResponse.excerpt, "This is my excerpt");
+    equal(postResponse.body, "The post body.");
+    equal(postResponse.is_published, true);
+    // equal(postResponse.published_date, post.published_date);
 
     return [201, { 'Content-Type': 'application/json' }, JSON.stringify({
       posts: post
