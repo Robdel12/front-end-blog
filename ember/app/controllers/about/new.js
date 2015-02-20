@@ -1,5 +1,3 @@
 import TimelineBaseController from "./base";
 
-export default TimelineBaseController.extend({
-
-});
+export default TimelineBaseController.extend();

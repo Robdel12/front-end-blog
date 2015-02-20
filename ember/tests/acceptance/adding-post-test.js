@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
+import simpleAuth from 'simple-auth-testing/test-helpers';
 
 var application;
 var pretender;
@@ -9,6 +10,7 @@ module('Acceptance: Adding a post', {
   setup: function() {
     application = startApp();
     pretender = new Pretender();
+    authenticateSession();
   },
   teardown: function() {
     Ember.run(application, 'destroy');

@@ -3,7 +3,6 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   published: [false, true],
   preview: false,
-  publishedDate: new Date(2003, 02, 03),
   settings: {
     mobile: true
   },
