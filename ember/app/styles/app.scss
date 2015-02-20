@@ -209,7 +209,7 @@ nav{
     display: none;
   }
 }
-body.modal-backing{
+.main-container.modal-backing{
   &:after{
     content: "";
     position: fixed;
