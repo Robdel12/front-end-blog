@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
     save: function() {
 
       this.get("model").save().catch(function(reason) {
-        if(reason.status === 500){
+        if(reason.status === 500) {
           this.get('flashes').danger("There was a server error.");
         }
       });
