@@ -14,6 +14,11 @@ gem "faker"
 
 gem "byebug"
 
+# Twitter API stuffs
+gem "twitter", "~> 5.14.0"
+
+gem "rspec-rails"
+
 # Keep the api keys out of the repo
 gem 'figaro'
 
@@ -37,6 +42,7 @@ group :doc do
 end
 
 group :development do
+  gem "spring-commands-rspec"
   gem "better_errors"
   gem "binding_of_caller"
 end
