@@ -33,17 +33,8 @@ ActiveRecord::Schema.define(version: 20150204014145) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "is_published",         default: false
-    t.string   "authentication_token"
+    t.boolean  "is_published",   default: false
     t.datetime "published_date"
-  end
-
-  create_table "products", force: true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "imageurl"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "timelines", force: true do |t|
