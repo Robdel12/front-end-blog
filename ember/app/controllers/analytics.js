@@ -4,11 +4,11 @@ export default Ember.Controller.extend({
   loadingData: true,
   graphStartDate: moment().subtract(1, 'weeks').startOf('isoWeek').format("YYYY-MM-DD"),
   graphEndDate: moment().format("YYYY-MM-DD"),
-  maxDate: moment().toDate(),
+  pickerMaxDate: moment().toDate(),
   queryParams: ['graphStartDate', 'graphEndDate'],
 
-  minValue: Ember.computed.min('pageviews'),
-  maxValue: Ember.computed.max('pageviews'),
+  minPageview: Ember.computed.min('pageviewArray'),
+  maxPageview: Ember.computed.max('pageviewArray'),
 
   axis: {
     x: {
@@ -19,11 +19,29 @@ export default Ember.Controller.extend({
     }
   },
 
-  pageviews: function() {
+  minDate: function() {
+    return this.dateCalculator(this.get("minPageview"));
+  }.property("minPageview"),
+
+  maxDate: function() {
+    return this.dateCalculator(this.get("maxPageview"));
+  }.property("maxPageview"),
+
+  dateCalculator: function(date) {
+    var pageviews = this.get("analytics.firstObject.pageview");
+    if(!pageviews) { return false; }
+    var dates = this.get("analytics.firstObject.date");
+    var pageviewIndex = pageviews.indexOf(date);
+
+    return moment(dates[pageviewIndex]).format("MMMM Do, YYYY")
+  },
+
+  pageviewArray: function() {
     var columns = this.get('graphData.columns');
 
     if (columns) {
       var pageviews = columns[1];
+
       return pageviews.slice(1);
     } else {
       return [0];

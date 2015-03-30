@@ -1,6 +1,6 @@
 <form>
-  From: {{date-picker date=graphStartDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=maxDate placeholder="Start Date"}}
-  To: {{date-picker date=graphEndDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=maxDate placeholder="End Date"}}
+  From: {{date-picker date=graphStartDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=pickerMaxDate placeholder="Start Date"}}
+  To: {{date-picker date=graphEndDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=pickerMaxDate placeholder="End Date"}}
 </form>
 
 <div {{bind-attr class=":chart-container loadingData:loading:loaded"}}>
@@ -12,7 +12,8 @@
   </div>
 </div>
 
-<dl>
-  <dt>Most traffic</dt><dd>{{minValue}}</dd>
-  <dt>Least traffic</dt><dd>{{maxValue}}</dd>
-</dl>
+<h4>Busiest Day</h4>
+<p>{{maxPageview}} pageviews on {{maxDate}}</p>
+
+<h4>Slowest Day</h4>
+<p>{{minPageview}} pageviews on {{minDate}}</p>
