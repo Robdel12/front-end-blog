@@ -1,17 +1,17 @@
-{{head-title title}}
+{{head-title model.title}}
 <div class="post">
-  <h1 class="post-title">{{title}}</h1>
-  <div class="title-sub-heading">Posted: {{fullFormattedDate}}</div>
+  <h1 class="post-title">{{model.title}}</h1>
+  <div class="title-sub-heading">Posted: {{model.fullFormattedDate}}</div>
 
-  {{format-markdown body}}
+  {{format-markdown model.body}}
 
   {{c-disqus}}
 </div>
 
-<meta name="title" {{bind-attr content=title}} />
-<meta name="description" {{bind-attr content=excerpt}} />
+<meta name="title" {{bind-attr content=model.title}} />
+<meta name="description" {{bind-attr content=model.excerpt}} />
 
 {{!-- Facebook --}}
-<meta property="og:title" {{bind-attr content=title}} />
+<meta property="og:title" {{bind-attr content=model.title}} />
 <meta property="og:site_name" content="Robert DeLuca" />
-<meta property="og:description" {{bind-attr content=excerpt}} />
+<meta property="og:description" {{bind-attr content=model.excerpt}} />
