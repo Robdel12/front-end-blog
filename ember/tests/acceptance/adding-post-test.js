@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
-import simpleAuth from 'simple-auth-testing/test-helpers';
 
 var application;
 var pretender;

@@ -32,7 +32,7 @@
       <p><button type="submit" class="btn">Save post</button></p>
     </form>
   </div>
-  <div class="preview {{preview:show:hide}}">
+  <div class="preview {{if isPreviewing 'show' 'hide'}}">
     <h1>{{model.title}}</h1>
 
     {{format-markdown model.body}}

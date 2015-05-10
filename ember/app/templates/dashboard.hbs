@@ -1,19 +1,17 @@
 <div class="dashboard-container">
   <div class="dashboard-main">
     <h2>Drafts</h2>
-    {{#each post in model}}
-      {{#if post.isPublished}}
-        {{! I hate this }}
-      {{else}}
+    {{#each model as |post|}}
+      {{#unless post.isPublished}}
         <div class="dashboard-posts-list">
           <h3 class="posts-title">{{link-to post.title 'posts.edit' post}}</h3>
           <span class="dashboatd-date">{{post.formattedDate}}</span>
         </div>
-      {{/if}}
+      {{/unless}}
     {{/each}}
 
     <h2>Published</h2>
-    {{#each post in model}}
+    {{#each model as |post|}}
       {{#if post.isPublished}}
         <div class="dashboard-posts-list">
           <h3 class="posts-title">{{link-to post.title 'posts.edit' post}}</h3>
@@ -24,11 +22,15 @@
   </div>
   <div class="dashboard-sidebar">
     <h4>Recent Contacts</h4>
-    {{#each contact in contacts}}
-      <div class="recent-contact">
-        <p><strong>Name:</strong> {{contact.name}}</p>
-        <p><strong>Reason:</strong> {{contact.reason}}</p>
-      </div>
-    {{/each}}
+    {{#if contacts}}
+      {{#each contacts as |contact|}}
+        <div class="recent-contact">
+          <p><strong>Name:</strong> {{contact.name}}</p>
+          <p><strong>Reason:</strong> {{contact.reason}}</p>
+        </div>
+      {{/each}}
+    {{else}}
+      Looks like you haven't had any contacts
+    {{/if}}
   </div>
 </div>
