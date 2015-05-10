@@ -1,5 +1,5 @@
 class Api::ContactsController < ApplicationController
-  before_filter :authorize_user, only: [:index]
+  # before_filter :authorize_user, only: [:index]
 
   def index
     render json: Contacts.order(created_at: :asc).last(3)

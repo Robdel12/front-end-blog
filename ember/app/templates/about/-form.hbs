@@ -15,7 +15,7 @@
       <button type="submit" class="btn">Save</button>
     </form>
   </div>
-  <div {{bind-attr class=":timeline-preview :preview openPreview:show:hide"}}>
+  <div class="timeline-preview preview {{openPreview:show:hide}}">
     <div class="timeline-card">
       <h4>{{model.title}}</h4>
       {{{format-markdown model.description}}}

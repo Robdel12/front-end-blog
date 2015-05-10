@@ -3,5 +3,11 @@ import LoginControllerMixin from "simple-auth/mixins/login-controller-mixin";
 
 export default Ember.Controller.extend(LoginControllerMixin, {
   authenticator: "simple-auth-authenticator:devise",
-  error: false
+
+  actions: {
+    authenticate: function() {
+      var credentials = this.getProperties('identification', 'password');
+      this.get('session').authenticate('simple-auth-authenticator:devise', credentials);
+    }
+  }
 });

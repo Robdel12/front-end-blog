@@ -4,10 +4,10 @@
   <button type="submit" class="btn">Save</button>
 </form>
 
-<div {{bind-attr class=":chart-container loadingData:loading:loaded"}}>
+<div class="chart-container {{loadingData:loading:loaded}}">
   {{c3-chart data=controllerData axis=axis bar=bar}}
 
-  <div {{bind-attr class=":loading-spinner loadingData:show:hide"}}>
+  <div class="loading-spinner {{loadingData:show:hide}}">
     <div class="double-bounce1"></div>
     <div class="double-bounce2"></div>
   </div>
