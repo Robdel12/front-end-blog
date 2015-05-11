@@ -33,7 +33,7 @@ export default Ember.Controller.extend({
     var dates = this.get("analytics.firstObject.date");
     var pageviewIndex = pageviews.indexOf(date);
 
-    return moment(dates[pageviewIndex]).format("MMMM Do, YYYY")
+    return moment(dates[pageviewIndex]).format("MMMM Do, YYYY");
   },
 
   pageviewArray: function() {
