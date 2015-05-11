@@ -3,7 +3,6 @@ import Ember from 'ember';
 import {module, test} from 'qunit';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
-import simpleAuth from 'simple-auth-testing/test-helpers';
 
 var application;
 var pretender;

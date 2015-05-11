@@ -19,7 +19,7 @@
   <p><button type="submit" class="btn">Send me an email!</button></p>
 </form>
 
-<div {{bind-attr class="thankYou modalClosed"}}>
+<div class="thank-you {{if modalClosed 'modal-closed' 'show'}}">
   <h1>Thank you!</h1>
   <p>Your email has been sent. I should be in contact shortly :)</p>
   <a href="#" {{action "closeModal"}} class="btn modal-btn">Got it!</a>

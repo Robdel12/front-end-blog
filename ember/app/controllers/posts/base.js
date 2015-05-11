@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   published: [false, true],
-  preview: false,
+  isPreviewing: false,
   settings: {
     mobile: true
   },
@@ -28,10 +28,10 @@ export default Ember.Controller.extend({
     },
 
     togglePreview: function() {
-      if(this.get("preview") === false) {
-        this.set("preview", true);
+      if(this.get("isPreviewing") === false) {
+        this.set("isPreviewing", true);
       } else {
-        this.set("preview", false);
+        this.set("isPreviewing", false);
       }
     }
   }

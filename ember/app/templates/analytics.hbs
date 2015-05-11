@@ -3,10 +3,10 @@
   To: {{date-picker date=graphEndDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=pickerMaxDate placeholder="End Date"}}
 </form>
 
-<div {{bind-attr class=":chart-container loadingData:loading:loaded"}}>
-  {{c3-chart data=graphData axis=axis bar=bar}}
+<div class="chart-container {{if loadingData 'loading' 'loaded'}}">
+  {{c3-chart data=controllerData axis=axis bar=bar}}
 
-  <div {{bind-attr class=":loading-spinner loadingData:show:hide"}}>
+  <div class="loading-spinner {{loadingData:show:hide}}">
     <div class="double-bounce1"></div>
     <div class="double-bounce2"></div>
   </div>
