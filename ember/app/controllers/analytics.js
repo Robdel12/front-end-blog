@@ -1,11 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  controllerData: null,
-  loadingData: false,
+  loadingData: true,
   graphStartDate: moment().subtract(1, 'weeks').startOf('isoWeek').format("YYYY-MM-DD"),
   graphEndDate: moment().format("YYYY-MM-DD"),
-  maxDate: moment().toDate(),
+  pickerMaxDate: moment().toDate(),
+  queryParams: ['graphStartDate', 'graphEndDate'],
+
+  minPageview: Ember.computed.min('pageviewArray'),
+  maxPageview: Ember.computed.max('pageviewArray'),
 
   axis: {
     x: {
@@ -16,32 +19,56 @@ export default Ember.Controller.extend({
     }
   },
 
-  setDateAndData: function(startDate, endDate) {
-    startDate = this.get("graphStartDate") || startDate;
-    endDate = this.get("graphEndDate") || endDate;
-    var self = this;
+  minDate: function() {
+    return this.dateCalculator(this.get("minPageview"));
+  }.property("minPageview"),
 
-    this.set("loadingData", true);
+  maxDate: function() {
+    return this.dateCalculator(this.get("maxPageview"));
+  }.property("maxPageview"),
 
-    return this.store.find('analytic', { startDate: startDate, endDate: endDate }).then(function(data) {
-      var graphData = data.content[0]._data;
-      self.set("loadingData", false);
+  dateCalculator: function(date) {
+    var pageviews = this.get("analytics.firstObject.pageview");
+    if(!pageviews) { return false; }
+    var dates = this.get("analytics.firstObject.date");
+    var pageviewIndex = pageviews.indexOf(date);
 
-      return self.set("controllerData", {
+    return moment(dates[pageviewIndex]).format("MMMM Do, YYYY");
+  },
+
+  pageviewArray: function() {
+    var columns = this.get('graphData.columns');
+
+    if (columns) {
+      var pageviews = columns[1];
+
+      return pageviews.slice(1);
+    } else {
+      return [0];
+    }
+  }.property('graphData'),
+
+  analytics: function() {
+    var startDate = this.get("graphStartDate");
+    var endDate = this.get("graphEndDate");
+
+    return this.store.find('analytic', { startDate: startDate, endDate: endDate });
+  }.property('store', 'graphStartDate', 'graphEndDate'),
+
+  graphData: function() {
+    var model = this.get('analytics.firstObject');
+
+    if (model) {
+      this.set("loadingData", false);
+
+      return {
         x: "date",
         columns: [
-          graphData.date,
-          graphData.pageview
+          model.get('date'),
+          model.get('pageview')
         ],
         type: "bar"
-      });
-    });
-
-  }.on("init"),
-
-  actions: {
-    updateData: function() {
-      this.setDateAndData(this.get("startDate"), this.get("endDate"));
+      };
     }
-  }
+  }.property('analytics.firstObject')
 });

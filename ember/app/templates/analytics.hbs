@@ -1,10 +1,9 @@
-<form {{action "updateData" on='submit'}}>
-  From: {{date-picker date=graphStartDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=maxDate placeholder="Start Date"}}
-  To: {{date-picker date=graphEndDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=maxDate placeholder="End Date"}}
-  <button type="submit" class="btn">Save</button>
+<form>
+  From: {{date-picker date=graphStartDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=pickerMaxDate placeholder="Start Date"}}
+  To: {{date-picker date=graphEndDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=pickerMaxDate placeholder="End Date"}}
 </form>
 
-<div class="chart-container {{loadingData:loading:loaded}}">
+<div class="chart-container {{if loadingData 'loading' 'loaded'}}">
   {{c3-chart data=controllerData axis=axis bar=bar}}
 
   <div class="loading-spinner {{loadingData:show:hide}}">
@@ -13,3 +12,8 @@
   </div>
 </div>
 
+<h4>Busiest Day</h4>
+<p>{{maxPageview}} pageviews on {{maxDate}}</p>
+
+<h4>Slowest Day</h4>
+<p>{{minPageview}} pageviews on {{minDate}}</p>
