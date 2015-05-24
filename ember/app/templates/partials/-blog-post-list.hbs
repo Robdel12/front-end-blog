@@ -1,10 +1,11 @@
 {{head-title "Blog"}}
-{{#each post in model}}
+{{#each model as |post|}}
   <div class="posts">
     <div class="blog-left">
-      <span class="post-date">
-        <span class="inner-date">{{post.formattedDate}}</span>
-      </span>
+      <div class="post-date">
+        <span class="screen-reader">Date of Post {{post.formattedDate}}</span>
+        <span class="inner-date" aria-hidden="true">{{post.formattedDate}}</span>
+      </div>
     </div>
     <div class="blog-right">
       <h3 class="posts-title">{{link-to post.title 'posts.show' post.postSlug}}</h3>
