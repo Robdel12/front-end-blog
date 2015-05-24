@@ -10,13 +10,13 @@
       </ul>
     </nav>
   {{/if}}
-  <nav>
-    <ul>
+  <nav role="navigation">
+    <div class="inner-nav">
       <li>{{#link-to "posts"}}Blog{{/link-to}}</li>
       <li>{{#link-to "about"}}About{{/link-to}}</li>
       <li>{{#link-to "portfolio"}}Portfolio{{/link-to}}</li>
       <li>{{#link-to "contact"}}Contact{{/link-to}}</li>
-    </ul>
+    </div>
   </nav>
   {{#unless session.isAuthenticated}}
     <section class="hero">

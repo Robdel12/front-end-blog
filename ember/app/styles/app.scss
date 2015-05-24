@@ -102,10 +102,11 @@ nav{
   padding: 15px 10px;
   background-color: #068;
   text-align: right;
-  ul{
+  .inner-nav{
     max-width: 1140px;
     margin: 0 auto;
   }
+
   li{
     @include inline-block;
     margin-left: 3%;
