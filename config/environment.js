@@ -13,6 +13,8 @@ module.exports = function(environment) {
       }
     },
 
+    'apiUrl': "http://dry-fjord-5394.herokuapp.com/",
+
     'simple-auth': {
       authenticationRoute: "login",
       authorizer: 'simple-auth-authorizer:devise',
