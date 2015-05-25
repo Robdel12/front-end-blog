@@ -1,4 +1,4 @@
-Robert's Ember Blog
+Robert's Ember Blog [![Build Status](https://travis-ci.org/Robdel12/front-end-blog.svg?branch=master)](https://travis-ci.org/Robdel12/front-end-blog)
 ====
 
 Ember front end and rails back end.
