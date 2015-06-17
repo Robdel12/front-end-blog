@@ -15,7 +15,7 @@
 <div class="timelinewrap">
   <h2>Personal Timeline</h2>
   {{#if session.isAuthenticated}}
-    {{#each timeline in model}}
+    {{#each model as |timeline|}}
       <div class="timeline-card">
         <h4>{{timeline.title}}</h4>
         <p>{{{timeline.description}}}</p>
@@ -25,7 +25,7 @@
       </div>
     {{/each}}
   {{else}}
-    {{#each timeline in model}}
+    {{#each model as |timeline|}}
       {{#if timeline.isPublished}}
         <div class="timeline-card">
           <h4>{{timeline.title}}</h4>

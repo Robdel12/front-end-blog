@@ -46,7 +46,7 @@ var EditController = PostsBaseController.extend({
     destroy: function() {
       var prompt = window.confirm("Are you sure you want to delete this?");
       if(prompt) {
-        this.store.find("post", this.model.id).then(function (post) {
+        this.store.query("post", this.model.id).then(function (post) {
           post.destroyRecord();
         });
         return this.transitionTo("dashboard");

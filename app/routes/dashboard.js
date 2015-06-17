@@ -9,6 +9,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   setupController: function(controller) {
     this._super.apply(this, arguments);
 
-    controller.set('contacts', this.store.find('contact'));
+    controller.set('contacts', this.store.findAll('contact'));
   }
 });

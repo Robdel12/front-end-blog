@@ -23,7 +23,7 @@ export default Ember.Controller.extend({
 
     this.set("loadingData", true);
 
-    return this.store.find('analytic', { startDate: startDate, endDate: endDate }).then(function(data) {
+    return this.store.query('analytic', { startDate: startDate, endDate: endDate }).then(function(data) {
       var graphData = data.content[0]._data;
       self.set("loadingData", false);
 

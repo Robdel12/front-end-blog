@@ -47,7 +47,7 @@ export default TimelineBaseController.extend({
     destroy: function() {
       var prompt = window.confirm("Are you sure you want to delete this?");
       if(prompt) {
-        this.store.find("timeline", this.model.id).then(function (event) {
+        this.store.query("timeline", this.model.id).then(function (event) {
           event.destroyRecord();
         });
         return this.transitionTo("about.index");
