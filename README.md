@@ -12,7 +12,7 @@ anymore.
 
 # Road to 0.1.0
 - [ ] Upgrade to ember 2.0
-- [ ] Remove all deprecations
+  - [ ] Remove all deprecations
 - [ ] Improve creating a blog post flow
 - [ ] Fix analytics page
 - [ ] Merge PR #34
