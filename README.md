@@ -3,14 +3,23 @@ Robert's Ember Blog [![Build Status](https://travis-ci.org/Robdel12/front-end-bl
 
 Ember front end and rails back end.
 
-### TODO
-- [ ] Update readme to something better than this!
-- [x] proper github markdown rendering
-- [ ] Store posts in local storage on first page load
-- [ ] Redesign site. Your CSS is disgusting, son.
-- [ ] Make the portfolio section dynamic and tied into rails
+### Future TODOs:
+- [ ] Store posts in localSession on first page load
+- [ ] Make the portfolio section dynamic. Or remove it? Don't have much to show
+anymore.
 - [ ] Upload assets to s3 automatically.
-- [x] dashboard pulling in google analytics API with d3 graphs
+- [ ] Create separate layout for admin
+
+# Road to 0.1.0
+- [ ] Upgrade to ember 2.0
+- [ ] Remove all deprecations
+- [ ] Improve creating a blog post flow
+- [ ] Fix analytics page
+- [ ] Merge PR #34
+  - [ ] Write tests
+- [ ] Write a solid test suite
+- [ ] Fix admin bar with dropdown
+- [ ] Use ember best practices
 
 
 # Installation
