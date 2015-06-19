@@ -2,6 +2,15 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   isPreviewing: false,
+  moreOptions: false,
+
+  currentOptionName: Ember.computed('moreOptions', function() {
+    if(this.get('moreOptions') === false) {
+      return "More options";
+    } else {
+      return "Less options";
+    }
+  }),
 
   setUrl: Ember.observer('model.title', function() {
     if(!this.get("model.title")){ return false; }
@@ -23,6 +32,14 @@ export default Ember.Controller.extend({
       });
 
       return false;
+    },
+
+    toggleMoreOptions: function() {
+      if(this.get("moreOptions") === false) {
+        this.set("moreOptions", true);
+      } else {
+        this.set("moreOptions", false);
+      }
     },
 
     selectPublished: function(selection) {

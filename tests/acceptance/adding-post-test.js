@@ -30,6 +30,7 @@ test('Creating a new post', function(assert) {
 
   visit('/posts/new');
   fillIn('#post_title', post.title);
+  click('.more-options');
   fillIn('#excerpt', post.excerpt);
   fillIn('.post-text-area', post.body);
   fillIn('select', post.is_published);

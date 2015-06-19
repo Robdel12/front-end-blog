@@ -15,15 +15,17 @@
     <form {{action "save" on='submit'}}>
       <label for="post_title">Title:</label>
       <p>{{input value=model.title placeholder="Title" id="post_title"}}</p>
+      {{#if moreOptions}}
+        <label for="excerpt">Excerpt:</label>
+        <p>{{input value=model.excerpt placeholder="Little excerpt" id="excerpt"}}</p>
 
-      <label for="excerpt">Excerpt:</label>
-      <p>{{input value=model.excerpt placeholder="Little excerpt" id="excerpt"}}</p>
+        <label for="post_slug">Post Slug:</label>
+        <p>{{input value=model.postSlug placeholder="Post Slug" id="post_slug"}}</p>
 
-      <label for="post_slug">Post Slug:</label>
-      <p>{{input value=model.postSlug placeholder="Post Slug" id="post_slug"}}</p>
-
-      <label for="post_slug">Publish Date:</label>
-      <p>{{date-picker date=model.publishedDate format="MMMM Do YYYY" class="published-date" valueFormat='date' placeholder="Publish Date"}}</p>
+        <label for="post_slug">Publish Date:</label>
+        <p>{{date-picker date=model.publishedDate format="MMMM Do YYYY" class="published-date" valueFormat='date' placeholder="Publish Date"}}</p>
+      {{/if}}
+      <a href="#" class="more-options" {{action "toggleMoreOptions"}}>{{currentOptionName}}</a>
 
       <p>{{textarea value=model.body placeholder="Body" class="post-text-area"}}</p>
 
@@ -36,8 +38,10 @@
 
       <ul class="edit-posts-list">
         <li><a href="#" {{action "togglePreview"}}>Toggle Preview</a></li>
-        <li>{{#link-to "posts.show" model.postSlug}}Go to post{{/link-to}}</li>
-        <li><a {{action "destroy"}} href="#">Delete</a></li>
+        {{#if isEditing}}
+          <li>{{#link-to "posts.show" model.postSlug}}Go to post{{/link-to}}</li>
+          <li><a {{action "destroy"}} href="#">Delete</a></li>
+        {{/if}}
       </ul>
       <p><button type="submit" class="btn">Save post</button></p>
     </form>
