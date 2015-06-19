@@ -40,11 +40,12 @@
     "ember-cli-simple-auth-devise": "0.8.0-beta.2",
     "ember-cli-simple-auth-testing": "0.8.0-beta.2",
     "ember-cli-uglify": "1.2.0",
-    "ember-data": "1.13.0",
+    "ember-data": "1.13.2",
     "ember-dropkick": "0.1.2",
     "ember-export-application-global": "^1.0.2",
     "ember-try": "0.0.7",
     "ember-watson": "^0.5.2",
+    "emberx-select": "1.1.2",
     "markdown-code-highlighting": "0.0.3"
   }
 }

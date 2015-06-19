@@ -1,5 +1,15 @@
 {{head-title model.title}}
-<h2>Edit: <span class="post-edit-title">{{model.title}}</span></h2>
+
+{{#if isEditing}}
+  <h2>Edit: <span class="post-edit-title">{{model.title}}</span></h2>
+{{else}}
+  {{#if model.title}}
+    <h2>{{model.title}}</h2>
+  {{else}}
+    <h2>Title your post</h2>
+  {{/if}}
+{{/if}}
+
 <div class="new-post">
   <div class="new-post-inner">
     <form {{action "save" on='submit'}}>
@@ -18,11 +28,11 @@
       <p>{{textarea value=model.body placeholder="Body" class="post-text-area"}}</p>
 
       <label for="is_published">Published:</label>
-      {{view "dk-select"
-        content=published
-        selection=model.isPublished
-        id="is_published"
-      }}
+
+      {{#x-select value=model.isPublished action="selectPublished" id="is_published"}}
+        {{#x-option value=true}}Published{{/x-option}}
+        {{#x-option value=false}}Draft{{/x-option}}
+      {{/x-select}}
 
       <ul class="edit-posts-list">
         <li><a href="#" {{action "togglePreview"}}>Toggle Preview</a></li>
