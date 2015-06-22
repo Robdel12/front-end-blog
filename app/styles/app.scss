@@ -4,6 +4,8 @@ $primary_color: #057EA6;
 
 @import "reset"; //Febreze bros, a fresh start.
 @import "mixins";
+@import "font";
+@import "components/dropdown";
 
 h1, h2, h3, h4, h5{
   @include oswald;
@@ -445,11 +447,6 @@ nav{
     }
   }
 }
-.more-options{
-  font-size: 12px;
-  text-align: center;
-  display: inherit;
-}
 
 // =========================================================== Timeline ============================================================
 
@@ -652,13 +649,25 @@ nav{
 // =========================================================== Footer ============================================================
 footer{
   background-color: $primary_color;
-  .footer-content{
+  clear: both;
+  .footer-content{;
     max-width: 1140px;
     margin: 65px auto 0 auto;
     padding: 8px 10px;
     color: white;
+
     a{
       color: #ddd;
+    }
+  }
+  .social {
+    li {
+      display: inline-block;
+      list-style: none;
+    }
+
+    i {
+      color: white;
     }
   }
 }

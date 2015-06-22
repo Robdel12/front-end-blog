@@ -17,11 +17,7 @@ export default Ember.Controller.extend({
     },
 
     togglePreview: function() {
-      if(this.get("openPreview") === false) {
-        this.set("openPreview", true);
-      } else {
-        this.set("openPreview", false);
-      }
+      this.toggleProperty("openPreview");
     }
 
   }

@@ -25,19 +25,13 @@
         <label for="post_slug">Publish Date:</label>
         <p>{{date-picker date=model.publishedDate format="MMMM Do YYYY" class="published-date" valueFormat='date' placeholder="Publish Date"}}</p>
       {{/if}}
-      <a href="#" class="more-options" {{action "toggleMoreOptions"}}>{{currentOptionName}}</a>
 
       <p>{{textarea value=model.body placeholder="Body" class="post-text-area"}}</p>
 
-      <label for="is_published">Published:</label>
-
-      {{#x-select value=model.isPublished action="selectPublished" id="is_published"}}
-        {{#x-option value=true}}Published{{/x-option}}
-        {{#x-option value=false}}Draft{{/x-option}}
-      {{/x-select}}
-
       <ul class="edit-posts-list">
+        <li><a href="#" {{action "togglePublishState"}}>{{publishedState}}</a></li>
         <li><a href="#" {{action "togglePreview"}}>Toggle Preview</a></li>
+        <li><a href="#" class="more-options" {{action "toggleMoreOptions"}}>{{currentOptionName}}</a></li>
         {{#if isEditing}}
           <li>{{#link-to "posts.show" model.postSlug}}Go to post{{/link-to}}</li>
           <li><a {{action "destroy"}} href="#">Delete</a></li>

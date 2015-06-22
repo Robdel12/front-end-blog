@@ -33,11 +33,16 @@ test('Creating a new post', function(assert) {
   click('.more-options');
   fillIn('#excerpt', post.excerpt);
   fillIn('.post-text-area', post.body);
-  // fillIn('select', post.is_published);
+  fillIn('select', post.is_published);
   click('button:contains("Save post")');
 
   pretender.post('api/posts', function(req) {
     var postResponse = JSON.parse(req.requestBody).post;
+
+    assert.equal(postResponse.title, "My new post", "Post title");
+    assert.equal(postResponse.excerpt, "This is my excerpt", "Excerpt");
+    assert.equal(postResponse.body, "The post body.", "Post body");
+    assert.equal(postResponse.is_published, true, "Is published");
 
     return [201, { 'Content-Type': 'application/json' }, JSON.stringify({
       posts: post

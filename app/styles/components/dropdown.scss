@@ -1,0 +1,45 @@
+.admin-dropdown{
+  float: left;
+  line-height: 59px;
+  margin-left: 15px;
+
+  i{
+    font-size: 29px;
+    height: 29px;
+    width: 29px;
+  }
+
+  .dropdown-trigger {
+    color: white;
+  }
+}
+
+.dropdown {
+  position: relative;
+}
+.dropdown-menu {
+  position: absolute;
+  background: white;
+  border: 1px solid #ddd;
+  top: 36px;
+  left: -2px;
+  border-radius: 6px;
+
+  li {
+    a {
+      padding: 3px 20px;
+      margin: 5px 0;
+      display: block;
+      line-height: 20px;
+      white-space: nowrap;
+
+      &:hover,
+      &.active {
+        background-color: #ddd;
+      }
+    }
+    &.divider {
+      border-top: 1px solid #ddd;
+    }
+  }
+}

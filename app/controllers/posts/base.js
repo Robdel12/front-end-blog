@@ -12,6 +12,14 @@ export default Ember.Controller.extend({
     }
   }),
 
+  publishedState: Ember.computed('model.isPublished', function() {
+    if(this.get('model.isPublished') === false) {
+      return "Publish";
+    } else {
+      return "Unpublish";
+    }
+  }),
+
   setUrl: Ember.observer('model.title', function() {
     if(!this.get("model.title")){ return false; }
 
@@ -42,8 +50,12 @@ export default Ember.Controller.extend({
       }
     },
 
-    selectPublished: function(selection) {
-      this.set('model.isPublished', selection);
+    togglePublishState: function() {
+      if(this.get('model.isPublished') === false) {
+        return this.set('model.isPublished', true);
+      } else {
+        return this.set('model.isPublished', false);
+      }
     },
 
     togglePreview: function() {

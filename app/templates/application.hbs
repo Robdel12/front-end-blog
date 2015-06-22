@@ -1,14 +1,13 @@
 <div class="main-container">
   {{#if session.isAuthenticated}}
-    <nav class="admin-bar">
-      <ul>
-        <li>{{#link-to "dashboard"}}Dashboard{{/link-to}}</li>
-        <li>{{#link-to "posts.new"}}New post{{/link-to}}</li>
-        <li>{{#link-to "about.new"}}New about{{/link-to}}</li>
-        <li>{{#link-to "analytics"}}Analytics{{/link-to}}</li>
-        <li><a {{action 'invalidateSession'}} href="#">Logout</a></li>
-      </ul>
-    </nav>
+  {{#dropdown-menu triggerText="<i class='icon icon-menu'></i>" class="admin-dropdown"}}
+      <li>{{#link-to "dashboard"}}Dashboard{{/link-to}}</li>
+      <li>{{#link-to "posts.new"}}New post{{/link-to}}</li>
+      <li>{{#link-to "about.new"}}New about{{/link-to}}</li>
+      <li>{{#link-to "analytics"}}Analytics{{/link-to}}</li>
+      <li class="divider"></li>
+      <li><a {{action 'invalidateSession'}} href="#">Logout</a></li>
+    {{/dropdown-menu}}
   {{/if}}
   <nav role="navigation">
     <div class="inner-nav">
@@ -34,7 +33,23 @@
   </div>
   <footer>
     <div class="footer-content">
-      <p>&copy; {{format-copyrightdate}} - <a href="https://github.com/Robdel12">Check out my Github</a></p>
+      <div class="social">
+        <li>
+          <a href="https://github.com/Robdel12" target="_blank">
+            <i class="icon-github4"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://twitter.com/Robdel12" target="_blank">
+            <i class="icon-twitter"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://instagram.com/Robdel12" target="_blank">
+            <i class="icon-instagram"></i>
+          </a>
+        </li>
+      </div>
     </div>
   </footer>
 </div>
