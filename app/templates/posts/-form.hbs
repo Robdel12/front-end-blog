@@ -29,7 +29,7 @@
       <p>{{textarea value=model.body placeholder="Body" class="post-text-area"}}</p>
 
       <ul class="edit-posts-list">
-        <li><a href="#" {{action "togglePublishState"}}>{{publishedState}}</a></li>
+        <li><a href="#" {{action "togglePublishState"}} class="spec-publish-toggle">{{publishedState}}</a></li>
         <li><a href="#" {{action "togglePreview"}}>Toggle Preview</a></li>
         <li><a href="#" class="more-options" {{action "toggleMoreOptions"}}>{{currentOptionName}}</a></li>
         {{#if isEditing}}
@@ -37,7 +37,7 @@
           <li><a {{action "destroy"}} href="#">Delete</a></li>
         {{/if}}
       </ul>
-      <p><button type="submit" class="btn">Save post</button></p>
+      <p><button type="submit" class="btn spec-save-post">Save post</button></p>
     </form>
   </div>
   <div class="preview {{if isPreviewing 'show' 'hide'}}">

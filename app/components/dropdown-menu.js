@@ -12,6 +12,8 @@ export default Ember.Component.extend({
   },
 
   closeOnDocClick: function(event) {
+    if(!this.get('element')) {return;}
+
     if(!Ember.$.contains(this.get('element'), event.target)) {
       this.set('isOpen', false);
     }

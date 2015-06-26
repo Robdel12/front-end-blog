@@ -1,9 +1,12 @@
 {{head-title model.title}}
 <div class="post">
   <h1 class="post-title">{{model.title}}</h1>
-  <div class="title-sub-heading">Posted: {{model.fullFormattedDate}}</div>
-
-  {{format-markdown model.body}}
+  <div class="title-sub-heading">
+    Posted: <span class="spec-formatted-date">{{model.fullFormattedDate}}</span>
+  </div>
+  <div class="spec-post-body">
+    {{format-markdown model.body}}
+  </div>
 
   {{c-disqus}}
 </div>

@@ -12,7 +12,7 @@ export default Ember.Controller.extend({
     }
   }),
 
-  publishedState: Ember.computed('model.isPublished', function() {
+  publishedState: Ember.computed('model.isPublished', function() { //helper maybe?
     if(this.get('model.isPublished') === false) {
       return "Publish";
     } else {
@@ -32,10 +32,14 @@ export default Ember.Controller.extend({
     save: function() {
 
       this.get("model").save().then(() => {
-        return this.transitionTo('posts.edit', this.get('model'));
+        if(this.get('model.isPublished')) {
+          return this.transitionToRoute('posts.show', this.get('model'));
+        } else {
+          return this.transitionToRoute('posts.edit', this.get('model'));
+        }
       }).catch(function(reason) {
         if(reason.status === 500) {
-          this.get('flashes').danger("There was a server error.");
+          this.get('flashMessages').danger("There was a server error.");
         }
       });
 
@@ -43,27 +47,15 @@ export default Ember.Controller.extend({
     },
 
     toggleMoreOptions: function() {
-      if(this.get("moreOptions") === false) {
-        this.set("moreOptions", true);
-      } else {
-        this.set("moreOptions", false);
-      }
+      this.toggleProperty('moreOptions');
     },
 
     togglePublishState: function() {
-      if(this.get('model.isPublished') === false) {
-        return this.set('model.isPublished', true);
-      } else {
-        return this.set('model.isPublished', false);
-      }
+      this.toggleProperty('model.isPublished');
     },
 
     togglePreview: function() {
-      if(this.get("isPreviewing") === false) {
-        this.set("isPreviewing", true);
-      } else {
-        this.set("isPreviewing", false);
-      }
+      this.toggleProperty('isPreviewing');
     }
   }
 });
