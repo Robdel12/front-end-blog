@@ -15,6 +15,7 @@ describe('Acceptance: Add Post', function() {
 
   afterEach(function() {
     Ember.run(application, 'destroy');
+    pretender.shutdown();
   });
 
   describe('visiting posts/new unauthenticated', function() {
