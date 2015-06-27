@@ -15,12 +15,6 @@ module.exports = function(environment) {
 
     'apiUrl': "http://dry-fjord-5394.herokuapp.com/",
 
-    'simple-auth': {
-      authenticationRoute: "login",
-      authorizer: 'simple-auth-authorizer:devise',
-      store: 'simple-auth-session-store:local-storage'
-    },
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
@@ -35,6 +29,16 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.apiUrl = null;
   }
+
+  ENV['simple-auth'] = {
+    authenticationRoute: "login",
+    authorizer: 'simple-auth-authorizer:devise',
+    store: 'simple-auth-session-store:local-storage'
+  };
+
+  ENV['simple-auth-devise'] = {
+    serverTokenEndpoint: 'http://dry-fjord-5394.herokuapp.com/users/sign_in'
+  };
 
   if (environment === 'test') {
     ENV.simple_auth = {
