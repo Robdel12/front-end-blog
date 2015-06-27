@@ -6,6 +6,8 @@ var CDisqusComponent = Ember.Component.extend({
   timer: null,
 
   setupDisqus: function() {
+    if(!this.get("parentView.controller")) {return;}
+
     var controller = this.get("parentView.controller");
     var title = controller.get("title");
 
@@ -26,8 +28,6 @@ var CDisqusComponent = Ember.Component.extend({
   loadNewPostComments: function() {
     if(window.DISQUS) {
       this.reset();
-    } else {
-      this.set("timer", Ember.run.debounce(this, this.loadNewPostComments, 100));
     }
   }.on("willInsertElement"),
 

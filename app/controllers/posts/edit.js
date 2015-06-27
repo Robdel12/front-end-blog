@@ -2,31 +2,29 @@ import Ember from "ember";
 import PostsBaseController from './base';
 
 var EditController = PostsBaseController.extend({
+  isEditing: true,
 
   autoSave: function() {
-    this.timer = Ember.run.later(this, function() {
-      if(this.get("model").get("isDirty")) {
-        var notificationMessage = 'Your post "' + this.get("model.title") + '" was auto saved';
+    if(this.get('model').get('hasDirtyAttributes')) {
+      var notificationMessage = `Your post "${this.get("model.title")}" was auto saved`;
 
-        this.get("model").save().catch(function(reason){
-          if(reason.status === 500){
-            this.get('flashes').danger("Server error. Couldn't auto save.", 5000);
-          }
-        });
-
-        this.get("flashes").info(notificationMessage, 5000);
-
-        if(document.hidden){
-          this.desktopNotifcation(notificationMessage);
+      this.model.save().catch(function(reason){
+        if(reason.status === 500){
+          this.get('flashMessages').danger("Server error. Couldn't auto save.");
         }
-      }
-      this.autoSave();
-    }, 60000); //60000 = 1 min
-  }.on("init"),
+      });
 
-  stopAutoSave: function(){
-    Ember.run.cancel(this.timer);
+      this.get('flashMessages').info(notificationMessage);
+
+      if(document.hidden){
+        this.desktopNotifcation(notificationMessage);
+      }
+    }
   },
+
+  runAutoSave: Ember.observer('model.body', 'model.title', 'model.excerpt', 'model.publishedDate', function() {
+    Ember.run.debounce(this, this.autoSave, 10000);
+  }),
 
   desktopNotifcation: function(message) {
     if(window.Notification.permission === "granted") {
@@ -46,7 +44,7 @@ var EditController = PostsBaseController.extend({
     destroy: function() {
       var prompt = window.confirm("Are you sure you want to delete this?");
       if(prompt) {
-        this.store.query("post", this.model.id).then(function (post) {
+        this.store.find("post", this.model.id).then(function (post) {
           post.destroyRecord();
         });
         return this.transitionTo("dashboard");
@@ -56,10 +54,10 @@ var EditController = PostsBaseController.extend({
     save: function() {
       return this.model.save().then((function(_this) {
         return function() {
-          if(_this.model._data.is_published === true){
+          if(_this.model.get('isPublished') === true){
             return _this.transitionToRoute("posts.show", _this.model);
           } else {
-            Ember.get(_this, 'flashes').info("Your post was saved.");
+            Ember.get(_this, 'flashMessages').info("Your post was saved.");
           }
         };
       })(this));

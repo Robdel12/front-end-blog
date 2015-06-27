@@ -7,7 +7,7 @@ export default DS.Model.extend({
   publishedDate: DS.attr("date"),
   excerpt: DS.attr("string"),
   body: DS.attr("string"),
-  isPublished: DS.attr("boolean"),
+  isPublished: DS.attr("boolean", {defaultValue: false}),
   formattedDate: function() {
     return moment(this.get("publishedDate")).format("MMM Do");
   }.property("publishedDate"),

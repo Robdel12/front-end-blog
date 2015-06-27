@@ -8,11 +8,14 @@
       <p><a href="#" {{action "togglePreview"}}>Toggle Preview</a></p>
 
       <label for="is_published">Published:</label>
-      {{view "dk-select" content=published id="isPublished" value=model.isPublished}}
+      {{#x-select value=false action="selectionsChanged" id="is_published"}}
+        {{#x-option value=true}}Published{{/x-option}}
+        {{#x-option value=false}}Unpublished{{/x-option}}
+      {{/x-select}}
       <ul class="edit-posts-list">
         <li><a href="#" {{action "destroy"}}>Delete</a></li>
       </ul>
-      <button type="submit" class="btn">Save</button>
+      <button type="submit" class="btn spec-about-save">Save</button>
     </form>
   </div>
   <div class="timeline-preview preview {{openPreview:show:hide}}">

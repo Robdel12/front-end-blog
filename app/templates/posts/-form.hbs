@@ -1,35 +1,43 @@
 {{head-title model.title}}
-<h2>Edit: <span class="post-edit-title">{{model.title}}</span></h2>
+
+{{#if isEditing}}
+  <h2>Edit: <span class="post-edit-title">{{model.title}}</span></h2>
+{{else}}
+  {{#if model.title}}
+    <h2>{{model.title}}</h2>
+  {{else}}
+    <h2>Title your post</h2>
+  {{/if}}
+{{/if}}
+
 <div class="new-post">
   <div class="new-post-inner">
     <form {{action "save" on='submit'}}>
       <label for="post_title">Title:</label>
       <p>{{input value=model.title placeholder="Title" id="post_title"}}</p>
+      {{#if moreOptions}}
+        <label for="excerpt">Excerpt:</label>
+        <p>{{input value=model.excerpt placeholder="Little excerpt" id="excerpt"}}</p>
 
-      <label for="excerpt">Excerpt:</label>
-      <p>{{input value=model.excerpt placeholder="Little excerpt" id="excerpt"}}</p>
+        <label for="post_slug">Post Slug:</label>
+        <p>{{input value=model.postSlug placeholder="Post Slug" id="post_slug"}}</p>
 
-      <label for="post_slug">Post Slug:</label>
-      <p>{{input value=model.postSlug placeholder="Post Slug" id="post_slug"}}</p>
-
-      <label for="post_slug">Publish Date:</label>
-      <p>{{date-picker date=model.publishedDate format="MMMM Do YYYY" class="published-date" valueFormat='date' placeholder="Publish Date"}}</p>
+        <label for="post_slug">Publish Date:</label>
+        <p>{{date-picker date=model.publishedDate format="MMMM Do YYYY" class="published-date" valueFormat='date' placeholder="Publish Date"}}</p>
+      {{/if}}
 
       <p>{{textarea value=model.body placeholder="Body" class="post-text-area"}}</p>
 
-      <label for="is_published">Published:</label>
-      {{view "dk-select"
-        content=published
-        selection=model.isPublished
-        id="is_published"
-      }}
-
       <ul class="edit-posts-list">
+        <li><a href="#" {{action "togglePublishState"}} class="spec-publish-toggle">{{publishedState}}</a></li>
         <li><a href="#" {{action "togglePreview"}}>Toggle Preview</a></li>
-        <li>{{#link-to "posts.show" model.postSlug}}Go to post{{/link-to}}</li>
-        <li><a {{action "destroy"}} href="#">Delete</a></li>
+        <li><a href="#" class="more-options" {{action "toggleMoreOptions"}}>{{currentOptionName}}</a></li>
+        {{#if isEditing}}
+          <li>{{#link-to "posts.show" model.postSlug}}Go to post{{/link-to}}</li>
+          <li><a {{action "destroy"}} href="#">Delete</a></li>
+        {{/if}}
       </ul>
-      <p><button type="submit" class="btn">Save post</button></p>
+      <p><button type="submit" class="btn spec-save-post">Save post</button></p>
     </form>
   </div>
   <div class="preview {{if isPreviewing 'show' 'hide'}}">

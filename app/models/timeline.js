@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 export default DS.Model.extend({
   title: DS.attr("string"),
@@ -6,7 +7,7 @@ export default DS.Model.extend({
   eventDate: DS.attr("date"),
   createdAt: DS.attr("date"),
   isPublished: DS.attr("boolean"),
-  formattedDate: function() {
+  formattedDate: Ember.computed('eventDate', function() {
     return moment(this.get("eventDate")).format("MMMM Do, YYYY");
-  }.property("eventDate")
+  })
 });
