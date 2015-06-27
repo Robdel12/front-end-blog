@@ -14,25 +14,17 @@
 </div>
 <div class="timelinewrap">
   <h2>Personal Timeline</h2>
-  {{#if session.isAuthenticated}}
-    {{#each model as |timeline|}}
-      <div class="timeline-card">
-        <h4>{{timeline.title}}</h4>
-        <p>{{{timeline.description}}}</p>
-        <span class="date">{{timeline.formattedDate}}</span>
-        {{link-to "Edit" 'about.edit' timeline}}
-        Published: {{timeline.isPublished}}
-      </div>
-    {{/each}}
-  {{else}}
-    {{#each model as |timeline|}}
-      {{#if timeline.isPublished}}
-        <div class="timeline-card">
-          <h4>{{timeline.title}}</h4>
-          <p>{{{timeline.description}}}</p>
-          <span class="date">{{timeline.formattedDate}}</span>
+  {{#each model as |timeline|}}
+    <div class="timeline-card spec-timeline-container">
+      <h4>{{timeline.title}}</h4>
+      <p class="spec-timeline-description">{{{timeline.description}}}</p>
+      <span class="date">{{timeline.formattedDate}}</span>
+      {{#if session.isAuthenticated}}
+        <div class="spec-admin-links">
+          {{link-to "Edit" 'about.edit' timeline}}
+          <p>Published: {{timeline.isPublished}}</p>
         </div>
       {{/if}}
-    {{/each}}
-  {{/if}}
+    </div>
+  {{/each}}
 </div>
