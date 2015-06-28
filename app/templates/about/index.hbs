@@ -14,7 +14,7 @@
 </div>
 <div class="timelinewrap">
   <h2>Personal Timeline</h2>
-  {{#each model as |timeline|}}
+  {{#each sortedModel as |timeline|}}
     <div class="timeline-card spec-timeline-container">
       <h4>{{timeline.title}}</h4>
       <p class="spec-timeline-description">{{format-markdown timeline.description}}</p>

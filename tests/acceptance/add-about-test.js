@@ -49,7 +49,7 @@ describe('Acceptance: Adding About', function() {
   describe('visiting about index authenticated', function() {
     beforeEach(function() {
       pretender.get('api/timeline', function() {
-        return [201, { 'Content-Type': 'application/json' }, '{"timeline":[{"id":28,"title":"eweqweqweqwe","description":"qweqweqweqweqweqweqwe","created_at":"2015-06-27T04:19:51.692Z","event_date":"2015-06-27T04:19:13.506Z","is_published":true}]}'];
+        return [201, { 'Content-Type': 'application/json' }, '{"timeline":[{"id":32,"title":"New new","description":"qweqweqweqweqweqweqwe","created_at":"2011-06-23T04:11:26.471Z","event_date":"2011-06-23T05:00:00.000Z","is_published":true}, {"id":28,"title":"eweqweqweqwe","description":"qweqweqweqweqweqweqwe","created_at":"2011-05-27T04:19:51.692Z","event_date":"2011-05-27T04:19:13.506Z","is_published":true}]}'];
       });
 
       authenticateSession();
@@ -57,8 +57,12 @@ describe('Acceptance: Adding About', function() {
     });
 
     it('should have admin links', function() {
-      expect($('.spec-admin-links a').length).to.equal(1);
-      expect($('.spec-admin-links p').length).to.equal(1);
+      expect($('.spec-admin-links a').length).to.equal(2);
+      expect($('.spec-admin-links p').length).to.equal(2);
+    });
+
+    it('sorts the days', function() {
+      expect($('.spec-timeline-container .date').last().text()).to.equal('May 26th, 2011');
     });
   });
 
