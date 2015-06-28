@@ -4,30 +4,26 @@ import TimelineBaseController from "./base";
 export default TimelineBaseController.extend({
 
   autoSave: function() {
-    this.timer = Ember.run.later(this, function() {
-      if(this.get("model").get("isDirty")) {
-        var alert = Ember.$(".alert");
-        var notificationMessage = 'Your timeline "' + this.get("title") + '" was auto saved';
+    if(this.get('model').get('hasDirtyAttributes')) {
+      var notificationMessage = `Your about "${this.get("model.title")}" was auto saved`;
 
-        this.model.save().catch(function(reason){
-          if(reason.status === 500){
-            this.get('flashes').danger("Server error. Couldn't auto save.");
-          }
-        });
-
-        alert.text(notificationMessage).show();
-        if(document.hidden){
-          this.desktopNotifcation(notificationMessage);
+      this.model.save().catch(function(reason){
+        if(reason.status === 500){
+          this.get('flashMessages').danger("Server error. Couldn't auto save.");
         }
+      });
 
+      this.get('flashMessages').info(notificationMessage);
+
+      if(document.hidden){
+        this.desktopNotifcation(notificationMessage);
       }
-      this.autoSave();
-    }, 60000); //60000 = 1 min
-  }.on("init"),
-
-  stopAutoSave: function(){
-    Ember.run.cancel(this.timer);
+    }
   },
+
+  runAutoSave: Ember.observer('model.description', 'model.title', 'model.eventDate', function() {
+    Ember.run.debounce(this, this.autoSave, 10000);
+  }),
 
   desktopNotifcation: function(message) {
     if(window.Notification.permission === "granted") {

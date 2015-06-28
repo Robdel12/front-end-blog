@@ -83,7 +83,7 @@ describe('Acceptance: Adding About', function() {
         });
 
         fillIn('.title', 'About Title');
-        return fillIn('.timeline-text-area', 'About body');
+        return fillIn('.timeline-text-area', '## About body');
       });
 
       beforeEach(function() {
@@ -103,7 +103,9 @@ describe('Acceptance: Adding About', function() {
 
       it('has the correct body', function() {
         expect($('.spec-timeline-description').text().trim()).to.equal('About body');
+        expect($('.spec-timeline-description').html().trim()).to.equal('<h2 id="about-body">About body</h2>');
       });
+
       if (!window.navigator.userAgent.match(/Phantom/i)) {
         it('has the correct date', function() {
           expect($('.spec-timeline-container .date').text().trim()).to.equal('June 23rd, 2011');

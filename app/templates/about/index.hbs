@@ -17,7 +17,7 @@
   {{#each model as |timeline|}}
     <div class="timeline-card spec-timeline-container">
       <h4>{{timeline.title}}</h4>
-      <p class="spec-timeline-description">{{{timeline.description}}}</p>
+      <p class="spec-timeline-description">{{format-markdown timeline.description}}</p>
       <span class="date">{{timeline.formattedDate}}</span>
       {{#if session.isAuthenticated}}
         <div class="spec-admin-links">
