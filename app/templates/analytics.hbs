@@ -1,6 +1,6 @@
 <form {{action "updateData" on='submit'}}>
-  From: {{date-picker date=graphStartDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=maxDate placeholder="Start Date"}}
-  To: {{date-picker date=graphEndDate format="MMMM Do YYYY" valueFormat='YYYY-MM-DD' maxDate=maxDate placeholder="End Date"}}
+  From: {{pikaday-input value=graphStartDate class="date" format="MMMM Do YYYY"}}
+  To: {{pikaday-input value=graphEndDate class="date" format="MMMM Do YYYY"}}
   <button type="submit" class="btn">Save</button>
 </form>
 

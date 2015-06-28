@@ -1,5 +1,6 @@
 /* jshint expr:true */
 import { describe, it, beforeEach, afterEach } from 'mocha';
+import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 import { expect } from 'chai';
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
@@ -82,8 +83,13 @@ describe('Acceptance: Adding About', function() {
         });
 
         fillIn('.title', 'About Title');
-        fillIn('.timeline-text-area', 'About body');
+        return fillIn('.timeline-text-area', 'About body');
+      });
+
+      beforeEach(function() {
+        let datePicker = openDatepicker(Ember.$('.spec-about-datepicker'));
         select('#is_published', "Published");
+        datePicker.selectDate(new Date(2011, 5, 23));
         return click('.spec-about-save');
       });
 
@@ -98,10 +104,11 @@ describe('Acceptance: Adding About', function() {
       it('has the correct body', function() {
         expect($('.spec-timeline-description').text().trim()).to.equal('About body');
       });
-
-      it.skip('has the correct date', function() {
-        expect(currentPath()).to.equal('about.index');
-      });
+      if (!window.navigator.userAgent.match(/Phantom/i)) {
+        it('has the correct date', function() {
+          expect($('.spec-timeline-container .date').text().trim()).to.equal('June 23rd, 2011');
+        });
+      }
     });
   });
 });

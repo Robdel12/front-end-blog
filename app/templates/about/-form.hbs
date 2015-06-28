@@ -3,7 +3,7 @@
   <div class="new-about-inner">
     <form {{action "save" on='submit'}}>
       <p>{{input value=model.title placeholder="Title" class="title"}}</p>
-      <p>{{date-picker date=model.eventDate format="MMMM Do YYYY" valueFormat='date' class="date"}}</p>
+      <p>{{pikaday-input value=model.eventDate class="spec-about-datepicker date" format="MMMM Do YYYY"}}</p>
       <p>{{textarea value=model.description placeholder="Body" class="timeline-text-area description"}}</p>
       <p><a href="#" {{action "togglePreview"}}>Toggle Preview</a></p>
 

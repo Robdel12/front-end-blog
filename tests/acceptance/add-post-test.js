@@ -1,5 +1,6 @@
 /* jshint expr:true */
 import { describe, it, beforeEach, afterEach } from 'mocha';
+import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 import { expect } from 'chai';
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
@@ -49,8 +50,13 @@ describe('Acceptance: Add Post', function() {
       authenticateSession();
       visit('/posts/new');
       fillIn('#post_title', 'Post Title');
-      click('.more-options');
+      return click('.more-options');
+    });
+    beforeEach(function() {
+      let datePicker;
       fillIn('#excerpt', 'Post excerpt');
+      datePicker = openDatepicker(Ember.$('.spec-publish-date'));
+      datePicker.selectDate(new Date(2015, 2, 3));
       fillIn('.post-text-area', 'This is the post body.. Deal wit it');
       click('.spec-publish-toggle');
       return click('.spec-save-post');
@@ -64,9 +70,11 @@ describe('Acceptance: Add Post', function() {
       expect($('.post-title').text().trim()).to.equal('Post Title');
     });
 
-    it.skip('has the correct post date', function() {
-      expect($('.spec-formatted-date').text().trim()).to.equal('June 1st 2015, 12:00 am');
-    });
+    if (!window.navigator.userAgent.match(/Phantom/i)) {
+      it('has the correct post date', function() {
+        expect($('.spec-formatted-date').text().trim()).to.equal('March 3rd 2015, 12:00 am');
+      });
+    }
 
     it('has the correct body text', function() {
       expect($('.spec-post-body').text().trim()).to.equal('This is the post body.. Deal wit it');

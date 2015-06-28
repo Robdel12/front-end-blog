@@ -24,7 +24,8 @@
     "currentPath",
     "currentRouteName",
     "authenticateSession",
-    "invalidateSession"
+    "invalidateSession",
+    "openDatepicker"
   ],
   "node": false,
   "browser": false,
