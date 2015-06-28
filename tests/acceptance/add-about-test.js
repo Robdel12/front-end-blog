@@ -49,7 +49,7 @@ describe('Acceptance: Adding About', function() {
   describe('visiting about index authenticated', function() {
     beforeEach(function() {
       pretender.get('api/timeline', function() {
-        return [201, { 'Content-Type': 'application/json' }, '{"timeline":[{"id":28,"title":"eweqweqweqwe","description":"qweqweqweqweqweqweqwe","created_at":"2015-06-27T04:19:51.692Z","event_date":"2015-06-27T04:19:13.506Z","is_published":true}]}'];
+        return [201, { 'Content-Type': 'application/json' }, '{"timeline":[{"id":32,"title":"New new","description":"qweqweqweqweqweqweqwe","created_at":"2011-06-23T04:11:26.471Z","event_date":"2011-06-23T05:00:00.000Z","is_published":true}, {"id":28,"title":"eweqweqweqwe","description":"qweqweqweqweqweqweqwe","created_at":"2011-05-26T04:19:51.692Z","event_date":"2011-05-27T05:00:00.000Z","is_published":true}]}'];
       });
 
       authenticateSession();
@@ -57,8 +57,12 @@ describe('Acceptance: Adding About', function() {
     });
 
     it('should have admin links', function() {
-      expect($('.spec-admin-links a').length).to.equal(1);
-      expect($('.spec-admin-links p').length).to.equal(1);
+      expect($('.spec-admin-links a').length).to.equal(2);
+      expect($('.spec-admin-links p').length).to.equal(2);
+    });
+
+    it('sorts the days', function() {
+      expect($('.spec-timeline-container .date').last().text()).to.equal('May 27th, 2011');
     });
   });
 
@@ -83,7 +87,7 @@ describe('Acceptance: Adding About', function() {
         });
 
         fillIn('.title', 'About Title');
-        return fillIn('.timeline-text-area', 'About body');
+        return fillIn('.timeline-text-area', '## About body');
       });
 
       beforeEach(function() {
@@ -103,7 +107,9 @@ describe('Acceptance: Adding About', function() {
 
       it('has the correct body', function() {
         expect($('.spec-timeline-description').text().trim()).to.equal('About body');
+        expect($('.spec-timeline-description').html().trim()).to.equal('<h2 id="about-body">About body</h2>');
       });
+
       if (!window.navigator.userAgent.match(/Phantom/i)) {
         it('has the correct date', function() {
           expect($('.spec-timeline-container .date').text().trim()).to.equal('June 23rd, 2011');

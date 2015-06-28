@@ -1,6 +1,11 @@
 import Ember from 'ember';
 
-export default Ember.ArrayController.extend({
-  sortProperties: ['eventDate'],
-  sortAscending: false
+export default Ember.Controller.extend({
+  sortedModel: Ember.computed('model', function() {
+     return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+      sortProperties: ['eventDate'],
+      sortAscending: false,
+      content: this.get('model')
+    });
+  })
 });
