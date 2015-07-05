@@ -36,9 +36,6 @@ module.exports = function(environment) {
     store: 'simple-auth-session-store:local-storage'
   };
 
-  ENV['simple-auth-devise'] = {
-    serverTokenEndpoint: 'http://dry-fjord-5394.herokuapp.com/users/sign_in'
-  };
 
   if (environment === 'test') {
     ENV.simple_auth = {
@@ -60,6 +57,10 @@ module.exports = function(environment) {
   if (environment === 'production') {
     ENV.googleAnalytics = {
       webPropertyId: 'UA-40802317-1'
+    };
+
+    ENV['simple-auth-devise'] = {
+      serverTokenEndpoint: 'http://dry-fjord-5394.herokuapp.com/users/sign_in'
     };
   }
 

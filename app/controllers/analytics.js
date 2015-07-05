@@ -3,8 +3,12 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   controllerData: null,
   loadingData: false,
-  graphStartDate: moment().subtract(1, 'weeks').startOf('isoWeek').format("YYYY-MM-DD"),
-  graphEndDate: moment().format("YYYY-MM-DD"),
+  graphStartDate: Ember.computed(function() {
+    return moment().subtract(1, 'weeks').startOf('isoWeek').format("YYYY-MM-DD");
+  }),
+  graphEndDate: Ember.computed(function() {
+    return moment().format("YYYY-MM-DD");
+  }),
   maxDate: moment().toDate(),
 
   axis: {
@@ -16,18 +20,17 @@ export default Ember.Controller.extend({
     }
   },
 
-  setDateAndData: function(startDate, endDate) {
-    startDate = this.get("graphStartDate") || startDate;
-    endDate = this.get("graphEndDate") || endDate;
-    var self = this;
+  setDateAndData: Ember.on('init', function(startDate, endDate) {
+    let newStartDate = this.get("graphStartDate") || startDate;
+    let newEndDate = this.get("graphEndDate") || endDate;
 
     this.set("loadingData", true);
 
-    return this.store.query('analytic', { startDate: startDate, endDate: endDate }).then(function(data) {
-      var graphData = data.content[0]._data;
-      self.set("loadingData", false);
+    return this.store.query('analytic', { "startDate": newStartDate, "endDate": newEndDate }).then((data) => {
+      let graphData = data.content[0]._data;
+      this.set("loadingData", false);
 
-      return self.set("controllerData", {
+      return this.set("controllerData", {
         x: "date",
         columns: [
           graphData.date,
@@ -35,13 +38,16 @@ export default Ember.Controller.extend({
         ],
         type: "bar"
       });
+    }).catch(() => {
+      this.set("loadingData", false);
+      this.get('flashMessages').danger('Uh oh! There was an error!');
     });
 
-  }.on("init"),
+  }),
 
   actions: {
     updateData: function() {
-      this.setDateAndData(this.get("startDate"), this.get("endDate"));
+      this.setDateAndData(this.get('graphStartDate'), this.get('graphEndDate'));
     }
   }
 });
