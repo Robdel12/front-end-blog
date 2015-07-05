@@ -18,7 +18,7 @@ describe('Acceptance: Make Contact Request', function() {
     pretender.shutdown();
   });
 
-  describe('filling out the contact form', function() {
+  describe('filling out the contact form with valid data', function() {
     beforeEach(function() {
       pretender.post('api/contacts', function() {
         return [201, { 'Content-Type': 'application/json' }, "{}"];
@@ -51,4 +51,26 @@ describe('Acceptance: Make Contact Request', function() {
       });
     });
   });
+
+
+  if (!window.navigator.userAgent.match(/Phantom/i)) {
+    describe('filling out the contact form with missing fields', function() {
+      beforeEach(function() {
+        pretender.post('api/contacts', function() {
+          return [201, { 'Content-Type': 'application/json' }, "{}"];
+        });
+
+        visit('/contact');
+        fillIn('#name', 'Namerson');
+        fillIn('#reason_for_contact', 'This is the reason for contact');
+        fillIn('.post-text-area', 'Here are my comments. Hire you.');
+        click('.btn:contains("Send me an email!")');
+        return wait();
+      });
+
+      it('shouldnt submit the form', function() {
+        expect($('.thank-you').hasClass('modal-closed')).to.be.true;
+      });
+    });
+  }
 });

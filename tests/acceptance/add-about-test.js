@@ -110,11 +110,9 @@ describe('Acceptance: Adding About', function() {
         expect($('.spec-timeline-description').html().trim()).to.equal('<h2 id="about-body">About body</h2>');
       });
 
-      if (!window.navigator.userAgent.match(/Phantom/i)) {
-        it('has the correct date', function() {
-          expect($('.spec-timeline-container .date').text().trim()).to.equal('June 23rd, 2011');
-        });
-      }
+      it('has the correct date', function() {
+        expect($('.spec-timeline-container .date').text().trim()).to.equal('June 23rd, 2011');
+      });
     });
   });
 });

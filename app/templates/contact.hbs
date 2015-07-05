@@ -3,18 +3,18 @@
   <input type="hidden" name="utf8" value="✓">
 
   <label for="name">Name:*</label>
-  {{input type="text" value=contact.name placeholder="Name" id="name" required="true"}}
+  {{input type="text" value=model.name placeholder="Name" id="name" required="true"}}
 
   <label for="email">Email:*</label>
-  {{input type="email" value=contact.email placeholder="Email address" id="email" required="true"}}
+  {{input type="email" value=model.email placeholder="Email address" id="email" required="true"}}
 
   <label for="reason_for_contact">Reason for contact:*</label>
-  {{input type="text" value=contact.reason placeholder="Reason for contact" id="reason_for_contact" required="true"}}
+  {{input type="text" value=model.reason placeholder="Reason for contact" id="reason_for_contact" required="true"}}
 
   <label for="comments">Comments:</label>
-  <p>{{textarea value=contact.comments class="post-text-area"}}</p>
+  <p>{{textarea value=model.comments class="post-text-area"}}</p>
 
-  {{input type="text" value=contact.honeypot placeholder="Anything else?" class="honey-pot"}}
+  {{input type="text" value=model.honeypot placeholder="Anything else?" class="honey-pot"}}
 
   <p><button type="submit" class="btn">Send me an email!</button></p>
 </form>
