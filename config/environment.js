@@ -13,7 +13,7 @@ module.exports = function(environment) {
       }
     },
 
-    'apiUrl': "http://dry-fjord-5394.herokuapp.com/",
+    'apiUrl': "http://dry-fjord-5394.herokuapp.com",
 
     APP: {
       // Here you can pass flags/options to your application instance
