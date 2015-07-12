@@ -1,0 +1,40 @@
+<div class="pagination-centered">
+  <ul class="pagination">
+    {{#if canStepBackward}}
+      <li class="arrow prev enabled-arrow">
+        <span role="link" tabindex="0" {{action "incrementPage" -1}} aria-label="Go back one">&laquo;</span>
+      </li>
+    {{else}}
+      <li class="arrow prev disabled">
+        <span role="link" tabindex="0" {{action "incrementPage" -1}} aria-label="Disabled. Go back one">&laquo;</span>
+      </li>
+    {{/if}}
+
+    {{#each pageItems as |item|}}
+      {{#if item.dots}}
+        <li class="dots disabled">
+          <span>...</span>
+        </li>
+      {{/if}}
+      {{#if item.current}}
+        <li class="active page-number">
+          <span role="link" tabindex="0" aria-label="You're on page {{item.page}}">{{item.page}}</span>
+        </li>
+      {{else}}
+        <li class="page-number">
+          <span role="link" tabindex="0" {{action "pageClicked" item.page}} aria-label="Go to page {{item.page}}">{{item.page}}</span>
+        </li>
+      {{/if}}
+    {{/each}}
+
+    {{#if canStepForward}}
+      <li class="arrow next enabled-arrow">
+        <span tabindex="0" role="link" {{action "incrementPage" 1}} aria-label="Go forward one">&raquo;</span>
+      </li>
+    {{else}}
+      <li class="arrow next disabled">
+        <span tabindex="0" role="link" {{action "incrementPage" 1}} aria-label="Disabled. Go forward one">&raquo;</span>
+      </li>
+    {{/if}}
+  </ul>
+</div>

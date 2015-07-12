@@ -1,6 +1,8 @@
 <h1>Login</h1>
-<form {{action "authenticate" on='submit'}}>
-  <p>{{input id='identification' placeholder='Email' value=identification}}</p>
+<form accept-charset="UTF-8" tabindex="0"  {{action "authenticate" on='submit'}}>
+  <p><label for="identification">Email Address</label></p>
+  <p>{{input id='identification' placeholder='Email' value=identification autofocus="autofocus"}}</p>
+  <p><label for="password">Password</label></p>
   <p>{{input id='password' placeholder='Password' type='password' value=password}}</p>
   <button type="submit" class="btn">Login</button>
 </form>

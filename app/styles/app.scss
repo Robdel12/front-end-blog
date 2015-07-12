@@ -320,14 +320,14 @@ nav{
   li{
     display: inline-block;
     cursor: pointer;
-    a{
+    span{
       padding: 3px 6px;
       background-color: $primary_color;
       font-size: 13px;
       border-radius: 4px;
       color: white;
     }
-    &.active a{
+    &.active span{
       background-color: white;
       border: 1px solid $primary_color;
       color: $primary_color;

@@ -1,8 +1,7 @@
 import Ember from "ember";
 
 var CDisqusComponent = Ember.Component.extend({
-  elementId: "disqus_thread",
-  classNames: ["comments"],
+  classNames: ["comments", 'disqus-thread'],
   timer: null,
 
   setupDisqus: function() {

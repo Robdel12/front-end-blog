@@ -1,4 +1,4 @@
-<a href="#" class="dropdown-trigger" {{action "openDropdown"}}>{{{triggerText}}}</a>
+<span role="link" tabindex="0" class="dropdown-trigger" {{action "openDropdown"}}>{{{triggerText}}}</span>
 <ul class="dropdown-menu {{if isOpen "show" "hide"}}">
   {{yield}}
 </ul>

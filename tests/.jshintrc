@@ -13,6 +13,7 @@
     "fillIn",
     "click",
     "select",
+    "a11yTest",
     "keyEvent",
     "triggerEvent",
     "find",

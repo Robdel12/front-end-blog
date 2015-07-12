@@ -1,12 +1,14 @@
 <div class="main-container">
   {{#if session.isAuthenticated}}
-  {{#dropdown-menu triggerText="<i class='icon icon-menu'></i>" class="admin-dropdown"}}
+    {{#dropdown-menu
+       triggerText="<i class='icon icon-menu' aria-hidden='true'></i> <span class='screen-reader'>Admin Options</span>"
+       class="admin-dropdown"}}
       <li>{{#link-to "dashboard"}}Dashboard{{/link-to}}</li>
       <li>{{#link-to "posts.new"}}New post{{/link-to}}</li>
       <li>{{#link-to "about.new"}}New about{{/link-to}}</li>
       <li>{{#link-to "analytics"}}Analytics{{/link-to}}</li>
       <li class="divider"></li>
-      <li><a {{action 'invalidateSession'}} href="#">Logout</a></li>
+      <li><span {{action 'invalidateSession'}} role="link" tabindex="0">Logout</span></li>
     {{/dropdown-menu}}
   {{/if}}
   <nav role="navigation">
@@ -36,17 +38,20 @@
       <div class="social">
         <li>
           <a href="https://github.com/Robdel12" target="_blank">
-            <i class="icon-github4"></i>
+            <span class="screen-reader">Visit my github!</span>
+            <i class="icon-github4" aria-hidden="true"></i>
           </a>
         </li>
         <li>
           <a href="https://twitter.com/Robdel12" target="_blank">
-            <i class="icon-twitter"></i>
+            <span class="screen-reader">Visit my twitter!</span>
+            <i class="icon-twitter" aria-hidden="true"></i>
           </a>
         </li>
         <li>
           <a href="https://instagram.com/Robdel12" target="_blank">
-            <i class="icon-instagram"></i>
+            <span class="screen-reader">Visit my instagram!</span>
+            <i class="icon-instagram" aria-hidden="true"></i>
           </a>
         </li>
       </div>
