@@ -672,5 +672,19 @@ footer{
   }
 }
 
+// Loading
+.loading-state-container {
+  height: 75vh;
+  .loading-spinner{
+    width: 140px;
+    height: 140px;
+    position: absolute;
+    margin: auto;
+    top: 28%;
+    left: 0;
+    right: 0;
+  }
+}
+
 // =========================================================== Media Queries ============================================================
 @import "media_queries";
