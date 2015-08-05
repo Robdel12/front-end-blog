@@ -36,6 +36,11 @@ module.exports = function(environment) {
     store: 'simple-auth-session-store:local-storage'
   };
 
+  ENV['simple-auth-devise'] = {
+    tokenAttributeName: 'token',
+    identificationAttributeName: 'email'
+  };
+
 
   if (environment === 'test') {
     ENV.simple_auth = {
