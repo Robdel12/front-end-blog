@@ -5,7 +5,7 @@ import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
 
-describe.only('Acceptance: A11y', function() {
+describe.skip('Acceptance: A11y', function() {
   var application, pretender;
 
   beforeEach(function() {
@@ -40,7 +40,6 @@ describe.only('Acceptance: A11y', function() {
     });
 
     it("is accessible", function() {
-      debugger;
       a11yTest();
     });
   });
