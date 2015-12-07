@@ -7,6 +7,8 @@ inflector.uncountable('timeline'); //only makes call to /timeline
 
 export default ActiveModelAdapter.extend({
   namespace: "api",
-  host: config.apiUrl
+  host: config.apiUrl,
+  shouldReloadAll() {
+    return true;
+  }
 });
-

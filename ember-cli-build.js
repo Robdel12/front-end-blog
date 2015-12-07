@@ -13,7 +13,6 @@ module.exports = function(defaults) {
   app.import('bower_components/d3/d3.min.js');
   app.import('bower_components/c3/c3.css');
   app.import('bower_components/c3/c3.min.js');
-  app.import('bower_components/ember-c3/build/lib.js');
 
   // Use `app.import` to add additional libraries to the generated
   // output files.
