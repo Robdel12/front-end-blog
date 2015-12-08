@@ -1,5 +1,5 @@
 import Ember from "ember";
 
-export default Ember.Handlebars.makeBoundHelper(function() {
+export default Ember.Helper.helper(function() {
   return new Date().getFullYear();
 });
