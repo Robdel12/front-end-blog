@@ -9,7 +9,7 @@ inflector.uncountable('timeline'); //only makes call to /timeline
 export default ActiveModelAdapter.extend(DataAdapterMixin, {
   namespace: "api",
   host: config.apiUrl,
-  authorizer: 'authorizer:application',
+  authorizer: 'authorizer:devise',
   shouldReloadAll() {
     return true;
   }

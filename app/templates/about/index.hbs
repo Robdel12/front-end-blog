@@ -19,6 +19,7 @@
       <h4>{{timeline.title}}</h4>
       <p class="spec-timeline-description">{{format-markdown timeline.description}}</p>
       <span class="date">{{timeline.formattedDate}}</span>
+      {{debugger}}
       {{#if session.isAuthenticated}}
         <div class="spec-admin-links">
           {{link-to "Edit" 'about.edit' timeline}}

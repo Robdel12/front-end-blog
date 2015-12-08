@@ -5,6 +5,7 @@ import { expect } from 'chai';
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
+import { authenticateSession, invalidateSession } from 'front-end/tests/helpers/ember-simple-auth';
 
 describe('Acceptance: Adding About', function() {
   var application, pretender;
@@ -21,7 +22,7 @@ describe('Acceptance: Adding About', function() {
 
   describe('visiting about new unauthenticated', function() {
     beforeEach(function() {
-      invalidateSession();
+      invalidateSession(application);
       return visit('/about/new');
     });
 
@@ -36,7 +37,7 @@ describe('Acceptance: Adding About', function() {
         return [201, { 'Content-Type': 'application/json' }, '{"timeline":[{"id":28,"title":"eweqweqweqwe","description":"qweqweqweqweqweqweqwe","created_at":"2015-06-27T04:19:51.692Z","event_date":"2015-06-27T04:19:13.506Z","is_published":true}]}'];
       });
 
-      invalidateSession();
+      invalidateSession(application);
       return visit('/about');
     });
 
@@ -52,7 +53,7 @@ describe('Acceptance: Adding About', function() {
         return [201, { 'Content-Type': 'application/json' }, '{"timeline":[{"id":32,"title":"New new","description":"qweqweqweqweqweqweqwe","created_at":"2011-06-23T04:11:26.471Z","event_date":"2011-06-23T05:00:00.000Z","is_published":true}, {"id":28,"title":"eweqweqweqwe","description":"qweqweqweqweqweqweqwe","created_at":"2011-05-26T04:19:51.692Z","event_date":"2011-05-27T05:00:00.000Z","is_published":true}]}'];
       });
 
-      authenticateSession();
+      authenticateSession(application);
       return visit('/about');
     });
 
@@ -68,7 +69,7 @@ describe('Acceptance: Adding About', function() {
 
   describe('visiting about/new authenticated', function() {
     beforeEach(function() {
-      authenticateSession();
+      authenticateSession(application);
       return visit('/about/new');
     });
 
