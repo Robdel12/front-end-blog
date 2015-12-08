@@ -12,13 +12,13 @@ Router.map(function() {
   this.route("dashboard");
   this.route("contact");
 
-  this.resource("posts", function() {
+  this.route("posts", function() {
     this.route("show", { path: "/:postSlug" });
     this.route("edit", { path: "/:post_id/edit" });
     this.route("new");
   });
 
-  this.resource("about", function(){
+  this.route("about", function(){
     this.route("new");
     this.route("edit", { path: "/:timeline_id/edit" });
   });
