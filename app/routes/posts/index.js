@@ -1,10 +1,10 @@
 import Ember from "ember";
-import RouteMixin from 'ember-cli-pagination/remote/route-mixin';
+import PagedRemoteArray from 'ember-cli-pagination/remote/paged-remote-array';
 
-export default Ember.Route.extend(RouteMixin, {
+export default Ember.Route.extend({
 
   model: function(params) {
-    return this.findPaged("post", params);
+    return PagedRemoteArray.create({modelName: 'post', store: this.store, page: params.page || 1, perPage: params.per_page || 10});
   }
 
 });

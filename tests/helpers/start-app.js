@@ -1,9 +1,7 @@
 import Ember from 'ember';
 import registerA11yHelpers from './a11y/register-a11y-helpers';
 import Application from '../../app';
-import Router from '../../router';
 import config from '../../config/environment';
-import initializeTestHelpers from 'simple-auth-testing/test-helpers';
 
 export default function startApp(attrs) {
   var application;
@@ -12,7 +10,6 @@ export default function startApp(attrs) {
   attributes = Ember.merge(attributes, attrs); // use defaults, but you can override;
 
   Ember.run(function() {
-    initializeTestHelpers();
     application = Application.create(attributes);
     application.setupForTesting();
     registerA11yHelpers();

@@ -5,6 +5,7 @@ import { expect } from 'chai';
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
 import Pretender from 'pretender';
+import { authenticateSession, invalidateSession } from 'front-end/tests/helpers/ember-simple-auth';
 
 describe('Acceptance: Add Post', function() {
   var application, pretender;
@@ -21,7 +22,7 @@ describe('Acceptance: Add Post', function() {
 
   describe('visiting posts/new unauthenticated', function() {
     beforeEach(function() {
-      invalidateSession();
+      invalidateSession(application);
       return visit('/posts/new');
     });
 
@@ -32,7 +33,7 @@ describe('Acceptance: Add Post', function() {
 
   describe('visiting posts/new authenticated', function() {
     beforeEach(function() {
-      authenticateSession();
+      authenticateSession(application);
       return visit('/posts/new');
     });
 
@@ -47,7 +48,7 @@ describe('Acceptance: Add Post', function() {
         return [201, { 'Content-Type': 'application/json' }, "{}"];
       });
 
-      authenticateSession();
+      authenticateSession(application);
       visit('/posts/new');
       fillIn('#post_title', 'Post Title');
       return click('.more-options');
