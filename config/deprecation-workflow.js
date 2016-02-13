@@ -8,6 +8,9 @@ window.deprecationWorkflow.config = {
     { handler: "throw", matchMessage: "Using store.find(type) has been deprecated. Use store.findAll(type) to retrieve all records for a given type." },
     { handler: "throw", matchMessage: "The default behavior of shouldReloadAll will change in Ember Data 2.0 to always return false when there is at least one \"timeline\" record in the store. If you would like to preserve the current behavior please override shouldReloadAll in your adapter:application and return true." },
     { handler: "throw", matchMessage: "Using Ember.Handlebars.makeBoundHelper is deprecated. Please refactor to using `Ember.Helper.helper`." },
-    { handler: "throw", matchMessage: ".createWithMixins is deprecated, please use .create or .extend accordingly" }
+    { handler: "throw", matchMessage: ".createWithMixins is deprecated, please use .create or .extend accordingly" },
+    { handler: "throw", matchMessage: "The `initialize` method for Application initializer 'active-model-adapter' should take only one argument - `App`, an instance of an `Application`." },
+    { handler: "throw", matchMessage: "The `initialize` method for Application initializer 'add-announcer-to-router' should take only one argument - `App`, an instance of an `Application`." },
+    { handler: "throw", matchMessage: "Using `ApplicationInstance.registry.register` is deprecated. Please use `ApplicationInstance.register` instead." }
   ]
 };

@@ -20,7 +20,7 @@
   "license": "MIT",
   "devDependencies": {
     "a11y-announcer": "1.0.0",
-    "active-model-adapter": "1.13.6",
+    "active-model-adapter": "2.0.3",
     "broccoli-asset-rev": "^2.2.0",
     "broccoli-sass": "^0.6.6",
     "ember-a11y-testing": "0.0.4",
