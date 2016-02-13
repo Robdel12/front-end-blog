@@ -1,4 +1,7 @@
 <h1>Login</h1>
+{{#if errorMessage}}
+  <p>{{errorMessage}}</p>
+{{/if}}
 <form accept-charset="UTF-8" tabindex="0"  {{action "authenticate" on='submit'}}>
   <p><label for="identification">Email Address</label></p>
   <p>{{input id='identification' placeholder='Email' value=identification autofocus="autofocus"}}</p>
