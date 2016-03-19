@@ -19,10 +19,10 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "a11y-announcer": "1.0.1",
     "active-model-adapter": "2.0.3",
     "broccoli-asset-rev": "^2.2.0",
     "broccoli-sass": "^0.6.6",
+    "ember-a11y": "0.1.6",
     "ember-a11y-testing": "0.0.4",
     "ember-c3": "0.2.3",
     "ember-cli": "1.13.12",

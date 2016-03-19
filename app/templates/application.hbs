@@ -1,4 +1,3 @@
-{{route-announcer}}
 <div class="main-container">
   {{#if session.isAuthenticated}}
     {{#dropdown-menu
@@ -32,7 +31,7 @@
     {{#each flashMessages.queue as |flash|}}
       {{flash-message flash=flash}}
     {{/each}}
-    {{outlet}}
+    {{focusing-outlet}}
   </div>
   <footer>
     <div class="footer-content">
