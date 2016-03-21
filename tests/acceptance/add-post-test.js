@@ -4,20 +4,17 @@ import { openDatepicker } from 'ember-pikaday/helpers/pikaday';
 import { expect } from 'chai';
 import Ember from 'ember';
 import startApp from '../helpers/start-app';
-import Pretender from 'pretender';
 import { authenticateSession, invalidateSession } from 'front-end/tests/helpers/ember-simple-auth';
 
 describe('Acceptance: Add Post', function() {
-  var application, pretender;
+  var application;
 
   beforeEach(function() {
     application = startApp();
-    pretender = new Pretender();
   });
 
   afterEach(function() {
     Ember.run(application, 'destroy');
-    pretender.shutdown();
   });
 
   describe('visiting posts/new unauthenticated', function() {
@@ -44,10 +41,6 @@ describe('Acceptance: Add Post', function() {
 
   describe('creating a new post post', function() {
     beforeEach(function() {
-      pretender.post('api/posts', function() {
-        return [201, { 'Content-Type': 'application/json' }, "{}"];
-      });
-
       authenticateSession(application);
       visit('/posts/new');
       fillIn('#post_title', 'Post Title');
@@ -55,13 +48,16 @@ describe('Acceptance: Add Post', function() {
     });
     beforeEach(function() {
       let datePicker;
-      fillIn('#excerpt', 'Post excerpt');
-      datePicker = openDatepicker(Ember.$('.spec-publish-date'));
-      datePicker.selectDate(new Date(2015, 2, 3));
+      return fillIn('#excerpt', 'Post excerpt');
+      // datePicker = openDatepicker(Ember.$('.spec-publish-date'));
+      // return datePicker.selectDate(new Date(2015, 2, 3));
+    });
+    beforeEach(function() {
       fillIn('.post-text-area', 'This is the post body.. Deal wit it');
       click('.spec-publish-toggle');
       return click('.spec-save-post');
     });
+
 
     it('redirects to published page', function() {
       expect(currentPath()).to.equal('posts.show');

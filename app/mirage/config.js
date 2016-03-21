@@ -32,6 +32,10 @@ export default function() {
     return JSON.parse(request.requestBody);
   });
 
+  this.post('/api/posts', function(db, request) {
+    return JSON.parse(request.requestBody);
+  });
+
   this.get('/api/timelines', function(db) {
     return { timeline: db.timeline };
   });

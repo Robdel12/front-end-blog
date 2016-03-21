@@ -6,23 +6,22 @@
     "moment": "~2.10.3",
     "marked": "~0.3.5",
     "dropkick": "~2.1.4",
-    "pikaday": "~1.4.0",
+    "pikaday": "^1.4.0",
     "highlightjs": "~8.9.1",
     "pretender": "~0.10.1",
-    "ember-mocha": "~0.8.1",
+    "ember-mocha": "~0.8.11",
     "ember": "2.4.3",
     "ember-cli-shims": "0.0.6",
     "ember-cli-test-loader": "0.2.1",
     "ember-data": "2.2.0",
     "ember-load-initializers": "0.1.7",
     "ember-resolver": "~0.1.20",
-    "loader.js": "ember-cli/loader.js#3.2.1",
+    "loader.js": "ember-cli/loader.js#3.3.0",
     "c3": "~0.4.10",
     "lodash": "~3.7.0",
     "Faker": "~3.0.0"
   },
   "resolutions": {
-    "d3": "~3.5.10",
-    "ember": "^2.0.0"
+    "d3": "~3.5.10"
   }
 }
