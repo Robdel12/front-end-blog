@@ -8,13 +8,15 @@
     "pikaday": "~1.4.0",
     "highlightjs": "~8.9.1",
     "pretender": "~0.10.1",
-    "ember-mocha": "~0.8.1",
+    "ember-mocha": "~0.8.11",
     "ember-data": "1.13.13",
     "c3": "~0.4.10",
     "lodash": "~3.7.0",
     "Faker": "~3.0.0",
-    "ember": "~2.3.1",
     "ember-cli-shims": "0.0.6",
-    "ember-cli-test-loader": "0.2.2"
+    "ember": "~2.7.0"
+  },
+  "resolutions": {
+    "ember": "~2.7.0"
   }
 }
