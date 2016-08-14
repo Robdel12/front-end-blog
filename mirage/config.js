@@ -28,12 +28,12 @@ export default function() {
     this.get('/contacts/:id', ['contact', 'addresses']);
    */
 
-  this.post('/api/timeline', function(db, request) {
+  this.post('/api/timeline', function(schema, request) {
     return JSON.parse(request.requestBody);
   });
 
-  this.get('/api/timeline', function(db) {
-    return { timeline: db.timeline };
+  this.get('/api/timeline', function(schema) {
+    return { timeline: schema.db.timeline };
   });
 
   /*
