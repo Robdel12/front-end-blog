@@ -28,11 +28,11 @@ export default function() {
     this.get('/contacts/:id', ['contact', 'addresses']);
    */
 
-  this.post('/api/timelines', function(db, request) {
+  this.post('/api/timeline', function(db, request) {
     return JSON.parse(request.requestBody);
   });
 
-  this.get('/api/timelines', function(db) {
+  this.get('/api/timeline', function(db) {
     return { timeline: db.timeline };
   });
 
