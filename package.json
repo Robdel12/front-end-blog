@@ -54,7 +54,7 @@
     "ember-export-application-global": "^1.0.4",
     "ember-pagefront": "0.10.10",
     "ember-pikaday": "0.14.0",
-    "ember-simple-auth": "1.0.1",
+    "ember-simple-auth": "~1.1.0",
     "ember-try": "0.0.7",
     "ember-watson": "^0.5.2",
     "emberx-select": "2.0.0",
